@@ -10,7 +10,7 @@ while True:
 
     if choice == "1":
         os.system("cls")
-        player_name = dialogue.intro()
+        player_name, rival_name = dialogue.intro()
     elif choice == "2":
         print("\nExiting the game...\n")
         break
