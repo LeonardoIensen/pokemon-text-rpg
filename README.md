@@ -9,11 +9,11 @@ A classic text-based Pokémon RPG built from scratch in Python, replicating the 
 ### Implemented Mechanics
 - **Game Loop & Main Menu:** Fully functional start menu with navigation controls.
 - **Dynamic Dialogue Engine:** Text animation effects (typewriter style) with integrated screen-clearing logic.
-- **Character Creation:** Introduction dialogue with Professor Oak, including real-time input validation for the player's name (caps enforcement and length constraints).
+- **Character & Rival Creation:** Introduction dialogue with Professor Oak, featuring real-time input validation, caps enforcement, and length constraints for both the player and the rival.
+- **Prologue & Journey Start:** Implemented the introductory story triggers, Mom's dialogue, Oak stopping the player at the tall grass, and arriving at the laboratory.
 
 ### Future Roadmap (In Development)
-- [ ] Rival introduction and customization.
-- [ ] Starter Pokémon selection at Oak's Lab.
+- [ ] Starter Pokémon selection mechanics at Oak's Lab.
 - [ ] Turn-based battle system mechanics.
 - [ ] Save, load, and world exploration systems.
 
