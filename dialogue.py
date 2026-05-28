@@ -71,23 +71,23 @@ def intro():
     return player_name, rival_name
 
 def start_journey(player_name, rival_name):
-    narration(f"{player_name} wakes up late on the big day to choose their first Pokemon.")
+    narration(f"\n{player_name} wakes up late on the big day to choose their first Pokemon.")
 
     talk("MOM", "Right... All boys leave home someday. It said so on TV.")
     talk("MOM", "Oh yes. PROF. OAK wants to see you.")
 
-    narration(f"Curious, {player_name} leaves home and walks through the small town of Pallet.")
+    narration(f"\nCurious, {player_name} leaves home and walks through the small town of Pallet.")
 
     talk("PROF. OAK", "Hey! Wait!")
 
-    narration("The older professor quickly approaches.")
+    narration("\nThe older professor quickly approaches.")
 
     talk("PROF. OAK", "Wild Pokémon live in tall grass!")
     talk("PROF. OAK", "Without a Pokémon, it would be dangerous to go alone.")
     talk("PROF. OAK", "Come with me to my lab.")
 
-    narration(f"{player_name} accompanies PROF. OAK to his lab.")
-    narration(f"Upon entering the lab, {player_name} finds {rival_name} waiting impatiently.")
+    narration(f"\n{player_name} accompanies PROF. OAK to his lab.")
+    narration(f"\nUpon entering the lab, {player_name} finds {rival_name} waiting impatiently.")
 
     talk(f"{rival_name}", "Finally arrived!")
     talk(f"{rival_name}", "Gramps! I'm tired of waiting!")
@@ -95,11 +95,4 @@ def start_journey(player_name, rival_name):
     talk("PROF. OAK", "You two will get your own Pokémon today.")
     talk("PROF. OAK", "There are three Pokémon here.")
     talk("PROF. OAK", "They were raised especially for young trainers.")
-
-    narration(f"Choose one of them, {player_name}.")
-
-    print("--- STARTER POKÉMON ---")
-    print("\n1 - Bulbasaur")
-    print("\n2 - Squirtle")
-    print("\n3 - Charmander")
-
+    talk("PROF. OAK", f"Choose one of them, {player_name}.")
