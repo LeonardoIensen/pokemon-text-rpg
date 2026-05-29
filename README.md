@@ -38,22 +38,27 @@ This project focuses on learning Python fundamentals, object-oriented programmin
   * Structured Pokémon database using dictionaries.
   * Base stats system implementation.
 
-* **Pokémon Class (OOP)**
+* **Pokémon System (OOP)**
 
   * Object-oriented Pokémon creation system.
   * Dynamic stat calculation based on level.
 
-* **Stats Visualization**
+* **Rival Starter Logic**
 
-  * Individual Pokémon stats display system.
-  * HP, Attack, Defense, Speed, Type, and Level visualization.
+  * Rival automatically chooses a starter based on type advantage.
+  * Special random selection behavior when the player chooses Pikachu.
+
+* **First Battle Sequence**
+
+  * Initial rival battle introduction implemented.
+  * Classic Pokémon Fire Red-inspired dialogue flow.
 
 ---
 
 ## 🛣️ Future Roadmap
 
 * [ ] Wild Pokémon encounter system
-* [ ] Turn-based battle mechanics
+* [ ] Battle combat mechanics
 * [ ] Experience and leveling system
 * [ ] Pokémon catching mechanics
 * [ ] Party and PC storage system
