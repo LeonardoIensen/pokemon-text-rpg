@@ -60,7 +60,7 @@ def intro():
         if 0 < len(rival_name) <= 10:
             break
         else:
-             narration("\n[Invalid name! It must be between 1 and 10 characters.]")
+             narration("[Invalid name! It must be between 1 and 10 characters.]")
              next_dialogue()
              ask("PROF. OAK", "Um... What was his name again?")
 

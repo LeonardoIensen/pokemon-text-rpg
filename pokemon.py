@@ -1,4 +1,5 @@
 import dialogue
+import random
 
 pokemon_data = {
 
@@ -53,6 +54,7 @@ class Pokemon:
         self.calculate_stats()
 
     def calculate_stats(self):
+
         self.max_hp = int(((self.base_hp * 2) * self.level) / 100) + self.level + 10
         self.current_hp = self.max_hp
 
@@ -61,6 +63,7 @@ class Pokemon:
         self.speed = int(((self.base_speed * 2) * self.level) / 100) + 5
 
     def show_stats(self):
+        
         print("\n--- POKEMON STATS ---")
         print(f"NAME : {self.name} Lv{self.level}")
         print(f"TYPE : {self.element_type}")
@@ -72,49 +75,67 @@ class Pokemon:
         print(f"DEFENSE : {self.defense}")
         print(f"SPEED : {self.speed}")
 
-
-
-
-def choose_starter():
-    print("\n--- STARTER POKEMON ---")
+def show_menu_starters():
+    print("\n--- STARTER POKEMON ---\n")
     print("1 - Bulbasaur")
     print("2 - Squirtle")
     print("3 - Charmander")
+    print("4 - ???")
+
+def choose_starter(player_name):
+
+    show_menu_starters()
 
     while True:
         choice = input("\nChoose: ")
 
         if choice == "1":
-            starter = Pokemon("BULBASAUR", 5)
-            dialogue.narration("\nYou chose Bulbasaur!")
-            dialogue.next_dialogue()
-            return starter
+            player_starter_name = "BULBASAUR"
 
         elif choice == "2":
-            starter = Pokemon("SQUIRTLE", 5)
-            dialogue.narration("\nYou chose Squirtle!")
-            dialogue.next_dialogue()
-            return starter
+            player_starter_name = "SQUIRTLE"
 
         elif choice == "3":
-            starter = Pokemon("CHARMANDER", 5)
-            dialogue.narration("\nYou chose Charmander!")
-            dialogue.next_dialogue()
-            return starter
+            player_starter_name = "CHARMANDER"
 
         elif choice == "4":
-            starter = Pokemon("PIKACHU", 5)
+            player_starter_name = "PIKACHU"
             dialogue.narration("\nWait... a fourth Pokeball?")
-            dialogue.narration("\nYou chose Pikachu!")
-            dialogue.next_dialogue()
-            return starter
 
         else:
             dialogue.narration("\n[Invalid option! Please select again.]")
             dialogue.next_dialogue()
-            print("\n--- STARTER POKEMON ---")
-            print("1 - Bulbasaur")
-            print("2 - Squirtle")
-            print("3 - Charmander")
 
-            
+            show_menu_starters()
+
+            continue
+
+
+        player_starter = Pokemon(player_starter_name, 5)
+        dialogue.narration(f"\n{player_name} received the {player_starter_name}!")
+        dialogue.next_dialogue()
+        return player_starter
+
+def choose_rival_starter(player_starter, rival_name):
+
+    dialogue.talk(f"{rival_name}", "I'll take this one, then!")
+
+    if player_starter.name == "BULBASAUR":
+        rival_starter_name = "CHARMANDER"
+
+    elif player_starter.name == "SQUIRTLE":
+        rival_starter_name = "BULBASAUR"
+
+
+    elif player_starter.name == "CHARMANDER":
+        rival_starter_name = "SQUIRTLE"
+
+    else:
+        starters = ["BULBASAUR", "SQUIRTLE", "CHARMANDER"]
+        random_starter_name = random.choice(starters)
+        rival_starter_name = random_starter_name
+    
+    rival_starter = Pokemon(rival_starter_name, 5)
+    dialogue.narration(f"\n{rival_name} received the {rival_starter.name}!")
+    dialogue.next_dialogue()
+    return rival_starter
