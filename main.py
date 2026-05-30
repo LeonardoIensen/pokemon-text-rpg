@@ -21,7 +21,7 @@ while True:
         player_starter = pokemon.choose_starter(player_name)
         rival_starter = pokemon.choose_rival_starter(player_starter, rival_name)
 
-        battle.rival_first_battle(player_name, player_starter, rival_name, rival_starter)
+        battle.rival_first_battle(player_name, rival_name, player_starter, rival_starter)
 
         dialogue.next_dialogue()
 

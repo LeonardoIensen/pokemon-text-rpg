@@ -8,7 +8,12 @@ pokemon_data = {
         "hp": 50,
         "attack": 70,
         "defense": 50,
-        "speed": 60
+        "speed": 60,
+
+        "moves": [
+            "SCRATCH",
+            "EMBER"
+        ]
     },
 
     "BULBASAUR": {
@@ -16,7 +21,12 @@ pokemon_data = {
         "hp": 50,
         "attack": 60,
         "defense": 60,
-        "speed": 50
+        "speed": 50,
+
+        "moves": [
+            "TACKLE",
+            "VINE WHIP"
+        ]
     },
 
     "SQUIRTLE": {
@@ -24,7 +34,12 @@ pokemon_data = {
         "hp": 50,
         "attack": 60,
         "defense": 70,
-        "speed": 50
+        "speed": 50,
+
+        "moves": [
+            "TACKLE",
+            "BUBBLE"
+        ]
     },
 
     "PIKACHU": {
@@ -32,12 +47,60 @@ pokemon_data = {
         "hp": 30,
         "attack": 70,
         "defense": 40,
-        "speed": 90
+        "speed": 90,
+
+        "moves": [
+            "THUNDER SHOCK",
+            "QUICK ATTACK"
+        ]
     },
 
 }
 
+moves_data = {
 
+    "SCRATCH": {
+        "power": 40,
+        "accuracy": 100,
+        "type": "NORMAL"
+    },
+
+    "EMBER": {
+        "power": 40,
+        "accuracy": 100,
+        "type": "FIRE"
+    },
+
+    "TACKLE": {
+        "power": 35,
+        "accuracy": 95,
+        "type": "NORMAL"
+    },
+
+    "VINE WHIP": {
+        "power": 35,
+        "accuracy": 95,
+        "type": "GRASS"
+    },
+
+    "BUBBLE": {
+        "power": 20,
+        "accuracy": 100,
+        "type": "WATER"
+    },
+
+    "THUNDER SHOCK": {
+        "power": 40,
+        "accuracy": 100,
+        "type": "ELECTRIC"
+    },
+
+    "QUICK ATTACK": {
+        "power": 40,
+        "accuracy": 100,
+        "type": "NORMAL"
+    },
+}
 
 class Pokemon:
     def __init__(self, name, level):
@@ -50,6 +113,7 @@ class Pokemon:
         self.base_attack = data["attack"]
         self.base_defense = data["defense"]
         self.base_speed = data["speed"]
+        self.moves = data["moves"].copy()
 
         self.calculate_stats()
 
@@ -74,6 +138,11 @@ class Pokemon:
         print(f"ATTACK : {self.attack}")
         print(f"DEFENSE : {self.defense}")
         print(f"SPEED : {self.speed}")
+
+        print("\nMOVES:")
+
+        for move in self.moves:
+            print(f"- {move}")
 
 def show_menu_starters():
     print("\n--- STARTER POKEMON ---\n")
