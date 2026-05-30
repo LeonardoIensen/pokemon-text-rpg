@@ -1,6 +1,7 @@
 # 🎮 Pokémon Text-Based RPG
 
 A classic text-based Pokémon RPG built from scratch in Python, inspired by the retro Game Boy Pokémon games.
+
 This project focuses on learning Python fundamentals, object-oriented programming, modular architecture, and game logic development through a fully terminal-based RPG experience.
 
 ---
@@ -37,11 +38,18 @@ This project focuses on learning Python fundamentals, object-oriented programmin
 
   * Structured Pokémon database using dictionaries.
   * Base stats system implementation.
+  * Pokémon move list integration.
 
 * **Pokémon System (OOP)**
 
   * Object-oriented Pokémon creation system.
   * Dynamic stat calculation based on level.
+  * Individual move sets assigned to each Pokémon.
+
+* **Move Database System**
+
+  * Dedicated move database using dictionaries.
+  * Move power, accuracy, and type data implemented.
 
 * **Rival Starter Logic**
 
@@ -52,17 +60,21 @@ This project focuses on learning Python fundamentals, object-oriented programmin
 
   * Initial rival battle introduction implemented.
   * Classic Pokémon Fire Red-inspired dialogue flow.
+  * Battle system foundation established.
 
 ---
 
 ## 🛣️ Future Roadmap
 
-* [ ] Wild Pokémon encounter system
-* [ ] Battle combat mechanics
+* [ ] Battle menu system (Fight / Pokémon / Bag / Run)
+* [ ] Damage calculation mechanics
+* [ ] Turn-based battle system
+* [ ] Type effectiveness system
 * [ ] Experience and leveling system
+* [ ] Move learning system
+* [ ] Wild Pokémon encounter system
 * [ ] Pokémon catching mechanics
 * [ ] Party and PC storage system
-* [ ] Type effectiveness system
 * [ ] Status effects and healing items
 * [ ] Trainer battles and Gym Leader Brock
 * [ ] Save and load system
