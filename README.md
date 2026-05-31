@@ -61,14 +61,15 @@ This project focuses on learning Python fundamentals, object-oriented programmin
   * Initial rival battle introduction implemented.
   * Classic Pokémon Fire Red-inspired dialogue flow.
   * Battle system foundation established.
+  * Battle system foundation completed with win/lose conditions
 
 ---
 
 ## 🛣️ Future Roadmap
 
-* [ ] Battle menu system (Fight / Pokémon / Bag / Run)
-* [ ] Damage calculation mechanics
-* [ ] Turn-based battle system
+* [ ] Functional battle menu (Fight / Pokémon / Bag / Run placeholder)
+* [ ] Simple damage calculation system
+* [ ] Basic turn-based battle system (player vs rival)
 * [ ] Type effectiveness system
 * [ ] Experience and leveling system
 * [ ] Move learning system
@@ -131,7 +132,7 @@ python main.py
 
 ## 🎯 Project Goals
 
-This project was created primarily for:
+This project is currently in early gameplay development phase, focusing on core battle mechanics and system architecture.
 
 * Learning Python from scratch
 * Practicing programming logic
