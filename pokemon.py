@@ -12,7 +12,6 @@ pokemon_data = {
 
         "moves": [
             "SCRATCH",
-            "EMBER"
         ]
     },
 
@@ -25,7 +24,6 @@ pokemon_data = {
 
         "moves": [
             "TACKLE",
-            "VINE WHIP"
         ]
     },
 
@@ -38,7 +36,6 @@ pokemon_data = {
 
         "moves": [
             "TACKLE",
-            "BUBBLE"
         ]
     },
 
@@ -51,7 +48,6 @@ pokemon_data = {
 
         "moves": [
             "THUNDER SHOCK",
-            "QUICK ATTACK"
         ]
     },
 

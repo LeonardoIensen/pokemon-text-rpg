@@ -1,5 +1,14 @@
 import dialogue
 import pokemon
+import random
+
+def calculate_damage(attacker, defender, move):
+
+    power = pokemon.moves_data[move]["power"]
+    
+    dano = (attacker.attack * power) // defender.defense + 2
+
+    return dano
 
 def show_battle_stats(player_starter, rival_starter):
     print("\n-----------------------")
@@ -26,13 +35,70 @@ def fight_menu(player_starter):
         print("0 - BACK")
 
         choice = input("\nChoose: ")
+        choice = int(choice)
 
-        if choice == "0":
+        if choice == 0:
             return
 
+        elif 1 <= choice <= len(player_starter.moves):
+            selected_move = player_starter.moves[choice - 1]
 
+            print(f"\n{player_starter.name} used {selected_move}!")
 
-def battle_menu(player_starter, rival_starter):
+            return selected_move
+        
+        else:
+            dialogue.narration("\n[Invalid option! Please select again.]")
+            dialogue.next_dialogue()
+
+def battle_turn(player_starter, rival_starter, player_move, player_name, rival_name):
+
+    print(f"{player_starter.name} used {player_move}!")
+
+    player_damage = calculate_damage(player_starter, rival_starter, player_move)
+
+    dialogue.narration(f"Foe {rival_starter.name} took damage!")
+    dialogue.next_dialogue()
+
+    rival_starter.current_hp -= player_damage
+    if rival_starter.current_hp <= 0:
+
+        rival_starter.current_hp = 0
+
+        dialogue.narration(f"Foe {rival_starter.name} fainted!")
+        dialogue.next_dialogue()
+
+        dialogue.narration(f"{player_starter.name} gained 12 EXP. Points!")
+        dialogue.next_dialogue()
+
+        dialogue.narration(f"{player_name} defeated {rival_name}!")
+        dialogue.next_dialogue()
+
+        dialogue.talk(f"{rival_name}", f"WHAT? Unbelievable! I picked the whong POKEMON!")
+        dialogue.next_dialogue()
+
+        return "WIN"
+
+    rival_move = random.choice(rival_starter.moves)
+    rival_damage = calculate_damage(rival_starter, player_starter, rival_move)
+
+    dialogue.narration(f"Foe {rival_starter.name} used {rival_move}!")
+    dialogue.next_dialogue()
+
+    player_starter.current_hp -= rival_damage
+    
+    if player_starter.current_hp <= 0:
+        player_starter.current_hp = 0
+
+        dialogue.narration(f"Your {player_starter.name} fainted!")
+        dialogue.next_dialogue()
+
+        dialogue.talk(f"{rival_name}", f"{rival_starter.name} come back! Yeah! Am I great or what?")
+        dialogue.next_dialogue()
+
+        return "LOSE"
+
+def battle_menu(player_starter, rival_starter, player_name, rival_name):
     while True:  
 
         show_battle_stats(player_starter, rival_starter)
@@ -47,7 +113,19 @@ def battle_menu(player_starter, rival_starter):
         choice = input("\nChoose: ")
 
         if choice == "1":
-            fight_menu(player_starter)
+
+            move = fight_menu(player_starter)
+
+            if move is None:
+                continue
+
+            result = battle_turn(player_starter, rival_starter, move, player_name, rival_name)
+
+            if result in ("WIN", "LOSE"):
+                dialogue.narration("\n=== BATTLE ENDED ===\n")
+                dialogue.next_dialogue()
+                break
+                
 
         elif choice == "2":
             print()
@@ -79,4 +157,4 @@ def rival_first_battle(
     dialogue.narration(f"\nGo! {player_starter.name}!")
     dialogue.next_dialogue()
 
-    battle_menu(player_starter, rival_starter)
+    battle_menu(player_starter, rival_starter, player_name, rival_name)
