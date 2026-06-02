@@ -56,38 +56,107 @@ def battle_turn(player_starter, rival_starter, player_move, player_name, rival_n
 
     dialogue.clear_screen()
 
-    dialogue.narration(f"\n{player_starter.name} used {player_move}!")
-
-    player_damage = calculate_damage(player_starter, rival_starter, player_move)
-
-    rival_starter.current_hp -= player_damage
-    if rival_starter.current_hp <= 0:
-
-        rival_starter.current_hp = 0
-
-        dialogue.narration(f"\nFoe {rival_starter.name} fainted!")
-        dialogue.narration(f"\n{player_name} defeated {rival_name}!")
-        dialogue.next_dialogue()
-
-        dialogue.talk(f"{rival_name}", f"WHAT? Unbelievable! I picked the wrong POKEMON!")
-
-        return "WIN"
-
     rival_move = random.choice(rival_starter.moves)
-    rival_damage = calculate_damage(rival_starter, player_starter, rival_move)
 
-    dialogue.narration(f"\nFoe {rival_starter.name} used {rival_move}!")
+    if player_starter.speed > rival_starter.speed:
+        first_pokemon = player_starter
+        first_move = player_move
+
+        second_pokemon = rival_starter
+        second_move = rival_move
+
+    elif rival_starter.speed > player_starter.speed:
+        first_pokemon = rival_starter
+        first_move = rival_move
+
+        second_pokemon = player_starter
+        second_move = player_move
+
+    else:
+        speed_roll = random.randint(0, 1)
+
+        if speed_roll == 0:
+            first_pokemon = player_starter
+            first_move = player_move
+
+            second_pokemon = rival_starter
+            second_move = rival_move
+
+        else:
+            first_pokemon = rival_starter
+            first_move = rival_move
+
+            second_pokemon = player_starter
+            second_move = player_move
+
+    if first_pokemon == rival_starter:
+        dialogue.narration(f"\nFoe {first_pokemon.name} used {first_move}!")
+    else:
+        dialogue.narration(f"\n{first_pokemon.name} used {first_move}!")
+
+    first_damage = calculate_damage(first_pokemon, second_pokemon, first_move)
+
+    second_pokemon.current_hp -= first_damage
+
+    if second_pokemon.current_hp <= 0:
+
+        second_pokemon.current_hp = 0
+
+        if second_pokemon == rival_starter:
+
+            dialogue.narration(f"\nFoe {rival_starter.name} fainted!")
+            dialogue.narration(f"\n{player_name} defeated {rival_name}!")
+            dialogue.next_dialogue()
+
+            dialogue.talk(rival_name, "WHAT? Unbelievable! I picked the wrong POKEMON!")
+
+            return "WIN"
+
+        if second_pokemon == player_starter:
+
+            dialogue.narration(f"\nYour {player_starter.name} fainted!")
+            dialogue.narration(f"\nYou were defeated by {rival_name}!")
+            dialogue.next_dialogue()
+
+            dialogue.talk(rival_name, f"{rival_starter.name} come back! Yeah! Am I great or what?")
+
+            return "LOSE"
+
+    if second_pokemon == rival_starter:
+        dialogue.narration(f"\nFoe {second_pokemon.name} used {second_move}!")
+    else:
+        dialogue.narration(f"\n{second_pokemon.name} used {second_move}!")
+
     dialogue.next_dialogue()
 
-    player_starter.current_hp -= rival_damage
-    
-    if player_starter.current_hp <= 0:
-        player_starter.current_hp = 0
+    second_damage = calculate_damage(second_pokemon, first_pokemon, second_move)
 
-        dialogue.narration(f"\nYour {player_starter.name} fainted!")
-        dialogue.talk(f"\n{rival_name}", f"{rival_starter.name} come back! Yeah! Am I great or what?")
+    first_pokemon.current_hp -= second_damage
 
-        return "LOSE"
+    if first_pokemon.current_hp <= 0:
+
+        first_pokemon.current_hp = 0
+
+        if first_pokemon == rival_starter:
+
+            dialogue.narration(f"\nFoe {rival_starter.name} fainted!")
+            dialogue.narration(f"\n{player_name} defeated {rival_name}!")
+            dialogue.next_dialogue()
+
+            dialogue.talk(rival_name,"WHAT? Unbelievable! I picked the wrong POKEMON!")
+
+            return "WIN"
+
+        if first_pokemon == player_starter:
+
+            dialogue.narration(f"\nYour {player_starter.name} fainted!")
+            dialogue.narration(f"\nYou were defeated by {rival_name}!")
+            dialogue.next_dialogue()
+
+            dialogue.talk(rival_name, f"{rival_starter.name} come back! Yeah! Am I great or what?")
+
+            return "LOSE"
+
 
 def battle_menu(player_starter, rival_starter, player_name, rival_name):
     while True:
