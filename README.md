@@ -60,17 +60,22 @@ This project focuses on learning Python fundamentals, object-oriented programmin
 
   * Initial rival battle introduction implemented.
   * Classic Pokémon Fire Red-inspired dialogue flow.
-  * Battle system foundation established.
-  * Battle system foundation completed with win/lose conditions
+  * Functional turn-based battle system.
+  * Damage calculation system implemented.
+  * Speed-based turn order system implemented.
+  * Speed tie resolution with random priority.
+  * Win and lose conditions implemented.
+  * Battle interface with dynamic HP display.
 
 ---
 
 ## 🛣️ Future Roadmap
 
-* [ ] Functional battle menu (Fight / Pokémon / Bag / Run placeholder)
-* [ ] Simple damage calculation system
-* [ ] Basic turn-based battle system (player vs rival)
+* [ ] Pokémon switching system
+* [ ] Bag system
+* [ ] Run mechanic
 * [ ] Type effectiveness system
+* [ ] Accuracy and critical hit system
 * [ ] Experience and leveling system
 * [ ] Move learning system
 * [ ] Wild Pokémon encounter system
