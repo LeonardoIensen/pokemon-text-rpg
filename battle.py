@@ -6,9 +6,10 @@ def calculate_damage(attacker, defender, move):
 
     power = pokemon.moves_data[move]["power"]
     
-    dano = (attacker.attack * power) // defender.defense + 2
+    damage = (((attacker.level * 2) // 5 + 2) * power * attacker.attack) // defender.defense
+    damage = damage // 50 + 2
 
-    return dano
+    return damage
 
 def show_battle_stats(player_starter, rival_starter):
     print("\n-----------------------")
@@ -25,14 +26,17 @@ def show_battle_stats(player_starter, rival_starter):
 
 def fight_menu(player_starter):
     while True:
-        print("\nMOVES\n")
+
+        dialogue.clear_screen()
+
+        dialogue.narration("\nMOVES\n")
 
         for i, move in enumerate(player_starter.moves, 1):
             move_type = pokemon.moves_data[move]["type"]
 
-            print(f"{i} - {move} ({move_type})")
+            dialogue.narration(f"{i} - {move} ({move_type})")
 
-        print("0 - BACK")
+        dialogue.narration("0 - BACK")
 
         choice = input("\nChoose: ")
         choice = int(choice)
@@ -42,9 +46,6 @@ def fight_menu(player_starter):
 
         elif 1 <= choice <= len(player_starter.moves):
             selected_move = player_starter.moves[choice - 1]
-
-            print(f"\n{player_starter.name} used {selected_move}!")
-
             return selected_move
         
         else:
@@ -53,36 +54,29 @@ def fight_menu(player_starter):
 
 def battle_turn(player_starter, rival_starter, player_move, player_name, rival_name):
 
-    print(f"{player_starter.name} used {player_move}!")
+    dialogue.clear_screen()
+
+    dialogue.narration(f"\n{player_starter.name} used {player_move}!")
 
     player_damage = calculate_damage(player_starter, rival_starter, player_move)
-
-    dialogue.narration(f"Foe {rival_starter.name} took damage!")
-    dialogue.next_dialogue()
 
     rival_starter.current_hp -= player_damage
     if rival_starter.current_hp <= 0:
 
         rival_starter.current_hp = 0
 
-        dialogue.narration(f"Foe {rival_starter.name} fainted!")
+        dialogue.narration(f"\nFoe {rival_starter.name} fainted!")
+        dialogue.narration(f"\n{player_name} defeated {rival_name}!")
         dialogue.next_dialogue()
 
-        dialogue.narration(f"{player_starter.name} gained 12 EXP. Points!")
-        dialogue.next_dialogue()
-
-        dialogue.narration(f"{player_name} defeated {rival_name}!")
-        dialogue.next_dialogue()
-
-        dialogue.talk(f"{rival_name}", f"WHAT? Unbelievable! I picked the whong POKEMON!")
-        dialogue.next_dialogue()
+        dialogue.talk(f"{rival_name}", f"WHAT? Unbelievable! I picked the wrong POKEMON!")
 
         return "WIN"
 
     rival_move = random.choice(rival_starter.moves)
     rival_damage = calculate_damage(rival_starter, player_starter, rival_move)
 
-    dialogue.narration(f"Foe {rival_starter.name} used {rival_move}!")
+    dialogue.narration(f"\nFoe {rival_starter.name} used {rival_move}!")
     dialogue.next_dialogue()
 
     player_starter.current_hp -= rival_damage
@@ -90,25 +84,24 @@ def battle_turn(player_starter, rival_starter, player_move, player_name, rival_n
     if player_starter.current_hp <= 0:
         player_starter.current_hp = 0
 
-        dialogue.narration(f"Your {player_starter.name} fainted!")
-        dialogue.next_dialogue()
-
-        dialogue.talk(f"{rival_name}", f"{rival_starter.name} come back! Yeah! Am I great or what?")
-        dialogue.next_dialogue()
+        dialogue.narration(f"\nYour {player_starter.name} fainted!")
+        dialogue.talk(f"\n{rival_name}", f"{rival_starter.name} come back! Yeah! Am I great or what?")
 
         return "LOSE"
 
 def battle_menu(player_starter, rival_starter, player_name, rival_name):
-    while True:  
+    while True:
+        
+        dialogue.clear_screen()
 
         show_battle_stats(player_starter, rival_starter)
 
-        print(f"\nWhat will {player_starter.name} do?\n")
+        dialogue.narration(f"What will {player_starter.name} do?\n")
 
-        print("1 - FIGHT")
-        print("2 - POKEMON")
-        print("3 - BAG")
-        print("4 - RUN")
+        dialogue.narration("1 - FIGHT")
+        dialogue.narration("2 - POKEMON")
+        dialogue.narration("3 - BAG")
+        dialogue.narration("4 - RUN")
 
         choice = input("\nChoose: ")
 
@@ -122,22 +115,24 @@ def battle_menu(player_starter, rival_starter, player_name, rival_name):
             result = battle_turn(player_starter, rival_starter, move, player_name, rival_name)
 
             if result in ("WIN", "LOSE"):
-                dialogue.narration("\n=== BATTLE ENDED ===\n")
-                dialogue.next_dialogue()
                 break
                 
 
         elif choice == "2":
-            print()
+            dialogue.narration("\nFeature not implemented yet.")
+            dialogue.next_dialogue()
 
         elif choice == "3":
-            print()
+            dialogue.narration("\nFeature not implemented yet.")
+            dialogue.next_dialogue()
 
         elif choice == "4":
-            print()
+            dialogue.narration("\nFeature not implemented yet.")
+            dialogue.next_dialogue()
 
         else:
-            print()
+            dialogue.narration("\nFeature not implemented yet.")
+            dialogue.next_dialogue()
 
 def rival_first_battle(
     player_name,
@@ -145,12 +140,9 @@ def rival_first_battle(
     player_starter,
     rival_starter
 ):
-    dialogue.talk(f"{rival_name}", f"{player_name}! Let's check out our POKEMON!")
-    dialogue.talk(f"{rival_name}", "Come on, I'll take you on!")
+    dialogue.talk(f"{rival_name}", f"{player_name}! Let's check out our POKEMON! Come on, I'll take you on!")
 
     dialogue.narration(f"\n{rival_name} challenges you to a battle!")
-    dialogue.next_dialogue()
-
     dialogue.narration(f"\n{rival_name} sent out {rival_starter.name}!")
     dialogue.next_dialogue()
 
