@@ -64,6 +64,9 @@ This project focuses on learning Python fundamentals, object-oriented programmin
   * Damage calculation system implemented.
   * Speed-based turn order system implemented.
   * Speed tie resolution with random priority.
+  * Run mechanic implemented.
+  * Trainer battle escape restriction implemented.
+  * Wild battle escape system implemented.
   * Win and lose conditions implemented.
   * Battle interface with dynamic HP display.
 
@@ -73,7 +76,6 @@ This project focuses on learning Python fundamentals, object-oriented programmin
 
 * [ ] Pokémon switching system
 * [ ] Bag system
-* [ ] Run mechanic
 * [ ] Type effectiveness system
 * [ ] Accuracy and critical hit system
 * [ ] Experience and leveling system
