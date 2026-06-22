@@ -37,14 +37,14 @@ def try_run(battle_type):
 
             return "FAILED"
 
-def fight_menu(player_starter):
+def fight_menu(player_pokemon):
     while True:
 
         dialogue.clear_screen()
 
         dialogue.narration("\nMOVES\n")
 
-        for i, move in enumerate(player_starter.moves, 1):
+        for i, move in enumerate(player_pokemon.moves, 1):
             move_type = pokemon.moves_data[move]["type"]
 
             dialogue.narration(f"{i} - {move} ({move_type})")
@@ -52,118 +52,128 @@ def fight_menu(player_starter):
         dialogue.narration("0 - BACK")
 
         choice = input("\nChoose: ")
+
+        if not choice.isdigit():
+            dialogue.narration("\n[Invalid option! Please select again.]")
+            dialogue.next_dialogue()
+            continue
+
         choice = int(choice)
 
         if choice == 0:
             return
 
-        elif 1 <= choice <= len(player_starter.moves):
-            selected_move = player_starter.moves[choice - 1]
+        elif 1 <= choice <= len(player_pokemon.moves):
+            selected_move = player_pokemon.moves[choice - 1]
             return selected_move
         
         else:
             dialogue.narration("\n[Invalid option! Please select again.]")
             dialogue.next_dialogue()
 
-def show_battle_stats(player_starter, enemy_starter):
+def show_battle_stats(player_pokemon, enemy_pokemon):
     print("\n-----------------------")
 
-    print(f"FOE: {enemy_starter.name} Lv{enemy_starter.level}")
-    print(f"HP: {enemy_starter.current_hp}/{enemy_starter.max_hp}")
+    print(f"FOE: {enemy_pokemon.name} Lv{enemy_pokemon.level}")
+    print(f"HP: {enemy_pokemon.current_hp}/{enemy_pokemon.max_hp}")
 
     print("\nVS\n")
 
-    print(f"YOUR: {player_starter.name} Lv{player_starter.level}")
-    print(f"HP: {player_starter.current_hp}/{player_starter.max_hp}")
+    print(f"YOUR: {player_pokemon.name} Lv{player_pokemon.level}")
+    print(f"HP: {player_pokemon.current_hp}/{player_pokemon.max_hp}")
 
     print("-----------------------\n")
 
-def show_attack_message(attacker, move, enemy_starter):
-    if attacker == enemy_starter:
+def show_attack_message(attacker, move, enemy_pokemon):
+    if attacker == enemy_pokemon:
         dialogue.narration(f"\nFoe {attacker.name} used {move}!")
     else:
         dialogue.narration(f"\n{attacker.name} used {move}!")
 
-def define_turn_order(player_starter, enemy_starter, player_move, enemy_move):
-    if player_starter.speed > enemy_starter.speed:
-        first_pokemon = player_starter
+def define_turn_order(player_pokemon, enemy_pokemon, player_move, enemy_move):
+    if player_pokemon.speed > enemy_pokemon.speed:
+        first_pokemon = player_pokemon
         first_move = player_move
 
-        second_pokemon = enemy_starter
+        second_pokemon = enemy_pokemon
         second_move = enemy_move
 
-    elif enemy_starter.speed > player_starter.speed:
-        first_pokemon = enemy_starter
+    elif enemy_pokemon.speed > player_pokemon.speed:
+        first_pokemon = enemy_pokemon
         first_move = enemy_move
 
-        second_pokemon = player_starter
+        second_pokemon = player_pokemon
         second_move = player_move
 
     else:
         speed_roll = random.randint(0, 1)
 
         if speed_roll == 0:
-            first_pokemon = player_starter
+            first_pokemon = player_pokemon
             first_move = player_move
 
-            second_pokemon = enemy_starter
+            second_pokemon = enemy_pokemon
             second_move = enemy_move
 
         else:
-            first_pokemon = enemy_starter
+            first_pokemon = enemy_pokemon
             first_move = enemy_move
 
-            second_pokemon = player_starter
+            second_pokemon = player_pokemon
             second_move = player_move
 
     return first_pokemon, first_move, second_pokemon, second_move
 
-def handle_faint(fainted_pokemon, player_starter, enemy_starter, player_name, enemy_name):
+def handle_faint(fainted_pokemon, player_pokemon, enemy_pokemon, player_name, enemy_name, battle_type):
     fainted_pokemon.current_hp = 0
 
-    if fainted_pokemon == enemy_starter:
+    if fainted_pokemon == enemy_pokemon:
+        dialogue.narration(f"\nFoe {enemy_pokemon.name} fainted!")
 
-        dialogue.narration(f"\nFoe {enemy_starter.name} fainted!")
-        dialogue.narration(f"\n{player_name} defeated {enemy_name}!")
+        if battle_type == "TRAINER":
+            dialogue.narration(f"\n{player_name} defeated {enemy_name}!")
+
+        elif battle_type == "WILD":
+            dialogue.narration(f"\nYou defeated the wild {enemy_pokemon.name}!")
+
         dialogue.next_dialogue()
-
-        dialogue.talk(enemy_name, "WHAT? Unbelievable! I picked the wrong POKEMON!")
-
         return "WIN"
 
-    if fainted_pokemon == player_starter:
+    if fainted_pokemon == player_pokemon:
+        dialogue.narration(f"\nYour {player_pokemon.name} fainted!")
 
-        dialogue.narration(f"\nYour {player_starter.name} fainted!")
-        dialogue.narration(f"\nYou were defeated by {enemy_name}!")
+        if battle_type == "TRAINER":
+            dialogue.narration(f"\nYou were defeated by {enemy_name}!")
+
+        elif battle_type == "WILD":
+            dialogue.narration("\nYou blacked out!")
+
         dialogue.next_dialogue()
-
-        dialogue.talk(enemy_name, f"{enemy_starter.name} come back! Yeah! Am I great or what?")
-
         return "LOSE"
 
-def battle_turn(player_starter, enemy_starter, player_move, player_name, enemy_name):
+def battle_turn(player_pokemon, enemy_pokemon, player_move, player_name, enemy_name, battle_type):
 
     dialogue.clear_screen()
 
-    enemy_move = random.choice(enemy_starter.moves)
+    enemy_move = random.choice(enemy_pokemon.moves)
 
     first_pokemon, first_move, second_pokemon, second_move = define_turn_order(
-        player_starter,
-        enemy_starter,
+        player_pokemon,
+        enemy_pokemon,
         player_move,
         enemy_move
     )
 
-    show_attack_message(first_pokemon, first_move, enemy_starter)
+    show_attack_message(first_pokemon, first_move, enemy_pokemon)
 
     first_damage = calculate_damage(first_pokemon, second_pokemon, first_move)
 
     second_pokemon.current_hp -= first_damage
 
     if second_pokemon.current_hp <= 0:
-        return handle_faint(second_pokemon, player_starter, enemy_starter, player_name, enemy_name)
+        return handle_faint(second_pokemon, player_pokemon, enemy_pokemon, player_name, enemy_name, battle_type)
     
-    show_attack_message(second_pokemon, second_move, enemy_starter)
+    show_attack_message(second_pokemon, second_move, enemy_pokemon)
 
     dialogue.next_dialogue()
 
@@ -172,16 +182,16 @@ def battle_turn(player_starter, enemy_starter, player_move, player_name, enemy_n
     first_pokemon.current_hp -= second_damage
 
     if first_pokemon.current_hp <= 0:
-        return handle_faint(first_pokemon, player_starter, enemy_starter, player_name, enemy_name)
+        return handle_faint(first_pokemon, player_pokemon, enemy_pokemon, player_name, enemy_name)
 
-def battle_menu(player_starter, enemy_starter, player_name, enemy_name, battle_type):
+def battle_menu(player_pokemon, enemy_pokemon, player_name, enemy_name, battle_type):
     while True:
         
         dialogue.clear_screen()
 
-        show_battle_stats(player_starter, enemy_starter)
+        show_battle_stats(player_pokemon, enemy_pokemon)
 
-        dialogue.narration(f"What will {player_starter.name} do?\n")
+        dialogue.narration(f"What will {player_pokemon.name} do?\n")
 
         print("1 - FIGHT")
         print("2 - POKEMON")
@@ -192,15 +202,15 @@ def battle_menu(player_starter, enemy_starter, player_name, enemy_name, battle_t
 
         if choice == "1":
 
-            move = fight_menu(player_starter)
+            move = fight_menu(player_pokemon)
 
             if move is None:
                 continue
 
-            result = battle_turn(player_starter, enemy_starter, move, player_name, enemy_name)
+            result = battle_turn(player_pokemon, enemy_pokemon, move, player_name, enemy_name, battle_type)
 
             if result in ("WIN", "LOSE"):
-                break
+                return result
                 
         elif choice == "2":
             dialogue.narration("\nFeature not implemented yet.")
@@ -214,25 +224,38 @@ def battle_menu(player_starter, enemy_starter, player_name, enemy_name, battle_t
             result = try_run(battle_type)
 
             if result == "ESCAPED":
-                break
+                return result
 
         else:
-            dialogue.narration("\nFeature not implemented yet.")
+            dialogue.narration("\n[Invalid option! Please select again.]")
             dialogue.next_dialogue()
 
-def rival_first_battle(
-    player_name,
-    rival_name,
-    player_starter,
-    rival_starter
-):
-    dialogue.talk(f"{rival_name}", f"{player_name}! Let's check out our POKEMON! Come on, I'll take you on!")
+def rival_first_battle(player_name, rival_name, player_pokemon, rival_pokemon):
+    dialogue.talk(rival_name, f"{player_name}! Let's check out our POKEMON! Come on, I'll take you on!")
 
     dialogue.narration(f"\n{rival_name} challenges you to a battle!")
-    dialogue.narration(f"\n{rival_name} sent out {rival_starter.name}!")
+    dialogue.narration(f"\n{rival_name} sent out {rival_pokemon.name}!")
     dialogue.next_dialogue()
 
-    dialogue.narration(f"\nGo! {player_starter.name}!")
+    dialogue.narration(f"\nGo! {player_pokemon.name}!")
     dialogue.next_dialogue()
 
-    battle_menu(player_starter, rival_starter, player_name, rival_name, "TRAINER")
+    result = battle_menu(player_pokemon, rival_pokemon, player_name, rival_name, "TRAINER")
+
+    if result == "LOSE":
+        dialogue.talk(rival_name, f"{rival_pokemon.name} come back! Yeah! Am I great or what?")
+
+    elif result == "WIN":
+        dialogue.talk(rival_name, "WHAT? Unbelievable! I picked the wrong POKEMON!")
+
+def wild_battle(player_name, player_pokemon, wild_pokemon):
+    dialogue.narration(f"\nA wild {wild_pokemon.name} appeared!")
+    dialogue.next_dialogue()
+    
+    dialogue.narration(f"\nGo! {player_pokemon.name}!")
+    dialogue.next_dialogue()
+    
+    result = battle_menu(player_pokemon, wild_pokemon, player_name, "Wild Pokemon","WILD")
+    
+    return result
+    
