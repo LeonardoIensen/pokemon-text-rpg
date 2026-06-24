@@ -15,8 +15,23 @@ pokemon_data = {
         ]
     },
 
+    "CHARMELEON": {
+        "element": "FIRE",
+        "hp": 75,
+        "attack": 73,
+        "defense": 73,
+        "speed": 97,
+
+        "moves": [
+            "SCRATCH",
+            "EMBER",
+            "METAL CLAW",
+            "FLAME WHEEL",
+        ]
+    },
+
     "BULBASAUR": {
-        "element": "GRASS",
+        "element": "GRASS / POISON",
         "hp": 50,
         "attack": 60,
         "defense": 60,
@@ -24,6 +39,21 @@ pokemon_data = {
 
         "moves": [
             "TACKLE",
+        ]
+    },
+
+    "IVYSAUR": {
+        "element": "GRASS / POISON",
+        "hp": 70,
+        "attack": 67,
+        "defense": 67,
+        "speed": 80,
+
+        "moves": [
+            "TACKLE",
+            "VINE WHIP",
+            "SLAM",
+            "RAZOR LEAF",
         ]
     },
 
@@ -39,6 +69,21 @@ pokemon_data = {
         ]
     },
 
+    "WARTORTLE": {
+        "element": "WATER",
+        "hp": 78,
+        "attack": 67,
+        "defense": 87,
+        "speed": 67,
+
+        "moves": [
+            "TACKLE",
+            "BUBBLE",
+            "WATER GUN",
+            "BITE",
+        ]
+    },
+
     "PIKACHU": {
         "element": "ELECTRIC",
         "hp": 30,
@@ -48,6 +93,196 @@ pokemon_data = {
 
         "moves": [
             "THUNDER SHOCK",
+        ]
+    },
+
+    "RATTATA": {
+        "element": "NORMAL",
+        "hp": 40,
+        "attack": 50,
+        "defense": 40,
+        "speed": 50,
+
+        "moves": [
+            "TACKLE",
+        ]
+    },
+
+    "RATICATE": {
+        "element": "NORMAL",
+        "hp": 60,
+        "attack": 95,
+        "defense": 85,
+        "speed": 120,
+
+        "moves": [
+            "TACKLE",
+            "QUICK ATTACK",
+            "HYPER FANG",
+        ]
+    },
+
+    "PIDGEY": {
+        "element": "NORMAL / FLYING",
+        "hp": 50,
+        "attack": 40,
+        "defense": 40,
+        "speed": 50,
+
+        "moves": [
+            "TACKLE",
+        ]
+    },
+
+    "PIDGEOTTO": {
+        "element": "NORMAL / FLYING",
+        "hp": 75,
+        "attack": 82,
+        "defense": 70,
+        "speed": 85,
+
+        "moves": [
+            "TACKLE",
+            "GUST",
+            "QUICK ATTACK",
+        ]
+    },
+
+    "SPEAROW": {
+        "element": "NORMAL / FLYING",
+        "hp": 40,
+        "attack": 60,
+        "defense": 40,
+        "speed": 70,
+
+        "moves": [
+            "PECK",
+        ]
+    },
+
+    "FEAROW": {
+        "element": "NORMAL / FLYING",
+        "hp": 65,
+        "attack": 100,
+        "defense": 73,
+        "speed": 100,
+
+        "moves": [
+            "PECK",
+            "GUST",
+            "FURY ATTACK",
+        ]
+    },
+
+    "MANKEY": {
+        "element": "FIGHT",
+        "hp": 40,
+        "attack": 70,
+        "defense": 40,
+        "speed": 70,
+
+        "moves": [
+            "SCRATCH",
+        ]
+    },
+
+    "NIDORAN": {
+        "element": "POISON",
+        "hp": 45,
+        "attack": 60,
+        "defense": 50,
+        "speed": 40,
+
+        "moves": [
+            "PECK",
+        ]
+    },
+
+    "NIDORINO": {
+        "element": "POISON",
+        "hp": 70,
+        "attack": 95,
+        "defense": 70,
+        "speed": 70,
+
+        "moves": [
+            "POISON STING",
+            "DOUBLE KICK",
+            "PECK",
+        ]
+    },
+
+    "CATERPIE": {
+        "element": "BUG",
+        "hp": 40,
+        "attack": 40,
+        "defense": 40,
+        "speed": 40,
+
+        "moves": [
+            "TACKLE",
+        ]
+    },
+
+    "METAPOD": {
+        "element": "BUG",
+        "hp": 50,
+        "attack": 30,
+        "defense": 70,
+        "speed": 30,
+
+        "moves": [
+            "TACKLE",
+        ]
+    },
+
+    "BUTTERFREE": {
+        "element": "BUG / FLYING",
+        "hp": 60,
+        "attack": 55,
+        "defense": 65,
+        "speed": 72,
+
+        "moves": [
+            "CONFUSION",
+            "GUST",
+        ]
+    },
+
+    "WEEDLE": {
+        "element": "BUG / POISON",
+        "hp": 40,
+        "attack": 30,
+        "defense": 30,
+        "speed": 50,
+
+        "moves": [
+            "POISON STING",
+        ]
+    },
+
+    "KAKUNA": {
+        "element": "BUG / POISON",
+        "hp": 50,
+        "attack": 30,
+        "defense": 70,
+        "speed": 30,
+
+        "moves": [
+            "POISON STING",
+        ]
+    },
+
+    "BEEDRILL": {
+        "element": "BUG / POISON",
+        "hp": 70,
+        "attack": 80,
+        "defense": 55,
+        "speed": 85,
+
+        "moves": [
+            "POISON STING",
+            "FURY ATTACK",
         ]
     },
 
@@ -61,16 +296,58 @@ moves_data = {
         "type": "NORMAL"
     },
 
+    "TACKLE": {
+        "power": 35,
+        "accuracy": 95,
+        "type": "NORMAL"
+    },
+
+    "FURY ATTACK": {
+        "power": 15,
+        "accuracy": 90,
+        "type": "NORMAL"
+    },
+
+    "SLASH": {
+        "power": 70,
+        "accuracy": 95,
+        "type": "NORMAL"
+    },
+
+    "QUICK ATTACK": {
+        "power": 40,
+        "accuracy": 100,
+        "type": "NORMAL"
+    },
+
+    "HYPER FANG": {
+        "power": 80,
+        "accuracy": 90,
+        "type": "NORMAL"
+    },
+
+    "SLAM": {
+        "power": 60,
+        "accuracy": 85,
+        "type": "NORMAL"
+    },
+
     "EMBER": {
         "power": 40,
         "accuracy": 100,
         "type": "FIRE"
     },
+    
+    "FLAME WHEEL": {
+        "power": 60,
+        "accuracy": 100,
+        "type": "FIRE"
+    },
 
-    "TACKLE": {
-        "power": 35,
-        "accuracy": 95,
-        "type": "NORMAL"
+    "FLAMETHROWER": {
+        "power": 95,
+        "accuracy": 100,
+        "type": "FIRE"
     },
 
     "VINE WHIP": {
@@ -79,10 +356,40 @@ moves_data = {
         "type": "GRASS"
     },
 
+    "RAZOR LEAF": {
+        "power": 55,
+        "accuracy": 95,
+        "type": "GRASS"
+    },
+
+    "GIGA DRAIN": {
+        "power": 60,
+        "accuracy": 100,
+        "type": "GRASS"
+    },
+
     "BUBBLE": {
-        "power": 20,
+        "power": 30,
         "accuracy": 100,
         "type": "WATER"
+    },
+
+    "WATER GUN": {
+        "power": 40,
+        "accuracy": 100,
+        "type": "WATER"
+    },
+
+    "WATER PULSE": {
+        "power": 60,
+        "accuracy": 100,
+        "type": "WATER"
+    },
+
+    "BITE": {
+        "power": 60,
+        "accuracy": 100,
+        "type": "DARK"
     },
 
     "THUNDER SHOCK": {
@@ -91,11 +398,60 @@ moves_data = {
         "type": "ELECTRIC"
     },
 
-    "QUICK ATTACK": {
+    "THUNDERBOLT": {
+        "power": 95,
+        "accuracy": 100,
+        "type": "ELECTRIC"
+    },
+
+    "PECK": {
+        "power": 35,
+        "accuracy": 95,
+        "type": "FLYING"
+    },
+
+    "GUST": {
         "power": 40,
         "accuracy": 100,
-        "type": "NORMAL"
+        "type": "FLYING"
     },
+
+    "POISON STING": {
+        "power": 15,
+        "accuracy": 100,
+        "type": "POISON"
+    },
+
+    "CONFUSION": {
+        "power": 50,
+        "accuracy": 100,
+        "type": "PSYCHIC"
+    },
+
+    "METAL CLAW": {
+        "power": 50,
+        "accuracy": 95,
+        "type": "STEEL"
+    },
+
+    "DOUBLE KICK": {
+        "power": 30,
+        "accuracy": 100,
+        "type": "FIGHT"
+    },
+
+    "LOW KICK": {
+        "power": 30,
+        "accuracy": 100,
+        "type": "FIGHT"
+    },
+
+    "KARATE CHOP": {
+        "power": 50,
+        "accuracy": 100,
+        "type": "FIGHT"
+    },
+
 }
 
 class Pokemon:
