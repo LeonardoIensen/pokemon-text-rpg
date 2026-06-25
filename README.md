@@ -73,7 +73,10 @@ This project focuses on learning Python fundamentals, object-oriented programmin
 * **Basic Route Exploration System**
   * Added Route 1 exploration after the first rival battle.
   * Implemented walking progress toward Viridian City.
-  * Added placeholder options for tall grass, menu, and map systems.
+  * Added basic tall grass wild encounters with random Route 1 Pokémon.
+  * Added random wild Pokémon levels for Route 1 encounters.
+  * Added defeat handling that heals the player’s Pokémon and resets Route 1 progress.
+  * Added placeholder options for menu and map systems.
 
 ---
 
@@ -85,7 +88,8 @@ This project focuses on learning Python fundamentals, object-oriented programmin
 * [ ] Accuracy and critical hit system
 * [ ] Experience and leveling system
 * [ ] Move learning system
-* [ ] Wild Pokémon encounter system
+* [x] Basic wild Pokémon encounter system
+* [ ] Expanded wild encounter tables by route
 * [ ] Pokémon catching mechanics
 * [ ] Party and PC storage system
 * [ ] Status effects and healing items
