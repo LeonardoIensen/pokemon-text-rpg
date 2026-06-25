@@ -76,7 +76,10 @@ This project focuses on learning Python fundamentals, object-oriented programmin
   * Added basic tall grass wild encounters with random Route 1 Pokémon.
   * Added random wild Pokémon levels for Route 1 encounters.
   * Added defeat handling that heals the player’s Pokémon and resets Route 1 progress.
-  * Added placeholder options for menu and map systems.
+  * Added basic Viridian City hub after Route 1.
+  * Added basic Pokémon Center healing system.
+  * Added option to return from Viridian City to Route 1.
+  * Added placeholder options for menu and Route 2 access.
 
 ---
 
