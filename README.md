@@ -70,6 +70,11 @@ This project focuses on learning Python fundamentals, object-oriented programmin
   * Win and lose conditions implemented.
   * Battle interface with dynamic HP display.
 
+* **Basic Route Exploration System**
+  * Added Route 1 exploration after the first rival battle.
+  * Implemented walking progress toward Viridian City.
+  * Added placeholder options for tall grass, menu, and map systems.
+
 ---
 
 ## 🛣️ Future Roadmap
