@@ -1,6 +1,11 @@
+import random
 import dialogue
+import pokemon
+import battle
 
-def route_1(player_name):
+GRASS_ENCOUNTER_CHANCE = 85
+
+def route_1(player_name, player_pokemon):
 
     steps = 0
 
@@ -35,8 +40,31 @@ def route_1(player_name):
             dialogue.clear_screen()
 
             dialogue.narration(f"\n{player_name} walked through the tall grass...")
-            dialogue.narration("\nNothing happened yet.")
-            dialogue.next_dialogue()
+
+            wild_pokemon_encounter = random.randint(1, 100)
+
+            wild_pokemon_level = random.randint(2, 4)
+
+            if wild_pokemon_encounter <= GRASS_ENCOUNTER_CHANCE:
+                wild_name = random.choice(["RATTATA", "PIDGEY"])
+
+                wild_pokemon = pokemon.Pokemon(wild_name, wild_pokemon_level)
+
+                battle_result = battle.wild_battle(player_name, player_pokemon, wild_pokemon)
+
+                if battle_result == "LOSE":
+                    player_pokemon.current_hp = player_pokemon.max_hp
+                    steps = 0
+
+                    dialogue.narration(f"\n{player_name} returned home to rest...")
+                    dialogue.narration(f"\n{player_name}'s POKEMON recovered!")
+                    dialogue.next_dialogue()
+                    
+                    continue
+
+            else:
+                dialogue.narration("\nNothing appeared.")
+                dialogue.next_dialogue()
 
         elif choice == "3":
             dialogue.clear_screen()

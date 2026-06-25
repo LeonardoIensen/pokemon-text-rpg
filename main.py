@@ -29,7 +29,7 @@ while True:
         dialogue.narration("\nWith a POKEMON by your side, your journey was finally about to begin.")
         dialogue.next_dialogue()
 
-        game_map.route_1(player_name)
+        game_map.route_1(player_name, player_starter)
 
     elif choice == "2":
         print("\nExiting the game...\n")
