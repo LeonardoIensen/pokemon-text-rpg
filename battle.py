@@ -146,9 +146,9 @@ def handle_faint(fainted_pokemon, player_pokemon, enemy_pokemon, player_name, en
             dialogue.narration(f"\nYou were defeated by {enemy_name}!")
 
         elif battle_type == "WILD":
-            dialogue.narration("\nYou blacked out!")
-
-        dialogue.next_dialogue()
+            dialogue.narration(f"\n{player_name} is out of usable POKEMON!")
+            dialogue.next_dialogue()
+            
         return "LOSE"
 
 def battle_turn(player_pokemon, enemy_pokemon, player_move, player_name, enemy_name, battle_type):
@@ -157,12 +157,7 @@ def battle_turn(player_pokemon, enemy_pokemon, player_move, player_name, enemy_n
 
     enemy_move = random.choice(enemy_pokemon.moves)
 
-    first_pokemon, first_move, second_pokemon, second_move = define_turn_order(
-        player_pokemon,
-        enemy_pokemon,
-        player_move,
-        enemy_move
-    )
+    first_pokemon, first_move, second_pokemon, second_move = define_turn_order(player_pokemon, enemy_pokemon, player_move, enemy_move)
 
     show_attack_message(first_pokemon, first_move, enemy_pokemon)
 
@@ -172,17 +167,19 @@ def battle_turn(player_pokemon, enemy_pokemon, player_move, player_name, enemy_n
 
     if second_pokemon.current_hp <= 0:
         return handle_faint(second_pokemon, player_pokemon, enemy_pokemon, player_name, enemy_name, battle_type)
-    
-    show_attack_message(second_pokemon, second_move, enemy_pokemon)
 
     dialogue.next_dialogue()
+
+    show_attack_message(second_pokemon, second_move, enemy_pokemon)
 
     second_damage = calculate_damage(second_pokemon, first_pokemon, second_move)
 
     first_pokemon.current_hp -= second_damage
 
     if first_pokemon.current_hp <= 0:
-        return handle_faint(first_pokemon, player_pokemon, enemy_pokemon, player_name, enemy_name)
+        return handle_faint(first_pokemon, player_pokemon, enemy_pokemon, player_name, enemy_name, battle_type)
+
+    dialogue.next_dialogue()
 
 def battle_menu(player_pokemon, enemy_pokemon, player_name, enemy_name, battle_type):
     while True:
@@ -194,9 +191,9 @@ def battle_menu(player_pokemon, enemy_pokemon, player_name, enemy_name, battle_t
         dialogue.narration(f"What will {player_pokemon.name} do?\n")
 
         print("1 - FIGHT")
-        print("2 - POKEMON")
+        print("2 - RUN")
         print("3 - BAG")
-        print("4 - RUN")
+        print("4 - POKEMON")
 
         choice = input("\nChoose: ")
 
@@ -213,18 +210,18 @@ def battle_menu(player_pokemon, enemy_pokemon, player_name, enemy_name, battle_t
                 return result
                 
         elif choice == "2":
-            dialogue.narration("\nFeature not implemented yet.")
-            dialogue.next_dialogue()
+            result = try_run(battle_type)
+
+            if result == "ESCAPED":
+                return result
 
         elif choice == "3":
             dialogue.narration("\nFeature not implemented yet.")
             dialogue.next_dialogue()
 
         elif choice == "4":
-            result = try_run(battle_type)
-
-            if result == "ESCAPED":
-                return result
+            dialogue.narration("\nFeature not implemented yet.")
+            dialogue.next_dialogue()
 
         else:
             dialogue.narration("\n[Invalid option! Please select again.]")
