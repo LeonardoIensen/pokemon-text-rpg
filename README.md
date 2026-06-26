@@ -86,7 +86,10 @@ This project focuses on learning Python fundamentals, object-oriented programmin
   * Added Viridian Forest wild encounters with Caterpie, Weedle, and rare Pikachu.
   * Added defeat handling that returns the player to Viridian City from Route 2 and Viridian Forest.
   * Added placeholder options for menu systems.
-  * Added placeholder access to Route 3.
+  * Added basic Route 3 exploration after Viridian Forest.
+  * Added Route 3 wild encounters with weighted Pokémon selection.
+  * Added option to return from Route 3 to Viridian Forest.
+  * Added placeholder access to Pewter City.
 
 ---
 
@@ -104,7 +107,8 @@ This project focuses on learning Python fundamentals, object-oriented programmin
 * [ ] Pokémon catching mechanics
 * [ ] Party and PC storage system
 * [ ] Status effects and healing items
-* [ ] Trainer battles and Gym Leader Brock
+* [ ] Trainer battles
+* [ ] Pewter City and Gym Leader Brock
 * [ ] Save and load system
 
 ---
