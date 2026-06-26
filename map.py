@@ -55,7 +55,7 @@ def route_1(player_name, player_pokemon):
 
             wild_pokemon_encounter = random.randint(1, 100)
 
-            wild_pokemon_level = random.randint(2, 4)
+            wild_pokemon_level = random.randint(2, 5)
 
             if wild_pokemon_encounter <= GRASS_ENCOUNTER_CHANCE:
                 wild_name = random.choice(["RATTATA", "PIDGEY"])
@@ -94,7 +94,7 @@ def viridian_city(player_name, player_pokemon):
 
     while True:
 
-        print("\n--- VIRIDIAN CITY ---")
+        print("\n--- VIRIDIAN CITY ---\n")
 
         print("1 - GO NORTH TO ROUTE 2")
         print("2 - RETURN TO ROUTE 1")
@@ -106,8 +106,11 @@ def viridian_city(player_name, player_pokemon):
         if choice == "1":
             dialogue.clear_screen()
 
-            dialogue.narration("\nRoute 2 is not available yet.")
+            dialogue.narration(f"\n{player_name} arrived in Route 2!")
             dialogue.next_dialogue()
+                
+            route_2(player_name, player_pokemon)
+            break
 
         elif choice == "2":
             dialogue.clear_screen()
@@ -121,6 +124,88 @@ def viridian_city(player_name, player_pokemon):
 
         elif choice == "3":
             pokemon_center(player_pokemon)
+
+        elif choice == "4":
+            dialogue.clear_screen()
+
+            print("\nMenu is not available yet.")
+            dialogue.next_dialogue()
+
+        else:
+            dialogue.narration("\n[Invalid option! Please select again.]")
+            dialogue.next_dialogue()
+
+def route_2(player_name, player_pokemon):
+
+    steps = 0
+
+    dialogue.clear_screen()
+
+    while True:
+
+        print("\n--- ROUTE 2 --- ")
+        print(f"Progress: {steps}/8\n")
+
+        print("1 - WALK")
+        print("2 - WALK ON THE GRASS")
+        print("3 - RETURN TO VIRIDIAN CITY")
+        print("4 - MENU")
+
+        choice = input("\nChoose: ")
+
+        if choice == "1":
+            dialogue.clear_screen()
+
+            steps += 1
+
+            dialogue.narration(f"\n{player_name} walked through Route 2... ({steps}/8)")
+            dialogue.next_dialogue()
+
+            if steps >= 8:
+                dialogue.narration(f"\n{player_name} reached the entrance of Viridian Forest.")
+                dialogue.narration("\nViridian Forest is not available yet.")
+                dialogue.next_dialogue()
+
+                steps = 0
+
+        elif choice == "2":
+            dialogue.clear_screen()
+
+            dialogue.narration(f"\n{player_name} walked through the tall grass...")
+
+            wild_pokemon_encounter = random.randint(1, 100)
+
+            wild_pokemon_level = random.randint(3, 7)
+
+            if wild_pokemon_encounter <= GRASS_ENCOUNTER_CHANCE:
+                wild_name = random.choice(["RATTATA", "PIDGEY", "MANKEY", "SPEAROW"])
+
+                wild_pokemon = pokemon.Pokemon(wild_name, wild_pokemon_level)
+
+                battle_result = battle.wild_battle(player_name, player_pokemon, wild_pokemon)
+
+                if battle_result == "LOSE":
+
+                    dialogue.narration(f"\n{player_name} returned to Viridian City...")
+                    dialogue.next_dialogue()
+
+                    pokemon_center(player_pokemon)
+
+                    viridian_city(player_name, player_pokemon)
+                    break
+
+            else:
+                dialogue.narration("\nNothing appeared.")
+                dialogue.next_dialogue()
+
+        elif choice == "3":
+            dialogue.clear_screen()
+
+            dialogue.narration(f"\n{player_name} returned to Viridian City!")
+            dialogue.next_dialogue()
+            
+            viridian_city(player_name, player_pokemon)
+            break
 
         elif choice == "4":
             dialogue.clear_screen()
