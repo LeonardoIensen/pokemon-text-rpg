@@ -71,15 +71,22 @@ This project focuses on learning Python fundamentals, object-oriented programmin
   * Battle interface with dynamic HP display.
 
 * **Basic Route Exploration System**
+
   * Added Route 1 exploration after the first rival battle.
   * Implemented walking progress toward Viridian City.
   * Added basic tall grass wild encounters with random Route 1 Pokémon.
   * Added random wild Pokémon levels for Route 1 encounters.
-  * Added defeat handling that heals the player’s Pokémon and resets Route 1 progress.
+  * Added defeat handling that heals the player's Pokémon and resets Route 1 progress.
   * Added basic Viridian City hub after Route 1.
   * Added basic Pokémon Center healing system.
   * Added option to return from Viridian City to Route 1.
-  * Added placeholder options for menu and Route 2 access.
+  * Added basic Route 2 exploration after Viridian City.
+  * Added Route 2 wild encounters with weighted Pokémon selection.
+  * Added basic Viridian Forest exploration after Route 2.
+  * Added Viridian Forest wild encounters with Caterpie, Weedle, and rare Pikachu.
+  * Added defeat handling that returns the player to Viridian City from Route 2 and Viridian Forest.
+  * Added placeholder options for menu systems.
+  * Added placeholder access to Route 3.
 
 ---
 
@@ -92,7 +99,8 @@ This project focuses on learning Python fundamentals, object-oriented programmin
 * [ ] Experience and leveling system
 * [ ] Move learning system
 * [x] Basic wild Pokémon encounter system
-* [ ] Expanded wild encounter tables by route
+* [x] Expanded wild encounter tables by route
+* [ ] More route-specific encounter balancing
 * [ ] Pokémon catching mechanics
 * [ ] Party and PC storage system
 * [ ] Status effects and healing items
@@ -103,7 +111,7 @@ This project focuses on learning Python fundamentals, object-oriented programmin
 
 ## 🛠️ Tech Stack
 
-* **Language:** Python 3.x
+* **Language:** Python 3.12
 * **Built-in Modules:** `os`, `time`, `random`
 
 ---
@@ -127,7 +135,7 @@ pokemon-text-rpg/
 
 ## 📦 How to Run the Project
 
-1. Ensure Python 3 is installed on your machine.
+1. Ensure Python 3.12 or newer is installed on your machine.
 
 2. Clone this repository:
 
@@ -147,11 +155,17 @@ cd pokemon-text-rpg
 python main.py
 ```
 
+On Windows, you can also use:
+
+```bash
+py main.py
+```
+
 ---
 
 ## 🎯 Project Goals
 
-This project is currently in early gameplay development phase, focusing on core battle mechanics and system architecture.
+This project is currently in early gameplay development phase, focusing on core battle mechanics, route exploration, and system architecture.
 
 * Learning Python from scratch
 * Practicing programming logic
