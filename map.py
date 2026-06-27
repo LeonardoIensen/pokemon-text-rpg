@@ -43,6 +43,14 @@ def wild_encounter(player_name, player_pokemon, pokemon_names, min_level, max_le
         dialogue.next_dialogue()
 
         return None
+    
+def handle_viridian_defeat(player_name, player_pokemon):
+    dialogue.narration(f"\n{player_name} returned to Viridian City...")
+    dialogue.next_dialogue()
+
+    pokemon_center(player_pokemon)
+
+    viridian_city(player_name, player_pokemon)
 
 def route_1(player_name, player_pokemon):
 
@@ -183,13 +191,7 @@ def route_2(player_name, player_pokemon):
             battle_result = wild_encounter(player_name, player_pokemon, ["RATTATA", "PIDGEY", "MANKEY", "SPEAROW"], 3, 7, [30, 30, 20, 20])
 
             if battle_result == "LOSE":
-
-                dialogue.narration(f"\n{player_name} returned to Viridian City...")
-                dialogue.next_dialogue()
-
-                pokemon_center(player_pokemon)
-
-                viridian_city(player_name, player_pokemon)
+                handle_viridian_defeat(player_name, player_pokemon)
                 break
 
         elif choice == "3":
@@ -250,13 +252,7 @@ def viridian_forest(player_name, player_pokemon):
             battle_result = wild_encounter(player_name, player_pokemon, ["CATERPIE", "WEEDLE", "PIKACHU"], 4, 6, [45, 45, 10])
 
             if battle_result == "LOSE":
-
-                dialogue.narration(f"\n{player_name} returned to Viridian City...")
-                dialogue.next_dialogue()
-
-                pokemon_center(player_pokemon)
-
-                viridian_city(player_name, player_pokemon)
+                handle_viridian_defeat(player_name, player_pokemon)
                 break
 
         elif choice == "3":
@@ -315,13 +311,7 @@ def route_3(player_name, player_pokemon):
             battle_result = wild_encounter(player_name, player_pokemon, ["RATTATA", "PIDGEY", "MANKEY", "SPEAROW"], 4, 8, [30, 30, 20, 20])
 
             if battle_result == "LOSE":
-
-                dialogue.narration(f"\n{player_name} returned to Viridian City...")
-                dialogue.next_dialogue()
-
-                pokemon_center(player_pokemon)
-
-                viridian_city(player_name, player_pokemon)
+                handle_viridian_defeat(player_name, player_pokemon)
                 break
 
         elif choice == "3":
