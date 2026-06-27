@@ -2,7 +2,7 @@ import dialogue
 import pokemon
 import random
 
-ESCAPE_CHANCE = 90
+ESCAPE_CHANCE = 85
 
 def calculate_damage(attacker, defender, move):
 
@@ -13,9 +13,28 @@ def calculate_damage(attacker, defender, move):
 
     return damage
 
+def enemy_free_attack(player_pokemon, enemy_pokemon, player_name, enemy_name, battle_type):
+    dialogue.clear_screen()
+
+    enemy_move = random.choice(enemy_pokemon.moves)
+
+    show_attack_message(enemy_pokemon, enemy_move, enemy_pokemon)
+
+    enemy_damage = calculate_damage(enemy_pokemon, player_pokemon, enemy_move)
+
+    player_pokemon.current_hp -= enemy_damage
+
+    if player_pokemon.current_hp <= 0:
+        return handle_faint(player_pokemon, player_pokemon, enemy_pokemon, player_name, enemy_name, battle_type)
+    
+    dialogue.next_dialogue()
+    return None
+
 def try_run(battle_type):
 
     if battle_type == "TRAINER":
+        dialogue.clear_screen()
+
         dialogue.narration("\nNo! There's no running from a TRAINER battle!")
         dialogue.next_dialogue()
 
@@ -26,12 +45,16 @@ def try_run(battle_type):
         escape_roll = random.randint(1, 100)
 
         if escape_roll <= ESCAPE_CHANCE:
+            dialogue.clear_screen()
+
             dialogue.narration("\nGot away safely!")
             dialogue.next_dialogue()
 
             return "ESCAPED"
         
         else:
+            dialogue.clear_screen()
+
             dialogue.narration("\nCan't escape!")
             dialogue.next_dialogue()
 
@@ -139,7 +162,7 @@ def handle_faint(fainted_pokemon, player_pokemon, enemy_pokemon, player_name, en
         dialogue.next_dialogue()
         return "WIN"
 
-    if fainted_pokemon == player_pokemon:
+    elif fainted_pokemon == player_pokemon:
         dialogue.narration(f"\nYour {player_pokemon.name} fainted!")
 
         if battle_type == "TRAINER":
@@ -147,8 +170,8 @@ def handle_faint(fainted_pokemon, player_pokemon, enemy_pokemon, player_name, en
 
         elif battle_type == "WILD":
             dialogue.narration(f"\n{player_name} is out of usable POKEMON!")
-            dialogue.next_dialogue()
-            
+
+        dialogue.next_dialogue()
         return "LOSE"
 
 def battle_turn(player_pokemon, enemy_pokemon, player_move, player_name, enemy_name, battle_type):
@@ -214,6 +237,13 @@ def battle_menu(player_pokemon, enemy_pokemon, player_name, enemy_name, battle_t
 
             if result == "ESCAPED":
                 return result
+            
+            if result == "FAILED" and battle_type == "WILD":
+                result = enemy_free_attack(player_pokemon, enemy_pokemon, player_name, enemy_name, battle_type)
+
+                if result == "LOSE":
+                    return result
+
 
         elif choice == "3":
             dialogue.narration("\nFeature not implemented yet.")
