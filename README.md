@@ -89,7 +89,10 @@ This project focuses on learning Python fundamentals, object-oriented programmin
   * Added basic Route 3 exploration after Viridian Forest.
   * Added Route 3 wild encounters with weighted Pokémon selection.
   * Added option to return from Route 3 to Viridian Forest.
-  * Added placeholder access to Pewter City.
+  * Added basic Pewter City hub after Route 3.
+  * Added Pewter City Pokémon Center access.
+  * Added option to return from Pewter City to Route 3.
+  * Added locked Pewter Gym placeholder.
 
 ---
 
@@ -108,7 +111,8 @@ This project focuses on learning Python fundamentals, object-oriented programmin
 * [ ] Party and PC storage system
 * [ ] Status effects and healing items
 * [ ] Trainer battles
-* [ ] Pewter City and Gym Leader Brock
+* [x] Basic Pewter City hub
+* [ ] Gym Leader Brock
 * [ ] Save and load system
 
 ---
