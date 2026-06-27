@@ -16,6 +16,34 @@ def pokemon_center(player_pokemon):
 
     dialogue.next_dialogue()
 
+def wild_encounter(player_name, player_pokemon, pokemon_names, min_level, max_level, weights=None):
+    dialogue.clear_screen()
+
+    dialogue.narration(f"\n{player_name} walked through the tall grass...")
+
+    encounter_roll = random.randint(1, 100)
+
+    if encounter_roll <= GRASS_ENCOUNTER_CHANCE:
+        if weights is not None:
+            wild_name = random.choices(pokemon_names, weights=weights, k=1)[0]
+
+        else:
+            wild_name = random.choice(pokemon_names)
+
+        wild_level = random.randint(min_level, max_level)
+
+        wild_pokemon = pokemon.Pokemon(wild_name, wild_level)
+
+        battle_result = battle.wild_battle(player_name, player_pokemon, wild_pokemon)
+
+        return battle_result
+    
+    else:
+        dialogue.narration("\nNothing appeared.")
+        dialogue.next_dialogue()
+
+        return None
+
 def route_1(player_name, player_pokemon):
 
     steps = 0
@@ -49,34 +77,17 @@ def route_1(player_name, player_pokemon):
                 break
 
         elif choice == "2":
-            dialogue.clear_screen()
+            battle_result = wild_encounter(player_name, player_pokemon, ["RATTATA", "PIDGEY"], 2, 5)
 
-            dialogue.narration(f"\n{player_name} walked through the tall grass...")
+            if battle_result == "LOSE":
+                player_pokemon.current_hp = player_pokemon.max_hp
+                steps = 0
 
-            wild_pokemon_encounter = random.randint(1, 100)
-
-            wild_pokemon_level = random.randint(2, 5)
-
-            if wild_pokemon_encounter <= GRASS_ENCOUNTER_CHANCE:
-                wild_name = random.choice(["RATTATA", "PIDGEY"])
-
-                wild_pokemon = pokemon.Pokemon(wild_name, wild_pokemon_level)
-
-                battle_result = battle.wild_battle(player_name, player_pokemon, wild_pokemon)
-
-                if battle_result == "LOSE":
-                    player_pokemon.current_hp = player_pokemon.max_hp
-                    steps = 0
-
-                    dialogue.narration(f"\n{player_name} returned home to rest...")
-                    dialogue.narration(f"\n{player_name}'s POKEMON recovered!")
-                    dialogue.next_dialogue()
-                    
-                    continue
-
-            else:
-                dialogue.narration("\nNothing appeared.")
+                dialogue.narration(f"\n{player_name} returned home to rest...")
+                dialogue.narration(f"\n{player_name}'s POKEMON recovered!")
                 dialogue.next_dialogue()
+                    
+                continue
 
         elif choice == "3":
             dialogue.clear_screen()
@@ -169,34 +180,17 @@ def route_2(player_name, player_pokemon):
                 break
 
         elif choice == "2":
-            dialogue.clear_screen()
+            battle_result = wild_encounter(player_name, player_pokemon, ["RATTATA", "PIDGEY", "MANKEY", "SPEAROW"], 3, 7, [30, 30, 20, 20])
 
-            dialogue.narration(f"\n{player_name} walked through the tall grass...")
+            if battle_result == "LOSE":
 
-            wild_pokemon_encounter = random.randint(1, 100)
-
-            wild_pokemon_level = random.randint(3, 7)
-
-            if wild_pokemon_encounter <= GRASS_ENCOUNTER_CHANCE:
-                wild_name = random.choices(["RATTATA", "PIDGEY", "MANKEY", "SPEAROW"], weights=[30, 30, 20, 20], k=1)[0]
-
-                wild_pokemon = pokemon.Pokemon(wild_name, wild_pokemon_level)
-
-                battle_result = battle.wild_battle(player_name, player_pokemon, wild_pokemon)
-
-                if battle_result == "LOSE":
-
-                    dialogue.narration(f"\n{player_name} returned to Viridian City...")
-                    dialogue.next_dialogue()
-
-                    pokemon_center(player_pokemon)
-
-                    viridian_city(player_name, player_pokemon)
-                    break
-
-            else:
-                dialogue.narration("\nNothing appeared.")
+                dialogue.narration(f"\n{player_name} returned to Viridian City...")
                 dialogue.next_dialogue()
+
+                pokemon_center(player_pokemon)
+
+                viridian_city(player_name, player_pokemon)
+                break
 
         elif choice == "3":
             dialogue.clear_screen()
@@ -253,34 +247,17 @@ def viridian_forest(player_name, player_pokemon):
                 break
 
         elif choice == "2":
-            dialogue.clear_screen()
+            battle_result = wild_encounter(player_name, player_pokemon, ["CATERPIE", "WEEDLE", "PIKACHU"], 4, 6, [45, 45, 10])
 
-            dialogue.narration(f"\n{player_name} walked through the tall grass...")
+            if battle_result == "LOSE":
 
-            wild_pokemon_encounter = random.randint(1, 100)
-
-            wild_pokemon_level = random.randint(4, 6)
-
-            if wild_pokemon_encounter <= GRASS_ENCOUNTER_CHANCE:
-                wild_name = random.choices(["CATERPIE", "WEEDLE", "PIKACHU"], weights=[45, 45, 10], k=1)[0]
-
-                wild_pokemon = pokemon.Pokemon(wild_name, wild_pokemon_level)
-
-                battle_result = battle.wild_battle(player_name, player_pokemon, wild_pokemon)
-
-                if battle_result == "LOSE":
-
-                    dialogue.narration(f"\n{player_name} returned to Viridian City...")
-                    dialogue.next_dialogue()
-
-                    pokemon_center(player_pokemon)
-
-                    viridian_city(player_name, player_pokemon)
-                    break
-
-            else:
-                dialogue.narration("\nNothing appeared.")
+                dialogue.narration(f"\n{player_name} returned to Viridian City...")
                 dialogue.next_dialogue()
+
+                pokemon_center(player_pokemon)
+
+                viridian_city(player_name, player_pokemon)
+                break
 
         elif choice == "3":
             dialogue.clear_screen()
@@ -335,34 +312,17 @@ def route_3(player_name, player_pokemon):
                 steps = 0
 
         elif choice == "2":
-            dialogue.clear_screen()
+            battle_result = wild_encounter(player_name, player_pokemon, ["RATTATA", "PIDGEY", "MANKEY", "SPEAROW"], 4, 8, [30, 30, 20, 20])
 
-            dialogue.narration(f"\n{player_name} walked through the tall grass...")
+            if battle_result == "LOSE":
 
-            wild_pokemon_encounter = random.randint(1, 100)
-
-            wild_pokemon_level = random.randint(4, 8)
-
-            if wild_pokemon_encounter <= GRASS_ENCOUNTER_CHANCE:
-                wild_name = random.choices(["RATTATA", "PIDGEY", "MANKEY", "SPEAROW"], weights=[30, 30, 20, 20], k=1)[0]
-
-                wild_pokemon = pokemon.Pokemon(wild_name, wild_pokemon_level)
-
-                battle_result = battle.wild_battle(player_name, player_pokemon, wild_pokemon)
-
-                if battle_result == "LOSE":
-
-                    dialogue.narration(f"\n{player_name} returned to Viridian City...")
-                    dialogue.next_dialogue()
-
-                    pokemon_center(player_pokemon)
-
-                    viridian_city(player_name, player_pokemon)
-                    break
-
-            else:
-                dialogue.narration("\nNothing appeared.")
+                dialogue.narration(f"\n{player_name} returned to Viridian City...")
                 dialogue.next_dialogue()
+
+                pokemon_center(player_pokemon)
+
+                viridian_city(player_name, player_pokemon)
+                break
 
         elif choice == "3":
             dialogue.clear_screen()
