@@ -4,10 +4,11 @@ import battle
 import map as game_map
 
 while True:
+    dialogue.clear_screen()
 
-    print("--- POKEMON RPG ---")
-    print("\n1- NEW GAME")
-    print("2- QUIT\n")
+    print("\n--- POKEMON RPG ---")
+    print("\n1 - NEW GAME")
+    print("2 - QUIT\n")
 
     choice = input("Enter your choice: ")
 
@@ -29,11 +30,18 @@ while True:
         dialogue.narration("\nWith a POKEMON by your side, your journey was finally about to begin.")
         dialogue.next_dialogue()
 
-        game_map.route_1(player_name, player_starter)
+        game_result = game_map.route_1(player_name, player_starter)
+
+        if game_result == "TITLE":
+            continue
 
     elif choice == "2":
-        print("\nExiting the game...\n")
+        dialogue.clear_screen()
+        dialogue.narration("\nExiting the game...\n")
+        dialogue.next_dialogue()
         break
 
     else:
-        print("\nInvalid option, please try again...\n")
+        dialogue.clear_screen()
+        dialogue.narration("\n[Invalid option! Please select again.]")
+        dialogue.next_dialogue()

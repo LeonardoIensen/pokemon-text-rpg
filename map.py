@@ -48,7 +48,10 @@ def handle_viridian_defeat(player_name, player_pokemon):
 
     pokemon_center(player_pokemon)
 
-    viridian_city(player_name, player_pokemon)
+    city_result = viridian_city(player_name, player_pokemon)
+
+    if city_result == "TITLE":
+        return "TITLE"
 
 def route_1(player_name, player_pokemon):
 
@@ -79,7 +82,11 @@ def route_1(player_name, player_pokemon):
                 dialogue.narration(f"\n{player_name} arrived in Viridian City!")
                 dialogue.next_dialogue()
                 
-                viridian_city(player_name, player_pokemon)
+                city_result = viridian_city(player_name, player_pokemon)
+
+                if city_result == "TITLE":
+                    return "TITLE"
+
                 break
 
         elif choice == "2":
@@ -96,7 +103,10 @@ def route_1(player_name, player_pokemon):
                 continue
 
         elif choice == "3":
-            menu.player_menu(player_pokemon)
+            menu_result = menu.player_menu(player_pokemon)
+
+            if menu_result == "TITLE":
+                return "TITLE"
 
         else:
             dialogue.narration("\n[Invalid option! Please select again.]")
@@ -122,7 +132,11 @@ def viridian_city(player_name, player_pokemon):
             dialogue.narration(f"\n{player_name} arrived in Route 2!")
             dialogue.next_dialogue()
                 
-            route_2(player_name, player_pokemon)
+            route_result = route_2(player_name, player_pokemon)
+
+            if route_result == "TITLE":
+                return "TITLE"
+
             break
 
         elif choice == "2":
@@ -130,7 +144,10 @@ def viridian_city(player_name, player_pokemon):
             dialogue.narration(f"\n{player_name} returned to Route 1.")
             dialogue.next_dialogue()
 
-            route_1(player_name, player_pokemon)
+            route_result = route_1(player_name, player_pokemon)
+
+            if route_result == "TITLE":
+                return "TITLE"
 
             break
 
@@ -138,7 +155,10 @@ def viridian_city(player_name, player_pokemon):
             pokemon_center(player_pokemon)
 
         elif choice == "4":
-            menu.player_menu(player_pokemon)
+            menu_result = menu.player_menu(player_pokemon)
+
+            if menu_result == "TITLE":
+                return "TITLE"
 
         else:
             dialogue.clear_screen()
@@ -175,14 +195,22 @@ def route_2(player_name, player_pokemon):
                 dialogue.narration(f"\n{player_name} reached the entrance of Viridian Forest.")
                 dialogue.next_dialogue()
 
-                viridian_forest(player_name, player_pokemon)
+                forest_result = viridian_forest(player_name, player_pokemon)
+
+                if forest_result == "TITLE":
+                    return "TITLE"
+
                 break
 
         elif choice == "2":
             battle_result = wild_encounter(player_name, player_pokemon, ["RATTATA", "PIDGEY", "MANKEY", "SPEAROW"], 3, 7, [30, 30, 20, 20])
 
             if battle_result == "LOSE":
-                handle_viridian_defeat(player_name, player_pokemon)
+                defeat_result = handle_viridian_defeat(player_name, player_pokemon)
+
+                if defeat_result == "TITLE":
+                    return "TITLE"
+
                 break
 
         elif choice == "3":
@@ -190,11 +218,18 @@ def route_2(player_name, player_pokemon):
             dialogue.narration(f"\n{player_name} returned to Viridian City!")
             dialogue.next_dialogue()
             
-            viridian_city(player_name, player_pokemon)
+            city_result = viridian_city(player_name, player_pokemon)
+
+            if city_result == "TITLE":
+                return "TITLE"
+
             break
 
         elif choice == "4":
-            menu.player_menu(player_pokemon)
+            menu_result = menu.player_menu(player_pokemon)
+
+            if menu_result == "TITLE":
+                return "TITLE"
 
         else:
             dialogue.clear_screen()
@@ -232,14 +267,22 @@ def viridian_forest(player_name, player_pokemon):
                 dialogue.narration(f"\n{player_name} reached the exit of Viridian Forest!")
                 dialogue.next_dialogue()
 
-                route_3(player_name, player_pokemon)
+                route_result = route_3(player_name, player_pokemon)
+
+                if route_result == "TITLE":
+                    return "TITLE"
+
                 break
 
         elif choice == "2":
             battle_result = wild_encounter(player_name, player_pokemon, ["CATERPIE", "WEEDLE", "PIKACHU"], 4, 6, [45, 45, 10])
 
             if battle_result == "LOSE":
-                handle_viridian_defeat(player_name, player_pokemon)
+                defeat_result = handle_viridian_defeat(player_name, player_pokemon)
+
+                if defeat_result == "TITLE":
+                    return "TITLE"
+
                 break
 
         elif choice == "3":
@@ -247,11 +290,18 @@ def viridian_forest(player_name, player_pokemon):
             dialogue.narration(f"\n{player_name} returned to Route 2!")
             dialogue.next_dialogue()
             
-            route_2(player_name, player_pokemon)
+            route_result = route_2(player_name, player_pokemon)
+
+            if route_result == "TITLE":
+                return "TITLE"
+
             break
 
         elif choice == "4":
-            menu.player_menu(player_pokemon)
+            menu_result = menu.player_menu(player_pokemon)
+
+            if menu_result == "TITLE":
+                return "TITLE"
 
         else:
             dialogue.clear_screen()
@@ -288,7 +338,11 @@ def route_3(player_name, player_pokemon):
                 dialogue.narration(f"\n{player_name} arrived in Pewter City.")
                 dialogue.next_dialogue()
 
-                pewter_city(player_name, player_pokemon)
+                city_result = pewter_city(player_name, player_pokemon)
+
+                if city_result == "TITLE":
+                    return "TITLE"
+
                 break
 
         elif choice == "2":
@@ -299,7 +353,12 @@ def route_3(player_name, player_pokemon):
                 dialogue.next_dialogue()
 
                 pokemon_center(player_pokemon)
-                pewter_city(player_name, player_pokemon)
+
+                city_result = pewter_city(player_name, player_pokemon)
+
+                if city_result == "TITLE":
+                    return "TITLE"
+
                 break
 
         elif choice == "3":
@@ -307,11 +366,18 @@ def route_3(player_name, player_pokemon):
             dialogue.narration(f"\n{player_name} returned to Viridian Forest!")
             dialogue.next_dialogue()
             
-            viridian_forest(player_name, player_pokemon)
+            forest_result = viridian_forest(player_name, player_pokemon)
+
+            if forest_result == "TITLE":
+                return "TITLE"
+
             break
 
         elif choice == "4":
-            menu.player_menu(player_pokemon)
+            menu_result = menu.player_menu(player_pokemon)
+
+            if menu_result == "TITLE":
+                return "TITLE"
 
         else:
             dialogue.clear_screen()
@@ -341,7 +407,10 @@ def pewter_city(player_name, player_pokemon):
             dialogue.narration(f"\n{player_name} returned to Route 3.")
             dialogue.next_dialogue()
 
-            route_3(player_name, player_pokemon)
+            route_result = route_3(player_name, player_pokemon)
+
+            if route_result == "TITLE":
+                return "TITLE"
 
             break
 
@@ -351,7 +420,10 @@ def pewter_city(player_name, player_pokemon):
             dialogue.next_dialogue()
 
         elif choice == "4":
-            menu.player_menu(player_pokemon)
+            menu_result = menu.player_menu(player_pokemon)
+
+            if menu_result == "TITLE":
+                return "TITLE"
 
         else:
             dialogue.clear_screen()
