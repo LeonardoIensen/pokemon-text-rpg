@@ -1,4 +1,5 @@
 import dialogue
+import items
 
 def player_menu(player_pokemon):
 
@@ -21,9 +22,7 @@ def player_menu(player_pokemon):
             dialogue.next_dialogue()
 
         elif choice == "2":
-            dialogue.clear_screen()
-            dialogue.narration("\nBag is not available yet.")
-            dialogue.next_dialogue()
+            items.open_bag()
 
         elif choice == "3":
             dialogue.clear_screen()
