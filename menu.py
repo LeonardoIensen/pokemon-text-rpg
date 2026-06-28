@@ -1,5 +1,6 @@
 import dialogue
 import items
+import save
 
 def player_menu(player_pokemon):
 
@@ -25,9 +26,7 @@ def player_menu(player_pokemon):
             items.open_bag()
 
         elif choice == "3":
-            dialogue.clear_screen()
-            dialogue.narration("\nSave is not available yet.")
-            dialogue.next_dialogue()
+            save.save_game()
 
         elif choice == "4":
             dialogue.clear_screen()
