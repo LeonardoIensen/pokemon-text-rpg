@@ -77,6 +77,7 @@ def fight_menu(player_pokemon):
         choice = input("\nChoose: ")
 
         if not choice.isdigit():
+            dialogue.clear_screen()
             dialogue.narration("\n[Invalid option! Please select again.]")
             dialogue.next_dialogue()
             continue
@@ -91,6 +92,7 @@ def fight_menu(player_pokemon):
             return selected_move
         
         else:
+            dialogue.clear_screen()
             dialogue.narration("\n[Invalid option! Please select again.]")
             dialogue.next_dialogue()
 
@@ -211,7 +213,7 @@ def battle_menu(player_pokemon, enemy_pokemon, player_name, enemy_name, battle_t
 
         show_battle_stats(player_pokemon, enemy_pokemon)
 
-        dialogue.narration(f"What will {player_pokemon.name} do?\n")
+        print(f"What will {player_pokemon.name} do?\n")
 
         print("1 - FIGHT")
         print("2 - RUN")
@@ -254,6 +256,7 @@ def battle_menu(player_pokemon, enemy_pokemon, player_name, enemy_name, battle_t
             dialogue.next_dialogue()
 
         else:
+            dialogue.clear_screen()
             dialogue.narration("\n[Invalid option! Please select again.]")
             dialogue.next_dialogue()
 

@@ -524,6 +524,7 @@ def choose_starter(player_name):
             dialogue.narration("\nWait... a fourth Pokeball?")
 
         else:
+            dialogue.clear_screen()
             dialogue.narration("\n[Invalid option! Please select again.]")
             dialogue.next_dialogue()
 
