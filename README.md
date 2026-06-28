@@ -18,6 +18,7 @@ This project focuses on learning Python fundamentals, object-oriented programmin
 
   * Typewriter-style text animation.
   * Integrated screen-clearing system for cleaner gameplay flow.
+  * Reusable dialogue, narration, input, and pause functions.
 
 * **Character & Rival Creation**
 
@@ -45,6 +46,7 @@ This project focuses on learning Python fundamentals, object-oriented programmin
   * Object-oriented Pokémon creation system.
   * Dynamic stat calculation based on level.
   * Individual move sets assigned to each Pokémon.
+  * Pokémon status display through the player menu.
 
 * **Move Database System**
 
@@ -70,6 +72,14 @@ This project focuses on learning Python fundamentals, object-oriented programmin
   * Win and lose conditions implemented.
   * Battle interface with dynamic HP display.
 
+* **Basic Player Menu System**
+
+  * Added a dedicated `menu.py` module.
+  * Added a reusable player menu accessible from routes and cities.
+  * Added Pokémon status option.
+  * Added placeholder options for Bag, Save, and Exit.
+  * Added Back option to return to the current area.
+
 * **Basic Route Exploration System**
 
   * Added Route 1 exploration after the first rival battle.
@@ -85,7 +95,7 @@ This project focuses on learning Python fundamentals, object-oriented programmin
   * Added basic Viridian Forest exploration after Route 2.
   * Added Viridian Forest wild encounters with Caterpie, Weedle, and rare Pikachu.
   * Added defeat handling that returns the player to Viridian City from Route 2 and Viridian Forest.
-  * Added placeholder options for menu systems.
+  * Added player menu access across map areas.
   * Added basic Route 3 exploration after Viridian Forest.
   * Added Route 3 wild encounters with weighted Pokémon selection.
   * Added option to return from Route 3 to Viridian Forest.
@@ -111,9 +121,11 @@ This project focuses on learning Python fundamentals, object-oriented programmin
 * [ ] Party and PC storage system
 * [ ] Status effects and healing items
 * [ ] Trainer battles
+* [x] Basic player menu system
 * [x] Basic Pewter City hub
 * [ ] Gym Leader Brock
 * [ ] Save and load system
+* [ ] Exit confirmation system
 
 ---
 
@@ -134,9 +146,11 @@ pokemon-text-rpg/
 ├── pokemon.py
 ├── battle.py
 ├── map.py
+├── menu.py
 ├── items.py
 ├── trainer.py
-└── save.py
+├── save.py
+└── README.md
 ```
 
 ---
@@ -173,7 +187,7 @@ py main.py
 
 ## 🎯 Project Goals
 
-This project is currently in early gameplay development phase, focusing on core battle mechanics, route exploration, and system architecture.
+This project is currently in early gameplay development phase, focusing on core battle mechanics, route exploration, menu structure, and system architecture.
 
 * Learning Python from scratch
 * Practicing programming logic
