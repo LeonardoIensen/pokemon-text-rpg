@@ -2,23 +2,21 @@ import random
 import dialogue
 import pokemon
 import battle
+import menu
 
 GRASS_ENCOUNTER_CHANCE = 85
 
 def pokemon_center(player_pokemon):
     dialogue.clear_screen()
-
     dialogue.narration("\nWelcome to the POKEMON CENTER!")
 
     player_pokemon.current_hp = player_pokemon.max_hp
     
     dialogue.narration("\nYour POKEMON were fully healed!")
-
     dialogue.next_dialogue()
 
 def wild_encounter(player_name, player_pokemon, pokemon_names, min_level, max_level, weights=None):
     dialogue.clear_screen()
-
     dialogue.narration(f"\n{player_name} walked through the tall grass...")
 
     encounter_roll = random.randint(1, 100)
@@ -98,10 +96,7 @@ def route_1(player_name, player_pokemon):
                 continue
 
         elif choice == "3":
-            dialogue.clear_screen()
-
-            dialogue.narration("\nMenu is not available yet.")
-            dialogue.next_dialogue()
+            menu.player_menu(player_pokemon)
 
         else:
             dialogue.narration("\n[Invalid option! Please select again.]")
@@ -124,7 +119,6 @@ def viridian_city(player_name, player_pokemon):
 
         if choice == "1":
             dialogue.clear_screen()
-
             dialogue.narration(f"\n{player_name} arrived in Route 2!")
             dialogue.next_dialogue()
                 
@@ -133,7 +127,6 @@ def viridian_city(player_name, player_pokemon):
 
         elif choice == "2":
             dialogue.clear_screen()
-            
             dialogue.narration(f"\n{player_name} returned to Route 1.")
             dialogue.next_dialogue()
 
@@ -145,12 +138,10 @@ def viridian_city(player_name, player_pokemon):
             pokemon_center(player_pokemon)
 
         elif choice == "4":
-            dialogue.clear_screen()
-
-            dialogue.narration("\nMenu is not available yet.")
-            dialogue.next_dialogue()
+            menu.player_menu(player_pokemon)
 
         else:
+            dialogue.clear_screen()
             dialogue.narration("\n[Invalid option! Please select again.]")
             dialogue.next_dialogue()
 
@@ -196,7 +187,6 @@ def route_2(player_name, player_pokemon):
 
         elif choice == "3":
             dialogue.clear_screen()
-
             dialogue.narration(f"\n{player_name} returned to Viridian City!")
             dialogue.next_dialogue()
             
@@ -204,12 +194,10 @@ def route_2(player_name, player_pokemon):
             break
 
         elif choice == "4":
-            dialogue.clear_screen()
-
-            dialogue.narration("\nMenu is not available yet.")
-            dialogue.next_dialogue()
+            menu.player_menu(player_pokemon)
 
         else:
+            dialogue.clear_screen()
             dialogue.narration("\n[Invalid option! Please select again.]")
             dialogue.next_dialogue()
 
@@ -241,7 +229,6 @@ def viridian_forest(player_name, player_pokemon):
 
             if steps >= 10:
                 dialogue.clear_screen()
-
                 dialogue.narration(f"\n{player_name} reached the exit of Viridian Forest!")
                 dialogue.next_dialogue()
 
@@ -257,7 +244,6 @@ def viridian_forest(player_name, player_pokemon):
 
         elif choice == "3":
             dialogue.clear_screen()
-
             dialogue.narration(f"\n{player_name} returned to Route 2!")
             dialogue.next_dialogue()
             
@@ -265,12 +251,10 @@ def viridian_forest(player_name, player_pokemon):
             break
 
         elif choice == "4":
-            dialogue.clear_screen()
-
-            dialogue.narration("\nMenu is not available yet.")
-            dialogue.next_dialogue()
+            menu.player_menu(player_pokemon)
 
         else:
+            dialogue.clear_screen()
             dialogue.narration("\n[Invalid option! Please select again.]")
             dialogue.next_dialogue()
 
@@ -320,7 +304,6 @@ def route_3(player_name, player_pokemon):
 
         elif choice == "3":
             dialogue.clear_screen()
-
             dialogue.narration(f"\n{player_name} returned to Viridian Forest!")
             dialogue.next_dialogue()
             
@@ -328,12 +311,10 @@ def route_3(player_name, player_pokemon):
             break
 
         elif choice == "4":
-            dialogue.clear_screen()
-
-            dialogue.narration("\nMenu is not available yet.")
-            dialogue.next_dialogue()
+            menu.player_menu(player_pokemon)
 
         else:
+            dialogue.clear_screen()
             dialogue.narration("\n[Invalid option! Please select again.]")
             dialogue.next_dialogue()
 
@@ -357,7 +338,6 @@ def pewter_city(player_name, player_pokemon):
 
         elif choice == "2":
             dialogue.clear_screen()
-            
             dialogue.narration(f"\n{player_name} returned to Route 3.")
             dialogue.next_dialogue()
 
@@ -367,16 +347,13 @@ def pewter_city(player_name, player_pokemon):
 
         elif choice == "3":
             dialogue.clear_screen()
-
             dialogue.narration("\nPEWTER GYM's doors are locked.")
             dialogue.next_dialogue()
 
         elif choice == "4":
-            dialogue.clear_screen()
-
-            dialogue.narration("\nMenu is not available yet.")
-            dialogue.next_dialogue()
+            menu.player_menu(player_pokemon)
 
         else:
+            dialogue.clear_screen()
             dialogue.narration("\n[Invalid option! Please select again.]")
             dialogue.next_dialogue()
