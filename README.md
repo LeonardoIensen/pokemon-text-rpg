@@ -13,6 +13,7 @@ This project focuses on learning Python fundamentals, object-oriented programmin
 * **Game Loop & Main Menu**
 
   * Functional start menu with navigation options.
+  * Title screen return flow from the in-game player menu.
 
 * **Dynamic Dialogue Engine**
 
@@ -77,7 +78,10 @@ This project focuses on learning Python fundamentals, object-oriented programmin
   * Added a dedicated `menu.py` module.
   * Added a reusable player menu accessible from routes and cities.
   * Added Pokémon status option.
-  * Added placeholder options for Bag, Save, and Exit.
+  * Connected Bag option to the `items.py` module.
+  * Connected Save option to the `save.py` module.
+  * Added Exit confirmation flow.
+  * Added return-to-title-screen behavior from the in-game menu.
   * Added Back option to return to the current area.
 
 * **Basic Route Exploration System**
@@ -125,7 +129,7 @@ This project focuses on learning Python fundamentals, object-oriented programmin
 * [x] Basic Pewter City hub
 * [ ] Gym Leader Brock
 * [ ] Save and load system
-* [ ] Exit confirmation system
+* [x] Exit confirmation system
 
 ---
 
