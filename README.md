@@ -40,12 +40,15 @@ This project focuses on learning Python fundamentals, object-oriented programmin
 
   * Structured Pokémon database using dictionaries.
   * Base stats system implementation.
+  * Base experience values assigned to Pokémon species.
   * Pokémon move list integration.
 
 * **Pokémon System (OOP)**
 
   * Object-oriented Pokémon creation system.
   * Dynamic stat calculation based on level.
+  * Experience and level up system implemented.
+  * Full HP recovery on level up implemented as a gameplay mechanic.
   * Individual move sets assigned to each Pokémon.
   * Pokémon status display through the player menu.
 
@@ -71,6 +74,8 @@ This project focuses on learning Python fundamentals, object-oriented programmin
   * Trainer battle escape restriction implemented.
   * Wild battle escape system implemented.
   * Win and lose conditions implemented.
+  * Experience gain after winning battles.
+  * Trainer battle experience bonus implemented.
   * Battle interface with dynamic HP display.
 
 * **Basic Player Menu System**
@@ -116,7 +121,7 @@ This project focuses on learning Python fundamentals, object-oriented programmin
 * [ ] Bag system
 * [ ] Type effectiveness system
 * [ ] Accuracy and critical hit system
-* [ ] Experience and leveling system
+* [x] Experience and leveling system
 * [ ] Move learning system
 * [x] Basic wild Pokémon encounter system
 * [x] Expanded wild encounter tables by route
