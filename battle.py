@@ -33,6 +33,7 @@ def enemy_free_attack(player_pokemon, enemy_pokemon, player_name, enemy_name, ba
     player_pokemon.current_hp -= enemy_damage
 
     if player_pokemon.current_hp <= 0:
+        dialogue.next_dialogue()
         return handle_faint(player_pokemon, player_pokemon, enemy_pokemon, player_name, enemy_name, battle_type)
     
     dialogue.next_dialogue()
@@ -161,10 +162,9 @@ def handle_faint(fainted_pokemon, player_pokemon, enemy_pokemon, player_name, en
     fainted_pokemon.current_hp = 0
 
     if fainted_pokemon == enemy_pokemon:
-        dialogue.narration(f"\nFoe {enemy_pokemon.name} fainted!")
+        dialogue.clear_screen()
 
-        exp_gain = calculate_exp_gain(enemy_pokemon, battle_type)
-        player_pokemon.gain_exp(exp_gain)
+        dialogue.narration(f"\nFoe {enemy_pokemon.name} fainted!")
 
         if battle_type == "TRAINER":
             dialogue.narration(f"\n{player_name} defeated {enemy_name}!")
@@ -173,9 +173,18 @@ def handle_faint(fainted_pokemon, player_pokemon, enemy_pokemon, player_name, en
             dialogue.narration(f"\nYou defeated the wild {enemy_pokemon.name}!")
 
         dialogue.next_dialogue()
+
+        dialogue.clear_screen()
+
+        exp_gain = calculate_exp_gain(enemy_pokemon, battle_type)
+        player_pokemon.gain_exp(exp_gain)
+
+        dialogue.next_dialogue()
         return "WIN"
 
     elif fainted_pokemon == player_pokemon:
+        dialogue.clear_screen()
+
         dialogue.narration(f"\nYour {player_pokemon.name} fainted!")
 
         if battle_type == "TRAINER":
@@ -202,9 +211,8 @@ def battle_turn(player_pokemon, enemy_pokemon, player_move, player_name, enemy_n
     second_pokemon.current_hp -= first_damage
 
     if second_pokemon.current_hp <= 0:
+        dialogue.next_dialogue()
         return handle_faint(second_pokemon, player_pokemon, enemy_pokemon, player_name, enemy_name, battle_type)
-
-    dialogue.next_dialogue()
 
     show_attack_message(second_pokemon, second_move, enemy_pokemon)
 
@@ -213,6 +221,7 @@ def battle_turn(player_pokemon, enemy_pokemon, player_move, player_name, enemy_n
     first_pokemon.current_hp -= second_damage
 
     if first_pokemon.current_hp <= 0:
+        dialogue.next_dialogue()
         return handle_faint(first_pokemon, player_pokemon, enemy_pokemon, player_name, enemy_name, battle_type)
 
     dialogue.next_dialogue()
