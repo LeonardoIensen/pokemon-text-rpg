@@ -492,17 +492,20 @@ class Pokemon:
         self.base_exp = data["base_exp"]
 
         self.calculate_stats()
+        self.heal_to_full()
 
     def calculate_stats(self):
 
         self.max_hp = int(((self.base_hp * 2) * self.level) / 100) + self.level + 10
-        self.current_hp = self.max_hp
 
         self.attack = int(((self.base_attack * 2) * self.level) / 100) + 5
         self.defense = int(((self.base_defense * 2) * self.level) / 100) + 5
         self.speed = int(((self.base_speed * 2) * self.level) / 100) + 5
 
         self.exp_to_next_level = self.level * 10
+
+    def heal_to_full(self):
+        self.current_hp = self.max_hp
 
     def gain_exp(self, amount):
         self.exp = self.exp + amount
@@ -516,6 +519,7 @@ class Pokemon:
             dialogue.narration(f"\n{self.name} grew to Lv{self.level}!")
 
             self.calculate_stats()
+            self.heal_to_full()
 
     def show_stats(self):
         
