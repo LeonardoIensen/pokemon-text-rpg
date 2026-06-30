@@ -9,6 +9,7 @@ pokemon_data = {
         "attack": 70,
         "defense": 50,
         "speed": 60,
+        "base_exp": 65,
 
         "moves": [
             "SCRATCH",
@@ -21,6 +22,7 @@ pokemon_data = {
         "attack": 73,
         "defense": 73,
         "speed": 97,
+        "base_exp": 145,
 
         "moves": [
             "SCRATCH",
@@ -36,6 +38,7 @@ pokemon_data = {
         "attack": 60,
         "defense": 60,
         "speed": 50,
+        "base_exp": 65,
 
         "moves": [
             "TACKLE",
@@ -48,6 +51,7 @@ pokemon_data = {
         "attack": 67,
         "defense": 67,
         "speed": 80,
+        "base_exp": 145,
 
         "moves": [
             "TACKLE",
@@ -63,6 +67,7 @@ pokemon_data = {
         "attack": 60,
         "defense": 70,
         "speed": 50,
+        "base_exp": 65,
 
         "moves": [
             "TACKLE",
@@ -75,6 +80,7 @@ pokemon_data = {
         "attack": 67,
         "defense": 87,
         "speed": 67,
+        "base_exp": 145,
 
         "moves": [
             "TACKLE",
@@ -90,6 +96,7 @@ pokemon_data = {
         "attack": 70,
         "defense": 40,
         "speed": 90,
+        "base_exp": 65,
 
         "moves": [
             "THUNDER SHOCK",
@@ -102,6 +109,7 @@ pokemon_data = {
         "attack": 50,
         "defense": 40,
         "speed": 50,
+        "base_exp": 60,
 
         "moves": [
             "TACKLE",
@@ -114,6 +122,7 @@ pokemon_data = {
         "attack": 95,
         "defense": 85,
         "speed": 120,
+        "base_exp": 140,
 
         "moves": [
             "TACKLE",
@@ -128,6 +137,7 @@ pokemon_data = {
         "attack": 40,
         "defense": 40,
         "speed": 50,
+        "base_exp": 60,
 
         "moves": [
             "TACKLE",
@@ -140,6 +150,7 @@ pokemon_data = {
         "attack": 82,
         "defense": 70,
         "speed": 85,
+        "base_exp": 140,
 
         "moves": [
             "TACKLE",
@@ -154,6 +165,7 @@ pokemon_data = {
         "attack": 60,
         "defense": 40,
         "speed": 70,
+        "base_exp": 60,
 
         "moves": [
             "PECK",
@@ -166,6 +178,7 @@ pokemon_data = {
         "attack": 100,
         "defense": 73,
         "speed": 100,
+        "base_exp": 140,
 
         "moves": [
             "PECK",
@@ -180,6 +193,7 @@ pokemon_data = {
         "attack": 70,
         "defense": 40,
         "speed": 70,
+        "base_exp": 60,
 
         "moves": [
             "SCRATCH",
@@ -192,6 +206,7 @@ pokemon_data = {
         "attack": 60,
         "defense": 50,
         "speed": 40,
+        "base_exp": 60,
 
         "moves": [
             "PECK",
@@ -204,6 +219,7 @@ pokemon_data = {
         "attack": 95,
         "defense": 70,
         "speed": 70,
+        "base_exp": 140,
 
         "moves": [
             "POISON STING",
@@ -218,6 +234,7 @@ pokemon_data = {
         "attack": 40,
         "defense": 40,
         "speed": 40,
+        "base_exp": 60,
 
         "moves": [
             "TACKLE",
@@ -230,6 +247,7 @@ pokemon_data = {
         "attack": 30,
         "defense": 70,
         "speed": 30,
+        "base_exp": 70,
 
         "moves": [
             "TACKLE",
@@ -242,6 +260,7 @@ pokemon_data = {
         "attack": 55,
         "defense": 65,
         "speed": 72,
+        "base_exp": 140,
 
         "moves": [
             "CONFUSION",
@@ -255,6 +274,7 @@ pokemon_data = {
         "attack": 30,
         "defense": 30,
         "speed": 50,
+        "base_exp": 60,
 
         "moves": [
             "POISON STING",
@@ -267,6 +287,7 @@ pokemon_data = {
         "attack": 30,
         "defense": 70,
         "speed": 30,
+        "base_exp": 70,
 
         "moves": [
             "POISON STING",
@@ -279,6 +300,7 @@ pokemon_data = {
         "attack": 80,
         "defense": 55,
         "speed": 85,
+        "base_exp": 140,
 
         "moves": [
             "POISON STING",
@@ -459,6 +481,7 @@ class Pokemon:
         self.name = name
         data = pokemon_data[name]
         self.level = level
+        self.exp = 0
 
         self.element_type = data["element"]
         self.base_hp = data["hp"]
@@ -466,6 +489,7 @@ class Pokemon:
         self.base_defense = data["defense"]
         self.base_speed = data["speed"]
         self.moves = data["moves"].copy()
+        self.base_exp = data["base_exp"]
 
         self.calculate_stats()
 
@@ -478,6 +502,21 @@ class Pokemon:
         self.defense = int(((self.base_defense * 2) * self.level) / 100) + 5
         self.speed = int(((self.base_speed * 2) * self.level) / 100) + 5
 
+        self.exp_to_next_level = self.level * 10
+
+    def gain_exp(self, amount):
+        self.exp = self.exp + amount
+
+        dialogue.narration(f"\n{self.name} gained {amount} EXP!")
+
+        while self.exp >= self.exp_to_next_level:
+
+            self.exp = self.exp - self.exp_to_next_level
+            self.level = self.level + 1
+            dialogue.narration(f"\n{self.name} grew to Lv{self.level}!")
+
+            self.calculate_stats()
+
     def show_stats(self):
         
         print("\n--- POKEMON STATS ---")
@@ -487,6 +526,7 @@ class Pokemon:
         print()
 
         print(f"HP : {self.current_hp}/{self.max_hp}")
+        print(f"EXP : {self.exp}/{self.exp_to_next_level}")
         print(f"ATTACK : {self.attack}")
         print(f"DEFENSE : {self.defense}")
         print(f"SPEED : {self.speed}")

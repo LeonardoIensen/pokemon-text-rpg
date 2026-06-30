@@ -13,6 +13,14 @@ def calculate_damage(attacker, defender, move):
 
     return damage
 
+def calculate_exp_gain(enemy_pokemon, battle_type):
+    exp_gain = int(enemy_pokemon.base_exp * enemy_pokemon.level / 7)
+
+    if battle_type == "TRAINER":
+        exp_gain = int(exp_gain * 1.5)
+
+    return exp_gain
+
 def enemy_free_attack(player_pokemon, enemy_pokemon, player_name, enemy_name, battle_type):
     dialogue.clear_screen()
 
@@ -154,6 +162,9 @@ def handle_faint(fainted_pokemon, player_pokemon, enemy_pokemon, player_name, en
 
     if fainted_pokemon == enemy_pokemon:
         dialogue.narration(f"\nFoe {enemy_pokemon.name} fainted!")
+
+        exp_gain = calculate_exp_gain(enemy_pokemon, battle_type)
+        player_pokemon.gain_exp(exp_gain)
 
         if battle_type == "TRAINER":
             dialogue.narration(f"\n{player_name} defeated {enemy_name}!")
