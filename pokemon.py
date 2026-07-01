@@ -13,7 +13,13 @@ pokemon_data = {
 
         "moves": [
             "SCRATCH",
-        ]
+        ],
+
+        "learnset": {
+            7: "EMBER",
+            13: "METAL CLAW",
+            16: "FLAME WHEEL",
+        }
     },
 
     "CHARMELEON": {
@@ -29,7 +35,12 @@ pokemon_data = {
             "EMBER",
             "METAL CLAW",
             "FLAME WHEEL",
-        ]
+        ],
+        
+        "learnset": {
+            18: "SLASH",
+            20: "FLAMETHROWER",
+        }
     },
 
     "BULBASAUR": {
@@ -42,7 +53,13 @@ pokemon_data = {
 
         "moves": [
             "TACKLE",
-        ]
+        ],
+
+        "learnset": {
+            7: "VINE WHIP",
+            13: "SLAM",
+            16: "RAZOR LEAF",
+        }
     },
 
     "IVYSAUR": {
@@ -58,7 +75,11 @@ pokemon_data = {
             "VINE WHIP",
             "SLAM",
             "RAZOR LEAF",
-        ]
+        ],
+
+        "learnset": {
+            18: "GIGA DRAIN",
+        }
     },
 
     "SQUIRTLE": {
@@ -71,7 +92,13 @@ pokemon_data = {
 
         "moves": [
             "TACKLE",
-        ]
+        ],
+
+        "learnset": {
+            7: "BUBBLE",
+            13: "WATER GUN",
+            16: "BITE",
+        }
     },
 
     "WARTORTLE": {
@@ -87,7 +114,11 @@ pokemon_data = {
             "BUBBLE",
             "WATER GUN",
             "BITE",
-        ]
+        ],
+
+        "learnset": {
+            18: "WATER PULSE",
+        }
     },
 
     "PIKACHU": {
@@ -100,7 +131,13 @@ pokemon_data = {
 
         "moves": [
             "THUNDER SHOCK",
-        ]
+        ],
+
+        "learnset": {
+            7: "QUICK ATTACK",
+            14: "SLAM",
+            18: "THUNDERBOLT",
+        }
     },
 
     "RATTATA": {
@@ -113,7 +150,13 @@ pokemon_data = {
 
         "moves": [
             "TACKLE",
-        ]
+        ],
+
+        "learnset": {
+            7: "QUICK ATTACK",
+            12: "HYPER FANG",
+            16: "SLAM",
+        }
     },
 
     "RATICATE": {
@@ -128,7 +171,12 @@ pokemon_data = {
             "TACKLE",
             "QUICK ATTACK",
             "HYPER FANG",
-        ]
+            "SLAM",
+        ],
+
+        "learnset": {
+            20: "BITE",
+        }
     },
 
     "PIDGEY": {
@@ -141,7 +189,13 @@ pokemon_data = {
 
         "moves": [
             "TACKLE",
-        ]
+        ],
+
+        "learnset": {
+            7: "PECK",
+            11: "GUST",
+            15: "QUICK ATTACK",
+        }
     },
 
     "PIDGEOTTO": {
@@ -154,9 +208,14 @@ pokemon_data = {
 
         "moves": [
             "TACKLE",
+            "PECK",
             "GUST",
             "QUICK ATTACK",
-        ]
+        ],
+
+        "learnset": {
+            18: "WING ATTACK",
+        }
     },
 
     "SPEAROW": {
@@ -169,7 +228,13 @@ pokemon_data = {
 
         "moves": [
             "PECK",
-        ]
+        ],
+
+        "learnset": {
+            7: "GUST",
+            11: "FURY ATTACK",
+            15: "QUICK ATTACK",
+        }
     },
 
     "FEAROW": {
@@ -184,7 +249,12 @@ pokemon_data = {
             "PECK",
             "GUST",
             "FURY ATTACK",
-        ]
+            "QUICK ATTACK",
+        ],
+
+        "learnset": {
+            18: "WING ATTACK",
+        }
     },
 
     "MANKEY": {
@@ -197,7 +267,14 @@ pokemon_data = {
 
         "moves": [
             "SCRATCH",
-        ]
+        ],
+
+        "learnset": {
+            6: "LOW KICK",
+            10: "DOUBLE KICK",
+            14: "KARATE CHOP",
+            18: "QUICK ATTACK",
+        }
     },
 
     "NIDORAN": {
@@ -210,7 +287,13 @@ pokemon_data = {
 
         "moves": [
             "PECK",
-        ]
+        ],
+
+        "learnset": {
+            8: "DOUBLE KICK",
+            13: "POISON STING",
+            16: "QUICK ATTACK",
+        }
     },
 
     "NIDORINO": {
@@ -222,10 +305,15 @@ pokemon_data = {
         "base_exp": 140,
 
         "moves": [
-            "POISON STING",
-            "DOUBLE KICK",
             "PECK",
-        ]
+            "DOUBLE KICK",
+            "POISON STING",
+            "QUICK ATTACK",
+        ],
+
+        "learnset": {
+            18: "HORN ATTACK",
+        }
     },
 
     "CATERPIE": {
@@ -264,8 +352,14 @@ pokemon_data = {
 
         "moves": [
             "CONFUSION",
-            "GUST",
-        ]
+        ],
+
+        "learnset": {
+            10: "CONFUSION",
+            12: "GUST",
+            16: "WING ATTACK",
+            18: "PSYBEAM",
+        }
     },
 
     "WEEDLE": {
@@ -304,8 +398,13 @@ pokemon_data = {
 
         "moves": [
             "POISON STING",
-            "FURY ATTACK",
-        ]
+        ],
+
+        "learnset": {
+            10: "FURY ATTACK",
+            13: "AERIAL ACE",
+            17: "WING ATTACK",
+        }
     },
 
 }
@@ -345,6 +444,12 @@ moves_data = {
     "HYPER FANG": {
         "power": 80,
         "accuracy": 90,
+        "type": "NORMAL"
+    },
+
+    "HORN ATTACK": {
+        "power": 65,
+        "accuracy": 100,
         "type": "NORMAL"
     },
 
@@ -437,6 +542,18 @@ moves_data = {
         "accuracy": 100,
         "type": "FLYING"
     },
+    
+    "WING ATTACK": {
+        "power": 60,
+        "accuracy": 100,
+        "type": "FLYING"
+    },
+
+    "AERIAL ACE": {
+        "power": 60,
+        "accuracy": 100,
+        "type": "FLYING"
+    },
 
     "POISON STING": {
         "power": 15,
@@ -446,6 +563,12 @@ moves_data = {
 
     "CONFUSION": {
         "power": 50,
+        "accuracy": 100,
+        "type": "PSYCHIC"
+    },
+    
+    "PSYBEAM": {
+        "power": 65,
         "accuracy": 100,
         "type": "PSYCHIC"
     },
@@ -490,6 +613,7 @@ class Pokemon:
         self.base_speed = data["speed"]
         self.moves = data["moves"].copy()
         self.base_exp = data["base_exp"]
+        self.learnset = data.get("learnset", {})
 
         self.calculate_stats()
         self.heal_to_full()
@@ -507,6 +631,14 @@ class Pokemon:
     def heal_to_full(self):
         self.current_hp = self.max_hp
 
+    def learn_move(self):
+        if self.level in self.learnset:
+            new_move = self.learnset[self.level]
+
+            if new_move not in self.moves:
+                self.moves.append(new_move)
+                dialogue.narration(f"\n{self.name} learned {new_move}!")
+
     def gain_exp(self, amount):
         self.exp = self.exp + amount
 
@@ -520,7 +652,8 @@ class Pokemon:
 
             self.calculate_stats()
             self.heal_to_full()
-
+            self.learn_move()
+            
     def show_stats(self):
         
         print("\n--- POKEMON STATS ---")
