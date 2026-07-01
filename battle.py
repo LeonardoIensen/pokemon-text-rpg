@@ -74,14 +74,14 @@ def fight_menu(player_pokemon):
 
         dialogue.clear_screen()
 
-        dialogue.narration("\nMOVES\n")
+        dialogue.narration("\n--- MOVES ---\n")
 
         for i, move in enumerate(player_pokemon.moves, 1):
             move_type = pokemon.moves_data[move]["type"]
 
-            dialogue.narration(f"{i} - {move} ({move_type})")
+            print(f"{i} - {move} ({move_type})")
 
-        dialogue.narration("0 - BACK")
+        print("0 - BACK")
 
         choice = input("\nChoose: ")
 
