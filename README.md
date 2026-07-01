@@ -41,6 +41,7 @@ This project focuses on learning Python fundamentals, object-oriented programmin
   * Structured Pokémon database using dictionaries.
   * Base stats system implementation.
   * Base experience values assigned to Pokémon species.
+  * Level-based move learnsets assigned to Pokémon species.
   * Pokémon move list integration.
 
 * **Pokémon System (OOP)**
@@ -48,6 +49,7 @@ This project focuses on learning Python fundamentals, object-oriented programmin
   * Object-oriented Pokémon creation system.
   * Dynamic stat calculation based on level.
   * Experience and level up system implemented.
+  * Level-based move learning system implemented.
   * Full HP recovery on level up implemented as a gameplay mechanic.
   * Individual move sets assigned to each Pokémon.
   * Pokémon status display through the player menu.
@@ -122,7 +124,8 @@ This project focuses on learning Python fundamentals, object-oriented programmin
 * [ ] Type effectiveness system
 * [ ] Accuracy and critical hit system
 * [x] Experience and leveling system
-* [ ] Move learning system
+* [x] Move learning system
+* [ ] Four-move limit and move replacement system
 * [x] Basic wild Pokémon encounter system
 * [x] Expanded wild encounter tables by route
 * [ ] More route-specific encounter balancing
