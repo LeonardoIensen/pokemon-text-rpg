@@ -640,14 +640,56 @@ class Pokemon:
             if new_move in self.moves:
                 return
             
-            if len(self.moves) >= MAX_MOVES:
-                dialogue.narration(f"\n{self.name} wants to learn {new_move}!")
-                dialogue.narration(f"\nBut {self.name} already knows 4 moves.")
-                dialogue.narration(f"\n{self.name} did not learn {new_move}!")
+            if len(self.moves) < MAX_MOVES:
+                self.moves.append(new_move)
+                dialogue.narration(f"\n{self.name} learned {new_move}!")
                 return
             
-            self.moves.append(new_move)
-            dialogue.narration(f"\n{self.name} learned {new_move}!")
+            dialogue.narration(f"\n{self.name} wants to learn {new_move}!")
+            dialogue.next_dialogue()
+
+            while True:
+                dialogue.clear_screen()
+
+                print(f"\nBut {self.name} already knows 4 moves.")
+                print("\nChoose a move to forget:\n")
+
+                for i, move in enumerate(self.moves, 1):
+                    move_type = moves_data[move]["type"]
+
+                    print(f"{i} - {move} ({move_type})")
+
+                print(f"0 - Do not learn {new_move}")
+
+                choice = input("\nChoose: ")
+
+                if not choice.isdigit():
+                    dialogue.clear_screen()
+                    dialogue.narration("\n[Invalid option! Please select again.]")
+                    dialogue.next_dialogue()
+                    continue
+
+                choice = int(choice)
+
+                if choice == 0:
+                    dialogue.clear_screen()
+                    dialogue.narration(f"\n{self.name} did not learn {new_move}!")
+                    return
+                
+                elif 1 <= choice <= len(self.moves):
+                    forgotten_move = self.moves[choice - 1]
+                    self.moves[choice - 1] = new_move
+
+                    dialogue.clear_screen()
+                    dialogue.narration(f"\n{self.name} forgot {forgotten_move}!")
+                    dialogue.narration(f"\n{self.name} learned {new_move}!")
+                    return
+                
+                else:
+                    dialogue.clear_screen()
+                    dialogue.narration("\n[Invalid option! Please select again.]")
+                    dialogue.next_dialogue()
+
 
     def gain_exp(self, amount):
         self.exp = self.exp + amount
