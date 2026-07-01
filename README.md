@@ -125,7 +125,7 @@ This project focuses on learning Python fundamentals, object-oriented programmin
 * [ ] Accuracy and critical hit system
 * [x] Experience and leveling system
 * [x] Move learning system
-* [ ] Four-move limit and move replacement system
+* [x] Four-move limit and move replacement system
 * [x] Basic wild Pokémon encounter system
 * [x] Expanded wild encounter tables by route
 * [ ] More route-specific encounter balancing
