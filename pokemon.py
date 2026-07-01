@@ -1,6 +1,8 @@
 import dialogue
 import random
 
+MAX_MOVES = 4
+
 pokemon_data = {
 
     "CHARMANDER": {
@@ -635,9 +637,17 @@ class Pokemon:
         if self.level in self.learnset:
             new_move = self.learnset[self.level]
 
-            if new_move not in self.moves:
-                self.moves.append(new_move)
-                dialogue.narration(f"\n{self.name} learned {new_move}!")
+            if new_move in self.moves:
+                return
+            
+            if len(self.moves) >= MAX_MOVES:
+                dialogue.narration(f"\n{self.name} wants to learn {new_move}!")
+                dialogue.narration(f"\nBut {self.name} already knows 4 moves.")
+                dialogue.narration(f"\n{self.name} did not learn {new_move}!")
+                return
+            
+            self.moves.append(new_move)
+            dialogue.narration(f"\n{self.name} learned {new_move}!")
 
     def gain_exp(self, amount):
         self.exp = self.exp + amount
