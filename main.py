@@ -1,3 +1,5 @@
+import dialogue
+
 while True:
 
     print("\n--- POKEMON RPG ---\n")
@@ -8,16 +10,24 @@ while True:
     opcao = input("\nDigite sua escolha: ")
 
     if opcao == "1":
-        print("\nFuncao ainda nao implementada!\n")
+        dialogue.clear_screen()
+        print("\nFuncao ainda nao implementada!")
+        dialogue.next_dialogue()
 
     elif opcao == "2":
-        print("\nFuncao ainda nao implementada!\n")
+        dialogue.clear_screen()
+        print("\nFuncao ainda nao implementada!")
+        dialogue.next_dialogue()
 
     elif opcao == "3":
-        print("\nSaindo do jogo...\n")
+        dialogue.clear_screen()
+        print("\nSaindo do jogo...")
+        dialogue.next_dialogue()
         break
 
     else:
+        dialogue.clear_screen()
         print("\n[Opcao invalida! Tente novamente.]")
+        dialogue.next_dialogue()
 
     
