@@ -1,25 +1,80 @@
-# Pokémon Text RPG
+# 🎮 Pokémon Text RPG
 
 Um RPG de texto inspirado em Pokémon FireRed, desenvolvido em Python como projeto de estudo.
 
-## Objetivo
+O projeto tem como objetivo praticar Python, lógica de programação, organização de código e Git/GitHub através do desenvolvimento de um jogo.
 
-O principal objetivo deste projeto é aprender Python, lógica de programação e Git/GitHub através do desenvolvimento de um jogo.
+---
 
-## Tecnologias
+## 🚧 Status
+
+Em desenvolvimento.
+
+### Funcionalidades implementadas
+
+* **Menu principal**
+
+  * Novo jogo
+  * Continuar (ainda não implementado)
+  * Sair
+
+* **Introdução**
+
+  * Introdução do Professor Carvalho
+  * Criação do nome do jogador
+  * Criação do nome do rival
+  * Validação dos nomes com limite de 10 caracteres
+
+* **Início da jornada**
+
+  * Saída da casa do jogador
+  * Encontro com o Professor Carvalho
+  * Ida ao laboratório
+  * Introdução à escolha do Pokémon inicial
+
+* **Pokémon inicial**
+
+  * Escolha entre Bulbasaur, Squirtle e Charmander
+  * Escolha automática do inicial do rival baseada na vantagem de tipo
+
+---
+
+## 🛠️ Tecnologias
 
 * Python 3.12
 * Visual Studio Code
 * Git / GitHub
 
-## Como executar
+---
+
+## 📂 Estrutura do projeto
+
+```text
+pokemon-text-rpg/
+│
+├── main.py
+├── dialogue.py
+├── pokemon.py
+└── README.md
+```
+
+---
+
+## ▶️ Como executar
 
 No terminal, dentro da pasta do projeto:
 
-```text
+```bash
 py main.py
 ```
 
-## Status
+---
 
-🚧 Em desenvolvimento.
+## 🎯 Objetivos do projeto
+
+* Aprender Python de forma prática
+* Praticar lógica de programação
+* Aprender a organizar um projeto em múltiplos módulos
+* Desenvolver um RPG de texto inspirado em Pokémon FireRed
+* Praticar Git e GitHub
+* Evoluir gradualmente os conhecimentos de Python e programação orientada a objetos
