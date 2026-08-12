@@ -13,6 +13,7 @@ while True:
         dialogue.clear_screen()
 
         player_name, rival_name = dialogue.intro()
+        dialogue.start_journey(player_name, rival_name)
 
     elif opcao == "2":
         dialogue.clear_screen()

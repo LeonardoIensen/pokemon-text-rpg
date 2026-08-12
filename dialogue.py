@@ -60,3 +60,25 @@ def intro():
 
     return player_name, rival_name
 
+def start_journey(player_name, rival_name):
+    print(f"{player_name} acorda atrasado no grande dia de escolher seu primeiro Pokémon.")
+    next_dialogue()
+
+    talk("MÃE", "É... todo garoto sai de casa um dia. Disseram isso na TV... Ah, sim. O PROF. CARVALHO quer falar com você.")
+
+    print(f"\nCurioso, {player_name} sai de casa e caminha pela pequena cidade de Pallet.")
+    next_dialogue()
+
+    talk("PROF. CARVALHO", "Ei! Espere! Pokémon selvagens vivem na grama alta!")
+    talk("PROF. CARVALHO", "Sem um Pokémon, seria perigoso ir sozinho. Venha comigo ao meu laboratório.")
+
+    print(f"\n{player_name} acompanha o PROF. CARVALHO até o laboratório dele.")
+    next_dialogue()
+    
+    print(f"\nAo entrar no laboratório, {player_name} encontra {rival_name} esperando impacientemente.")
+    next_dialogue()
+
+    talk(f"{rival_name}", "Finalmente chegou! Vovô! Estou cansado de esperar!")
+    talk("PROF. CARVALHO", "Tenha paciência... Vocês dois vão ganhar seus próprios Pokémon hoje.")
+    talk("PROF. CARVALHO", "Há três Pokémon aqui. Eles foram criados especialmente para jovens treinadores.")
+    talk("PROF. CARVALHO", f"Escolha um deles, {player_name}.")
