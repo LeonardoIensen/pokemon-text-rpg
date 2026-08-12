@@ -1,4 +1,5 @@
 import dialogue
+import pokemon
 
 while True:
 
@@ -13,7 +14,11 @@ while True:
         dialogue.clear_screen()
 
         player_name, rival_name = dialogue.intro()
+
         dialogue.start_journey(player_name, rival_name)
+
+        player_starter = pokemon.choose_starter()
+        rival_starter = pokemon.choose_rival_starter(player_starter)
 
     elif opcao == "2":
         dialogue.clear_screen()
