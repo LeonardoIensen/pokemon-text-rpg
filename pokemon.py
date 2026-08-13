@@ -3,7 +3,7 @@ import dialogue
 pokedex = {
 
     "BULBASAUR": {
-        "element": "GRASS / POISON",
+        "type": "GRASS / POISON",
         "hp": 50,
         "attack": 60,
         "defense": 60,
@@ -11,7 +11,7 @@ pokedex = {
     },
 
     "SQUIRTLE": {
-        "element": "WATER",
+        "type": "WATER",
         "hp": 50,
         "attack": 60,
         "defense": 70,
@@ -19,14 +19,41 @@ pokedex = {
     },
 
     "CHARMANDER": {
-        "element": "FIRE",
+        "type": "FIRE",
         "hp": 50,
         "attack": 70,
         "defense": 50,
         "speed": 60,
+    },
+
+    "RATTATA": {
+        "type": "NORMAL",
+        "hp": 40,
+        "attack": 50,
+        "defense": 40,
+        "speed": 50,
     }
 
 }
+
+class Pokemon:
+    def __init__(self, name, level):
+        self.name = name
+        self.level = level
+
+        self.type = pokedex[name]["type"]
+        self.base_hp = pokedex[name]["hp"]
+        self.base_attack = pokedex[name]["attack"]
+        self.base_defense = pokedex[name]["defense"]
+        self.base_speed = pokedex[name]["speed"]
+
+    def calculate_stats(self):
+
+        self.max_hp = int(((self.base_hp * 2) * self.level) / 100) + self.level + 10
+
+        self.attack = int(((self.base_attack * 2) * self.level) / 100) + 5
+        self.defense = int(((self.base_defense * 2) * self.level) / 100) + 5
+        self.speed = int(((self.base_speed * 2) * self.level) / 100) + 5
         
 def show_menu_starters():
     print("--- STARTER POKEMON ---\n")
