@@ -66,16 +66,16 @@ def start_journey(player_name, rival_name):
 
     talk("MÃE", "É... todo garoto sai de casa um dia. Disseram isso na TV... Ah, sim. O PROF. CARVALHO quer falar com você.")
 
-    print(f"\nCurioso, {player_name} sai de casa e caminha pela pequena cidade de Pallet.")
+    print(f"Curioso, {player_name} sai de casa e caminha pela pequena cidade de Pallet.")
     next_dialogue()
 
     talk("PROF. CARVALHO", "Ei! Espere! Pokémon selvagens vivem na grama alta!")
     talk("PROF. CARVALHO", "Sem um Pokémon, seria perigoso ir sozinho. Venha comigo ao meu laboratório.")
 
-    print(f"\n{player_name} acompanha o PROF. CARVALHO até o laboratório dele.")
+    print(f"{player_name} acompanha o PROF. CARVALHO até o laboratório dele.")
     next_dialogue()
     
-    print(f"\nAo entrar no laboratório, {player_name} encontra {rival_name} esperando impacientemente.")
+    print(f"Ao entrar no laboratório, {player_name} encontra {rival_name} esperando impacientemente.")
     next_dialogue()
 
     talk(f"{rival_name}", "Finalmente chegou! Vovô! Estou cansado de esperar!")
