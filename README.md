@@ -43,6 +43,8 @@ Em desenvolvimento.
   * Classe `Pokemon` para criação dos Pokémon
   * Sistema de nível
   * Cálculo de HP, Attack, Defense e Speed baseado nos stats-base e nível
+  * Sistema de HP atual e HP máximo
+  * Recuperação completa do HP
 
 ---
 
