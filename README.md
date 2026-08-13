@@ -37,6 +37,13 @@ Em desenvolvimento.
   * Escolha entre Bulbasaur, Squirtle e Charmander
   * Escolha automática do inicial do rival baseada na vantagem de tipo
 
+* **Sistema de Pokémon**
+
+  * Pokédex com dados-base dos Pokémon
+  * Classe `Pokemon` para criação dos Pokémon
+  * Sistema de nível
+  * Cálculo de HP, Attack, Defense e Speed baseado nos stats-base e nível
+
 ---
 
 ## 🛠️ Tecnologias
