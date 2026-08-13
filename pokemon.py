@@ -54,6 +54,9 @@ class Pokemon:
         self.attack = int(((self.base_attack * 2) * self.level) / 100) + 5
         self.defense = int(((self.base_defense * 2) * self.level) / 100) + 5
         self.speed = int(((self.base_speed * 2) * self.level) / 100) + 5
+
+    def heal_full(self):
+        self.current_hp = self.max_hp
         
 def show_menu_starters():
     print("--- STARTER POKEMON ---\n")
