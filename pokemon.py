@@ -1,5 +1,33 @@
 import dialogue
 
+pokedex = {
+
+    "BULBASAUR": {
+        "element": "GRASS / POISON",
+        "hp": 50,
+        "attack": 60,
+        "defense": 60,
+        "speed": 50,
+    },
+
+    "SQUIRTLE": {
+        "element": "WATER",
+        "hp": 50,
+        "attack": 60,
+        "defense": 70,
+        "speed": 50,
+    },
+
+    "CHARMANDER": {
+        "element": "FIRE",
+        "hp": 50,
+        "attack": 70,
+        "defense": 50,
+        "speed": 60,
+    }
+
+}
+        
 def show_menu_starters():
     print("--- STARTER POKEMON ---\n")
     print("1 - Bulbasaur")
