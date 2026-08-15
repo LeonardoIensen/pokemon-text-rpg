@@ -47,6 +47,9 @@ class Pokemon:
         self.base_defense = pokedex[name]["defense"]
         self.base_speed = pokedex[name]["speed"]
 
+        self.calculate_stats()
+        self.heal_full()
+
     def calculate_stats(self):
 
         self.max_hp = int(((self.base_hp * 2) * self.level) / 100) + self.level + 10

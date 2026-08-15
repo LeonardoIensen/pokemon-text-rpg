@@ -1,5 +1,6 @@
 import dialogue
 import pokemon
+import trainer
 
 while True:
 
@@ -19,6 +20,12 @@ while True:
 
         player_starter = pokemon.choose_starter()
         rival_starter = pokemon.choose_rival_starter(player_starter)
+
+        player_pokemon = pokemon.Pokemon(player_starter, 5)
+        rival_pokemon = pokemon.Pokemon(rival_starter, 5)
+
+        player = trainer.Trainer(player_name, player_pokemon)
+        rival = trainer.Trainer(rival_name, rival_pokemon)
 
     elif opcao == "2":
         dialogue.clear_screen()
