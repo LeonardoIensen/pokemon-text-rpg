@@ -40,6 +40,7 @@ class Pokemon:
     def __init__(self, name, level):
         self.name = name
         self.level = level
+        self.experience = 0
 
         self.type = pokedex[name]["type"]
         self.base_hp = pokedex[name]["hp"]
@@ -51,12 +52,29 @@ class Pokemon:
         self.heal_full()
 
     def calculate_stats(self):
-
         self.max_hp = int(((self.base_hp * 2) * self.level) / 100) + self.level + 10
-
         self.attack = int(((self.base_attack * 2) * self.level) / 100) + 5
         self.defense = int(((self.base_defense * 2) * self.level) / 100) + 5
         self.speed = int(((self.base_speed * 2) * self.level) / 100) + 5
+
+    def exp_next_level(self):
+        required_experience = self.level * 10
+
+        return required_experience
+
+    def gain_experience(self, experience_gained):
+        self.experience = self.experience + experience_gained
+
+        while self.experience >= self.exp_next_level():
+            required_experience = self.exp_next_level()
+
+            self.level = self.level + 1
+
+            exceeded_exp = self.experience - required_experience
+            self.experience = exceeded_exp
+
+            self.calculate_stats()
+            self.heal_full()
 
     def heal_full(self):
         self.current_hp = self.max_hp
