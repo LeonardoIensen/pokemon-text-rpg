@@ -1,4 +1,5 @@
 import dialogue
+import pokemon
 
 def show_battle_stats(player_pokemon, enemy_pokemon):
     print("------------------")
@@ -13,6 +14,54 @@ def show_battle_stats(player_pokemon, enemy_pokemon):
 
     print("------------------\n")
 
+def calculate_damage(attacker, defender, move):
+    move_data = pokemon.moves[move]
+
+    power = move_data["power"]
+
+    damage = (((2 * attacker.level + 2) / 5) * (power *(attacker.attack / defender.defense)) / 50 ) + 2
+
+    return int(damage * 1.5)
+
+def fight_menu(player_pokemon):
+
+    while True:
+        dialogue.clear_screen()
+
+        print("--- MOVES ---\n")
+
+        for i, move in enumerate(player_pokemon.moves, start=1):
+            print(f"{i} - {move}")
+
+        print("0 - VOLTAR")
+
+        choice = input("\nEscolha: ")
+
+        choice = int(choice)
+
+        if choice == 0:
+            return
+
+        choice = choice - 1
+
+        move = player_pokemon.moves[choice]
+
+        return move
+
+def battle_turn(player_pokemon, enemy_pokemon, move):
+    dialogue.clear_screen()
+
+    print(f"{player_pokemon.name} usou {move}!")
+
+    damage = calculate_damage(player_pokemon, enemy_pokemon, move)
+
+    enemy_pokemon.current_hp = enemy_pokemon.current_hp - damage
+
+    if enemy_pokemon.current_hp <= 0:
+        print(f"\n{enemy_pokemon.name} foi derrotado!")
+        dialogue.next_dialogue()
+        return "WIN"
+        
 def battle_menu(player_name, enemy_name, player_pokemon, enemy_pokemon):
     while True:
         dialogue.clear_screen()
@@ -27,7 +76,15 @@ def battle_menu(player_name, enemy_name, player_pokemon, enemy_pokemon):
         choice = input("\nEscolha: ")
 
         if choice == "1":
-            print("Nao implementado.")
+            move = fight_menu(player_pokemon)
+
+            if move is not None:
+                result = battle_turn(player_pokemon, enemy_pokemon, move)
+
+                if result == "WIN":
+                    return "WIN"
+
+                dialogue.next_dialogue()
 
         elif choice == "2":
             print("Nao implementado.")
@@ -54,3 +111,11 @@ def rival_first_battle(player_name, rival_name, player_pokemon, rival_pokemon):
 
     print(f"\nVai! {player_pokemon.name}!")
     dialogue.next_dialogue()
+
+    result = battle_menu(player_name, rival_name, player_pokemon, rival_pokemon)
+
+    if result == "LOSE":
+        dialogue.talk(rival_name, f"{rival_pokemon.name}, volte! Isso aí! Eu não sou demais?")
+
+    elif result == "WIN":
+        dialogue.talk(rival_name, "O QUÊ? Inacreditável! Escolhi o POKÉMON errado!")
