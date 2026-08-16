@@ -59,6 +59,12 @@ Em desenvolvimento.
   * Exibição dos Pokémon da party
   * Jogador e rival começam com seus Pokémon iniciais
 
+* **Sistema de batalha**
+
+  * Estrutura inicial do sistema de batalha
+  * Exibição dos Pokémon e seus status durante a batalha
+  * Menu de batalha com as opções Lutar, Fugir, Mochila e Pokémon
+
 ---
 
 ## 🛠️ Tecnologias
@@ -78,6 +84,7 @@ pokemon-text-rpg/
 ├── dialogue.py
 ├── pokemon.py
 ├── trainer.py
+├── battle.py
 └── README.md
 ```
 
