@@ -8,6 +8,10 @@ pokedex = {
         "attack": 60,
         "defense": 60,
         "speed": 50,
+
+        "moves": [
+            "TACKLE"
+        ],
     },
 
     "SQUIRTLE": {
@@ -16,6 +20,10 @@ pokedex = {
         "attack": 60,
         "defense": 70,
         "speed": 50,
+
+        "moves": [
+            "TACKLE"
+        ],
     },
 
     "CHARMANDER": {
@@ -24,6 +32,10 @@ pokedex = {
         "attack": 70,
         "defense": 50,
         "speed": 60,
+
+        "moves": [
+            "SCRATCH"
+        ],
     },
 
     "RATTATA": {
@@ -32,8 +44,26 @@ pokedex = {
         "attack": 50,
         "defense": 40,
         "speed": 50,
+
+        "moves": [
+            "TACKLE"
+        ],
     }
 
+}
+
+moves = {
+    "SCRATCH": {
+        "type": "NORMAL",
+        "power": 40,
+        "accuracy": 100,
+    },
+
+    "TACKLE": {
+        "type": "NORMAL",
+        "power": 40,
+        "accuracy": 100,
+    }
 }
 
 class Pokemon:
@@ -47,6 +77,7 @@ class Pokemon:
         self.base_attack = pokedex[name]["attack"]
         self.base_defense = pokedex[name]["defense"]
         self.base_speed = pokedex[name]["speed"]
+        self.moves = pokedex[name]["moves"]
 
         self.calculate_stats()
         self.heal_full()
