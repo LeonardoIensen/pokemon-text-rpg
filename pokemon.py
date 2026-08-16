@@ -85,7 +85,7 @@ def show_menu_starters():
     print("2 - Squirtle")
     print("3 - Charmander")
 
-def choose_starter():
+def choose_starter(player_name):
 
     show_menu_starters()
 
@@ -112,9 +112,12 @@ def choose_starter():
 
             show_menu_starters()
 
+    dialogue.clear_screen()
+    print(f"{player_name} escolheu {player_starter_name}!")
+
     return player_starter_name
 
-def choose_rival_starter(player_starter):
+def choose_rival_starter(player_starter, rival_name):
 
     if player_starter == "BULBASAUR":
         rival_starter_name = "CHARMANDER"
@@ -124,5 +127,8 @@ def choose_rival_starter(player_starter):
 
     else:
         rival_starter_name = "SQUIRTLE"
+
+    print(f"\n{rival_name} escolheu {rival_starter_name}!")
+    dialogue.next_dialogue()
 
     return rival_starter_name
