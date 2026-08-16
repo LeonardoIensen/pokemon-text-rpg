@@ -50,6 +50,8 @@ Em desenvolvimento.
   * Cálculo de HP, Attack, Defense e Speed baseado nos stats-base e nível
   * Sistema de HP atual e HP máximo
   * Recuperação completa do HP ao subir de nível
+  * Sistema de golpes
+  * Pokémon possuem golpes disponíveis para batalha
 
 * **Sistema de Treinador**
 
