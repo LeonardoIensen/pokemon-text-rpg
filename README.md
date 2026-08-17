@@ -62,15 +62,16 @@ Em desenvolvimento.
   * Jogador e rival começam com seus Pokémon iniciais
 
 * **Sistema de batalha**
-  * Menu de batalha
-  * Exibição dos Pokémon e seus status durante a batalha
+  * Menu principal de batalha
+  * Exibição dos status e HP dos Pokémon
   * Menu de golpes
-  * Escolha de golpes
-  * Sistema básico de cálculo de dano
-  * Redução do HP do Pokémon adversário
-  * Detecção de Pokémon derrotado
-  * Resultado de vitória na batalha
-  * Batalha inicial contra o rival
+  * Escolha de golpes pelo jogador
+  * Cálculo de dano
+  * Redução de HP
+  * Turno do inimigo
+  * Escolha aleatória do golpe do inimigo
+  * Sistema de vitória e derrota
+  * Retorno ao menu de batalha após cada turno
 
 ---
 
