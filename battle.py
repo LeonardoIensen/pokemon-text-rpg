@@ -1,5 +1,6 @@
 import dialogue
 import pokemon
+import random
 
 def show_battle_stats(player_pokemon, enemy_pokemon):
     print("------------------")
@@ -22,6 +23,20 @@ def calculate_damage(attacker, defender, move):
     damage = (((2 * attacker.level + 2) / 5) * (power *(attacker.attack / defender.defense)) / 50 ) + 2
 
     return int(damage * 1.5)
+
+def enemy_turn(player_pokemon, enemy_pokemon):
+    enemy_move = random.choice(enemy_pokemon.moves)
+    
+    print(f"\n{enemy_pokemon.name} usou {enemy_move}!")
+
+    damage = calculate_damage(enemy_pokemon, player_pokemon, enemy_move)
+    
+    player_pokemon.current_hp = player_pokemon.current_hp - damage
+    
+    if player_pokemon.current_hp <= 0:
+        print(f"\nSeu {player_pokemon.name} foi derrotado!")
+        dialogue.next_dialogue()
+        return "LOSE"
 
 def fight_menu(player_pokemon):
 
@@ -83,6 +98,11 @@ def battle_menu(player_name, enemy_name, player_pokemon, enemy_pokemon):
 
                 if result == "WIN":
                     return "WIN"
+
+                result = enemy_turn(player_pokemon, enemy_pokemon)
+
+                if result == "LOSE":
+                    return "LOSE"
 
                 dialogue.next_dialogue()
 
