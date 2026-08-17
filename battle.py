@@ -15,6 +15,44 @@ def show_battle_stats(player_pokemon, enemy_pokemon):
 
     print("------------------\n")
 
+def fight_menu(player_pokemon):
+
+    while True:
+        dialogue.clear_screen()
+
+        print("--- MOVES ---\n")
+
+        for i, move in enumerate(player_pokemon.moves, start=1):
+            print(f"{i} - {move}")
+
+        print("0 - VOLTAR")
+
+        try:
+            choice = int(input("\nEscolha: "))
+
+        except ValueError:
+            dialogue.clear_screen()
+            print("[ Opcao invalida! Tente novamente. ]")
+            dialogue.next_dialogue()
+
+            continue
+
+        if choice == 0:
+            return
+
+        if choice < 1 or choice > len(player_pokemon.moves):
+            dialogue.clear_screen()
+            print("[ Opcao invalida! Tente novamente. ]")
+            dialogue.next_dialogue()
+
+            continue
+
+        choice = choice - 1
+
+        move = player_pokemon.moves[choice]
+
+        return move
+
 def calculate_damage(attacker, defender, move):
     move_data = pokemon.moves[move]
 
@@ -37,31 +75,6 @@ def enemy_turn(player_pokemon, enemy_pokemon):
         print(f"\nSeu {player_pokemon.name} foi derrotado!")
         dialogue.next_dialogue()
         return "LOSE"
-
-def fight_menu(player_pokemon):
-
-    while True:
-        dialogue.clear_screen()
-
-        print("--- MOVES ---\n")
-
-        for i, move in enumerate(player_pokemon.moves, start=1):
-            print(f"{i} - {move}")
-
-        print("0 - VOLTAR")
-
-        choice = input("\nEscolha: ")
-
-        choice = int(choice)
-
-        if choice == 0:
-            return
-
-        choice = choice - 1
-
-        move = player_pokemon.moves[choice]
-
-        return move
 
 def battle_turn(player_pokemon, enemy_pokemon, move):
     dialogue.clear_screen()
