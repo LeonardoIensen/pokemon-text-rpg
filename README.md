@@ -67,6 +67,8 @@ Em desenvolvimento.
   * Menu de golpes
   * Escolha de golpes pelo jogador
   * Cálculo de dano
+  * Precisão dos golpes baseada na accuracy
+  * Golpes podem errar e causar 0 de dano
   * Redução de HP
   * Turno do inimigo
   * Escolha aleatória do golpe do inimigo
