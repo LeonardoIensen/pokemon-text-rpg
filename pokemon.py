@@ -62,7 +62,7 @@ moves = {
     "TACKLE": {
         "type": "NORMAL",
         "power": 40,
-        "accuracy": 100,
+        "accuracy": 95,
     }
 }
 

@@ -57,8 +57,15 @@ def calculate_damage(attacker, defender, move):
     move_data = pokemon.moves[move]
 
     power = move_data["power"]
+    accuracy = move_data["accuracy"]
 
-    damage = (((2 * attacker.level + 2) / 5) * (power *(attacker.attack / defender.defense)) / 50 ) + 2
+    accuracy_roll = random.randint(1, 100)
+
+    if accuracy_roll > accuracy:
+        damage = 0
+
+    else:
+        damage = (((2 * attacker.level + 2) / 5) * (power *(attacker.attack / defender.defense)) / 50 ) + 2
 
     return int(damage * 1.5)
 
@@ -68,22 +75,30 @@ def enemy_turn(player_pokemon, enemy_pokemon):
     print(f"\n{enemy_pokemon.name} usou {enemy_move}!")
 
     damage = calculate_damage(enemy_pokemon, player_pokemon, enemy_move)
-    
-    player_pokemon.current_hp = player_pokemon.current_hp - damage
+
+    if damage == 0:
+        print(f"\n{enemy_pokemon.name} errou o ataque!")
+
+    else:
+        player_pokemon.current_hp = player_pokemon.current_hp - damage
     
     if player_pokemon.current_hp <= 0:
         print(f"\nSeu {player_pokemon.name} foi derrotado!")
         dialogue.next_dialogue()
         return "LOSE"
 
-def battle_turn(player_pokemon, enemy_pokemon, move):
+def player_turn(player_pokemon, enemy_pokemon, move):
     dialogue.clear_screen()
 
     print(f"{player_pokemon.name} usou {move}!")
 
     damage = calculate_damage(player_pokemon, enemy_pokemon, move)
 
-    enemy_pokemon.current_hp = enemy_pokemon.current_hp - damage
+    if damage == 0:
+        print(f"\n{player_pokemon.name} errou o ataque!")
+
+    else:
+        enemy_pokemon.current_hp = enemy_pokemon.current_hp - damage
 
     if enemy_pokemon.current_hp <= 0:
         print(f"\n{enemy_pokemon.name} foi derrotado!")
@@ -107,7 +122,7 @@ def battle_menu(player_name, enemy_name, player_pokemon, enemy_pokemon):
             move = fight_menu(player_pokemon)
 
             if move is not None:
-                result = battle_turn(player_pokemon, enemy_pokemon, move)
+                result = player_turn(player_pokemon, enemy_pokemon, move)
 
                 if result == "WIN":
                     return "WIN"
