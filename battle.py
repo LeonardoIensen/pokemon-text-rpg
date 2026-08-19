@@ -2,6 +2,7 @@ import dialogue
 import pokemon
 import random
 
+
 def show_battle_stats(player_pokemon, enemy_pokemon):
     print("------------------")
 
@@ -14,6 +15,7 @@ def show_battle_stats(player_pokemon, enemy_pokemon):
     print(f"HP: {player_pokemon.current_hp}/{player_pokemon.max_hp}")
 
     print("------------------\n")
+
 
 def fight_menu(player_pokemon):
 
@@ -53,6 +55,7 @@ def fight_menu(player_pokemon):
 
         return move
 
+
 def calculate_damage(attacker, defender, move):
     move_data = pokemon.moves[move]
 
@@ -65,13 +68,15 @@ def calculate_damage(attacker, defender, move):
         damage = 0
 
     else:
-        damage = (((2 * attacker.level + 2) / 5) * (power *(attacker.attack / defender.defense)) / 50 ) + 2
+        damage = (((attacker.level * 2) // 5 + 2) * power * attacker.attack) // defender.defense
+        damage = damage // 50 + 2
 
-    return int(damage * 1.5)
+    return int(damage)
+
 
 def enemy_turn(player_pokemon, enemy_pokemon):
     enemy_move = random.choice(enemy_pokemon.moves)
-    
+
     print(f"\n{enemy_pokemon.name} usou {enemy_move}!")
 
     damage = calculate_damage(enemy_pokemon, player_pokemon, enemy_move)
@@ -80,17 +85,15 @@ def enemy_turn(player_pokemon, enemy_pokemon):
         print(f"\n{enemy_pokemon.name} errou o ataque!")
 
     else:
-        player_pokemon.current_hp = player_pokemon.current_hp - damage
-    
+        player_pokemon.current_hp -= damage
+
     if player_pokemon.current_hp <= 0:
         print(f"\nSeu {player_pokemon.name} foi derrotado!")
-        dialogue.next_dialogue()
         return "LOSE"
 
-def player_turn(player_pokemon, enemy_pokemon, move):
-    dialogue.clear_screen()
 
-    print(f"{player_pokemon.name} usou {move}!")
+def player_turn(player_pokemon, enemy_pokemon, move):
+    print(f"\n{player_pokemon.name} usou {move}!")
 
     damage = calculate_damage(player_pokemon, enemy_pokemon, move)
 
@@ -98,13 +101,13 @@ def player_turn(player_pokemon, enemy_pokemon, move):
         print(f"\n{player_pokemon.name} errou o ataque!")
 
     else:
-        enemy_pokemon.current_hp = enemy_pokemon.current_hp - damage
+        enemy_pokemon.current_hp -= damage
 
     if enemy_pokemon.current_hp <= 0:
         print(f"\n{enemy_pokemon.name} foi derrotado!")
-        dialogue.next_dialogue()
         return "WIN"
-        
+
+
 def battle_menu(player_name, enemy_name, player_pokemon, enemy_pokemon):
     while True:
         dialogue.clear_screen()
@@ -122,15 +125,43 @@ def battle_menu(player_name, enemy_name, player_pokemon, enemy_pokemon):
             move = fight_menu(player_pokemon)
 
             if move is not None:
-                result = player_turn(player_pokemon, enemy_pokemon, move)
 
-                if result == "WIN":
-                    return "WIN"
+                if player_pokemon.speed > enemy_pokemon.speed:
+                    first_attacker = "player"
 
-                result = enemy_turn(player_pokemon, enemy_pokemon)
+                elif enemy_pokemon.speed > player_pokemon.speed:
+                    first_attacker = "enemy"
 
-                if result == "LOSE":
-                    return "LOSE"
+                else:
+                    first_attacker = random.choice(["player", "enemy"])
+
+                dialogue.clear_screen()
+
+                if first_attacker == "player":
+                    result = player_turn(player_pokemon, enemy_pokemon, move)
+
+                    if result == "WIN":
+                        dialogue.next_dialogue()
+                        return "WIN"
+
+                    result = enemy_turn(player_pokemon, enemy_pokemon)
+
+                    if result == "LOSE":
+                        dialogue.next_dialogue()
+                        return "LOSE"
+
+                else:
+                    result = enemy_turn(player_pokemon, enemy_pokemon)
+
+                    if result == "LOSE":
+                        dialogue.next_dialogue()
+                        return "LOSE"
+
+                    result = player_turn(player_pokemon, enemy_pokemon, move)
+
+                    if result == "WIN":
+                        dialogue.next_dialogue()
+                        return "WIN"
 
                 dialogue.next_dialogue()
 
@@ -148,10 +179,14 @@ def battle_menu(player_name, enemy_name, player_pokemon, enemy_pokemon):
             print("[ Opcao invalida! Tente novamente. ]")
             dialogue.next_dialogue()
 
+
 def rival_first_battle(player_name, rival_name, player_pokemon, rival_pokemon):
     dialogue.clear_screen()
 
-    dialogue.talk(rival_name, f"{player_name}! Vamos ver nossos POKÉMON! Vamos lá, vou enfrentar você!")
+    dialogue.talk(
+        rival_name,
+        f"{player_name}! Vamos ver nossos POKÉMON! Vamos lá, vou enfrentar você!"
+    )
 
     print(f"\n{rival_name} desafia você para uma batalha!")
     print(f"\n{rival_name} enviou {rival_pokemon.name}!")
@@ -163,7 +198,13 @@ def rival_first_battle(player_name, rival_name, player_pokemon, rival_pokemon):
     result = battle_menu(player_name, rival_name, player_pokemon, rival_pokemon)
 
     if result == "LOSE":
-        dialogue.talk(rival_name, f"{rival_pokemon.name}, volte! Isso aí! Eu não sou demais?")
+        dialogue.talk(
+            rival_name,
+            f"{rival_pokemon.name}, volte! Isso aí! Eu não sou demais?"
+        )
 
     elif result == "WIN":
-        dialogue.talk(rival_name, "O QUÊ? Inacreditável! Escolhi o POKÉMON errado!")
+        dialogue.talk(
+            rival_name,
+            "O QUÊ? Inacreditável! Escolhi o POKÉMON errado!"
+        )
