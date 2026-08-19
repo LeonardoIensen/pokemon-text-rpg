@@ -140,7 +140,7 @@ def execute_turn(player_pokemon, enemy_pokemon, first_attacker, move):
 def try_to_run(is_trainer_battle):
     if is_trainer_battle:
         dialogue.clear_screen()
-        print("\nNão é possível fugir de uma batalha contra um treinador!")
+        print("Não é possível fugir de uma batalha contra um treinador!")
         dialogue.next_dialogue()
 
         return False
@@ -149,18 +149,17 @@ def try_to_run(is_trainer_battle):
 
     if run_chance > 90:
         dialogue.clear_screen()
-        print("\nNao conseguiu escapar!")
-        dialogue.next_dialogue()
+        print("Nao conseguiu escapar!")
 
         return False
 
     dialogue.clear_screen()
-    print("\nConseguiu escapar!")
+    print("Conseguiu escapar!")
     dialogue.next_dialogue()
 
     return True
 
-def battle_menu(player_name, enemy_name, player_pokemon, enemy_pokemon, is_trainer_battle):
+def battle_menu(player_pokemon, enemy_pokemon, is_trainer_battle):
     while True:
         dialogue.clear_screen()
 
@@ -200,6 +199,15 @@ def battle_menu(player_name, enemy_name, player_pokemon, enemy_pokemon, is_train
             if result:
                 break
 
+            elif not result and not is_trainer_battle:
+                result = enemy_turn(player_pokemon, enemy_pokemon)
+
+                dialogue.next_dialogue()
+                
+                if result == "LOSE":
+                    dialogue.next_dialogue()
+                    return "LOSE"
+
         elif choice == "3":
             print("Nao implementado.")
 
@@ -214,10 +222,7 @@ def battle_menu(player_name, enemy_name, player_pokemon, enemy_pokemon, is_train
 def rival_first_battle(player_name, rival_name, player_pokemon, rival_pokemon):
     dialogue.clear_screen()
 
-    dialogue.talk(
-        rival_name,
-        f"{player_name}! Vamos ver nossos POKÉMON! Vamos lá, vou enfrentar você!"
-    )
+    dialogue.talk(rival_name, f"{player_name}! Vamos ver nossos POKÉMON! Vamos lá, vou enfrentar você!")
 
     print(f"\n{rival_name} desafia você para uma batalha!")
     print(f"\n{rival_name} enviou {rival_pokemon.name}!")
@@ -226,16 +231,21 @@ def rival_first_battle(player_name, rival_name, player_pokemon, rival_pokemon):
     print(f"\nVai! {player_pokemon.name}!")
     dialogue.next_dialogue()
 
-    result = battle_menu(player_name, rival_name, player_pokemon, rival_pokemon, True)
+    result = battle_menu(player_pokemon, rival_pokemon, True)
 
     if result == "LOSE":
-        dialogue.talk(
-            rival_name,
-            f"{rival_pokemon.name}, volte! Isso aí! Eu não sou demais?"
-        )
+        dialogue.talk(rival_name, f"{rival_pokemon.name}, volte! Isso aí! Eu não sou demais?")
 
     elif result == "WIN":
-        dialogue.talk(
-            rival_name,
-            "O QUÊ? Inacreditável! Escolhi o POKÉMON errado!"
-        )
+        dialogue.talk(rival_name, "O QUÊ? Inacreditável! Escolhi o POKÉMON errado!")
+
+def wild_battle( player_pokemon, wild_pokemon):
+    dialogue.clear_screen()
+    print(f"Um {wild_pokemon.name} selvagem apareceu!")
+
+    print(f"\nVai! {player_pokemon.name}!")
+    dialogue.next_dialogue()
+
+    result = battle_menu(player_pokemon, wild_pokemon, is_trainer_battle=False)
+
+    return result
