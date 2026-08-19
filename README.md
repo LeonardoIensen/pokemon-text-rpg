@@ -70,6 +70,8 @@ Em desenvolvimento.
   * Precisão dos golpes baseada na accuracy
   * Golpes podem errar e causar 0 de dano
   * Redução de HP
+  * Sistema de velocidade para definir a ordem dos ataques
+  * Sorteio da ordem de ataque quando os Pokémon possuem a mesma Speed
   * Turno do inimigo
   * Escolha aleatória do golpe do inimigo
   * Sistema de vitória e derrota
