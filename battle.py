@@ -16,7 +16,6 @@ def show_battle_stats(player_pokemon, enemy_pokemon):
 
     print("------------------\n")
 
-
 def fight_menu(player_pokemon):
 
     while True:
@@ -55,7 +54,6 @@ def fight_menu(player_pokemon):
 
         return move
 
-
 def calculate_damage(attacker, defender, move):
     move_data = pokemon.moves[move]
 
@@ -73,6 +71,17 @@ def calculate_damage(attacker, defender, move):
 
     return int(damage)
 
+def decide_first_attacker(player_pokemon, enemy_pokemon):
+    if player_pokemon.speed > enemy_pokemon.speed:
+        first_attacker = "player"
+    
+    elif enemy_pokemon.speed > player_pokemon.speed:
+        first_attacker = "enemy"
+    
+    else:
+        first_attacker = random.choice(["player", "enemy"])
+
+    return first_attacker
 
 def enemy_turn(player_pokemon, enemy_pokemon):
     enemy_move = random.choice(enemy_pokemon.moves)
@@ -91,7 +100,6 @@ def enemy_turn(player_pokemon, enemy_pokemon):
         print(f"\nSeu {player_pokemon.name} foi derrotado!")
         return "LOSE"
 
-
 def player_turn(player_pokemon, enemy_pokemon, move):
     print(f"\n{player_pokemon.name} usou {move}!")
 
@@ -107,6 +115,28 @@ def player_turn(player_pokemon, enemy_pokemon, move):
         print(f"\n{enemy_pokemon.name} foi derrotado!")
         return "WIN"
 
+def execute_turn(player_pokemon, enemy_pokemon, first_attacker, move):
+    if first_attacker == "player":
+        result = player_turn(player_pokemon, enemy_pokemon, move)
+
+        if result == "WIN":
+            return "WIN"
+
+        result = enemy_turn(player_pokemon, enemy_pokemon)
+
+        if result == "LOSE":
+            return "LOSE"
+
+    else:
+        result = enemy_turn(player_pokemon, enemy_pokemon)
+
+        if result == "LOSE":
+            return "LOSE"
+
+        result = player_turn(player_pokemon, enemy_pokemon, move)
+
+        if result == "WIN":
+            return "WIN" 
 
 def battle_menu(player_name, enemy_name, player_pokemon, enemy_pokemon):
     while True:
@@ -126,43 +156,20 @@ def battle_menu(player_name, enemy_name, player_pokemon, enemy_pokemon):
 
             if move is not None:
 
-                if player_pokemon.speed > enemy_pokemon.speed:
-                    first_attacker = "player"
-
-                elif enemy_pokemon.speed > player_pokemon.speed:
-                    first_attacker = "enemy"
-
-                else:
-                    first_attacker = random.choice(["player", "enemy"])
+                first_attacker = decide_first_attacker(player_pokemon, enemy_pokemon)
 
                 dialogue.clear_screen()
 
-                if first_attacker == "player":
-                    result = player_turn(player_pokemon, enemy_pokemon, move)
+                result = execute_turn(player_pokemon, enemy_pokemon, first_attacker, move)
 
-                    if result == "WIN":
-                        dialogue.next_dialogue()
-                        return "WIN"
+                if result == "WIN":
+                    dialogue.next_dialogue()
+                    return "WIN"
 
-                    result = enemy_turn(player_pokemon, enemy_pokemon)
-
-                    if result == "LOSE":
-                        dialogue.next_dialogue()
-                        return "LOSE"
-
-                else:
-                    result = enemy_turn(player_pokemon, enemy_pokemon)
-
-                    if result == "LOSE":
-                        dialogue.next_dialogue()
-                        return "LOSE"
-
-                    result = player_turn(player_pokemon, enemy_pokemon, move)
-
-                    if result == "WIN":
-                        dialogue.next_dialogue()
-                        return "WIN"
-
+                elif result == "LOSE":
+                    dialogue.next_dialogue()
+                    return "LOSE"
+                
                 dialogue.next_dialogue()
 
         elif choice == "2":
@@ -178,7 +185,6 @@ def battle_menu(player_name, enemy_name, player_pokemon, enemy_pokemon):
             dialogue.clear_screen()
             print("[ Opcao invalida! Tente novamente. ]")
             dialogue.next_dialogue()
-
 
 def rival_first_battle(player_name, rival_name, player_pokemon, rival_pokemon):
     dialogue.clear_screen()
