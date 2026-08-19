@@ -2,7 +2,6 @@ import dialogue
 import pokemon
 import random
 
-
 def show_battle_stats(player_pokemon, enemy_pokemon):
     print("------------------")
 
@@ -138,7 +137,30 @@ def execute_turn(player_pokemon, enemy_pokemon, first_attacker, move):
         if result == "WIN":
             return "WIN" 
 
-def battle_menu(player_name, enemy_name, player_pokemon, enemy_pokemon):
+def try_to_run(is_trainer_battle):
+    if is_trainer_battle:
+        dialogue.clear_screen()
+        print("\nNão é possível fugir de uma batalha contra um treinador!")
+        dialogue.next_dialogue()
+
+        return False
+
+    run_chance = random.randint(1, 100)
+
+    if run_chance > 90:
+        dialogue.clear_screen()
+        print("\nNao conseguiu escapar!")
+        dialogue.next_dialogue()
+
+        return False
+
+    dialogue.clear_screen()
+    print("\nConseguiu escapar!")
+    dialogue.next_dialogue()
+
+    return True
+
+def battle_menu(player_name, enemy_name, player_pokemon, enemy_pokemon, is_trainer_battle):
     while True:
         dialogue.clear_screen()
 
@@ -173,7 +195,10 @@ def battle_menu(player_name, enemy_name, player_pokemon, enemy_pokemon):
                 dialogue.next_dialogue()
 
         elif choice == "2":
-            print("Nao implementado.")
+            result = try_to_run(is_trainer_battle)
+
+            if result:
+                break
 
         elif choice == "3":
             print("Nao implementado.")
@@ -201,7 +226,7 @@ def rival_first_battle(player_name, rival_name, player_pokemon, rival_pokemon):
     print(f"\nVai! {player_pokemon.name}!")
     dialogue.next_dialogue()
 
-    result = battle_menu(player_name, rival_name, player_pokemon, rival_pokemon)
+    result = battle_menu(player_name, rival_name, player_pokemon, rival_pokemon, True)
 
     if result == "LOSE":
         dialogue.talk(
