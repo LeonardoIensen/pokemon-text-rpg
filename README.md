@@ -76,6 +76,9 @@ Em desenvolvimento.
   * Escolha aleatória do golpe do inimigo
   * Sistema de vitória e derrota
   * Retorno ao menu de batalha após cada turno
+  * Sistema de fuga de batalhas
+  * Fuga bloqueada contra treinadores
+  * Chance de 90% de fuga contra Pokémon selvagens
 
 ---
 
