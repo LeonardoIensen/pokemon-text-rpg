@@ -48,7 +48,43 @@ pokedex = {
         "moves": [
             "TACKLE"
         ],
-    }
+    },
+
+    "PIDGEY": {
+        "type": "NORMAL / FLYING",
+        "hp": 40,
+        "attack": 50,
+        "defense": 40,
+        "speed": 60,
+
+        "moves": [
+            "TACKLE"
+        ],
+    },
+
+    "SPEAROW": {
+        "type": "NORMAL / FLYING",
+        "hp": 40,
+        "attack": 60,
+        "defense": 40,
+        "speed": 50,
+
+        "moves": [
+            "PECK"
+        ],
+    },
+
+    "MANKEY": {
+        "type": "FIGHT",
+        "hp": 40,
+        "attack": 60,
+        "defense": 40,
+        "speed": 60,
+
+        "moves": [
+            "SCRATCH"
+        ],
+    },
 
 }
 
@@ -63,7 +99,13 @@ moves = {
         "type": "NORMAL",
         "power": 40,
         "accuracy": 95,
-    }
+    },
+
+    "PECK": {
+        "type": "FLYING",
+        "power": 35,
+        "accuracy": 100,
+    },
 }
 
 class Pokemon:
