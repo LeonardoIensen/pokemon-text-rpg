@@ -31,8 +31,6 @@ while True:
 
         battle.rival_first_battle(player, rival)
 
-        map.route_1(player)
-
     elif opcao == "2":
         dialogue.clear_screen()
         print("Funcao ainda nao implementada!")
