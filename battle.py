@@ -188,6 +188,10 @@ def rival_first_battle(player, rival):
     elif result == "WIN":
         dialogue.talk(rival.name, "O QUÊ? Inacreditável! Escolhi o POKÉMON errado!")
 
+    dialogue.clear_screen()
+    print(f"Após testar seus POKÉMON em uma batalha intensa, {player.name} se despede e se encaminha para fora de Pallet Town...")
+    dialogue.next_dialogue()
+
 
 def wild_battle(player, wild_pokemon):
     dialogue.clear_screen()
