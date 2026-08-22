@@ -168,42 +168,44 @@ def fight_menu(player_pokemon):
         return move
 
 
-def rival_first_battle(player_name, rival_name, player_pokemon, rival_pokemon):
+def rival_first_battle(player, rival):
     dialogue.clear_screen()
 
-    dialogue.talk(rival_name, f"{player_name}! Vamos ver nossos POKÉMON! Vamos lá, vou enfrentar você!")
+    dialogue.talk(rival.name, f"{player.name}! Vamos ver nossos POKÉMON! Vamos lá, vou enfrentar você!")
 
-    print(f"\n{rival_name} desafia você para uma batalha!")
-    print(f"\n{rival_name} enviou {rival_pokemon.name}!")
+    print(f"\n{rival.name} desafia você para uma batalha!")
+    print(f"\n{rival.name} enviou {rival.party[0].name}!")
     dialogue.next_dialogue()
 
-    print(f"\nVai! {player_pokemon.name}!")
+    print(f"\nVai! {player.party[0].name}!")
     dialogue.next_dialogue()
 
-    result = battle_menu(player_pokemon, rival_pokemon, True)
+    result = battle_menu(player, rival.party[0], is_trainer_battle=True)
 
     if result == "LOSE":
-        dialogue.talk(rival_name, f"{rival_pokemon.name}, volte! Isso aí! Eu não sou demais?")
+        dialogue.talk(rival.name, f"{rival.party[0].name}, volte! Isso aí! Eu não sou demais?")
 
     elif result == "WIN":
-        dialogue.talk(rival_name, "O QUÊ? Inacreditável! Escolhi o POKÉMON errado!")
+        dialogue.talk(rival.name, "O QUÊ? Inacreditável! Escolhi o POKÉMON errado!")
 
 
-def wild_battle(player_pokemon, wild_pokemon):
+def wild_battle(player, wild_pokemon):
     dialogue.clear_screen()
     print(f"Um {wild_pokemon.name} selvagem apareceu!")
 
-    print(f"\nVai! {player_pokemon.name}!")
+    print(f"\nVai! {player.party[0].name}!")
     dialogue.next_dialogue()
 
-    result = battle_menu(player_pokemon, wild_pokemon, is_trainer_battle=False)
+    result = battle_menu(player, wild_pokemon, is_trainer_battle=False)
 
     return result
 
 
-def battle_menu(player_pokemon, enemy_pokemon, is_trainer_battle):
+def battle_menu(player, enemy_pokemon, is_trainer_battle):
     while True:
         dialogue.clear_screen()
+
+        player_pokemon = player.party[0]
 
         show_battle_stats(player_pokemon, enemy_pokemon)
 
