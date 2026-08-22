@@ -82,6 +82,12 @@ Em desenvolvimento.
   * Chance de 90% de fuga contra Pokémon selvagens
   * Pokémon selvagem ataca após uma tentativa de fuga malsucedida
 
+* **Mapa e Exploração**
+  * Rota 1 com sistema de passos
+  * Navegação entre opções de andar, grama alta e menu
+  * Sistema de encontros selvagens com chance percentual
+  * Sorteio aleatório do nível dos Pokémon selvagens dentro do intervalo da rota
+
 ---
 
 ## 🛠️ Tecnologias
