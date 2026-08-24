@@ -8,6 +8,7 @@ pokedex = {
         "attack": 60,
         "defense": 60,
         "speed": 50,
+        "base_exp": 60,
 
         "moves": [
             "TACKLE"
@@ -20,6 +21,7 @@ pokedex = {
         "attack": 60,
         "defense": 70,
         "speed": 50,
+        "base_exp": 60,
 
         "moves": [
             "TACKLE"
@@ -32,6 +34,7 @@ pokedex = {
         "attack": 70,
         "defense": 50,
         "speed": 60,
+        "base_exp": 60,
 
         "moves": [
             "SCRATCH"
@@ -44,6 +47,7 @@ pokedex = {
         "attack": 50,
         "defense": 40,
         "speed": 50,
+        "base_exp": 50,
 
         "moves": [
             "TACKLE"
@@ -56,6 +60,7 @@ pokedex = {
         "attack": 50,
         "defense": 40,
         "speed": 60,
+        "base_exp": 50,
 
         "moves": [
             "TACKLE"
@@ -68,6 +73,7 @@ pokedex = {
         "attack": 60,
         "defense": 40,
         "speed": 50,
+        "base_exp": 50,
 
         "moves": [
             "PECK"
@@ -80,6 +86,7 @@ pokedex = {
         "attack": 60,
         "defense": 40,
         "speed": 60,
+        "base_exp": 50,
 
         "moves": [
             "SCRATCH"
@@ -119,6 +126,7 @@ class Pokemon:
         self.base_attack = pokedex[name]["attack"]
         self.base_defense = pokedex[name]["defense"]
         self.base_speed = pokedex[name]["speed"]
+        self.base_exp = pokedex[name]["base_exp"]
         self.moves = pokedex[name]["moves"]
 
         self.calculate_stats()
@@ -138,10 +146,14 @@ class Pokemon:
     def gain_experience(self, experience_gained):
         self.experience = self.experience + experience_gained
 
+        print(f"{self.name} ganhou {experience_gained} de EXP.!")
+
         while self.experience >= self.exp_next_level():
             required_experience = self.exp_next_level()
 
             self.level = self.level + 1
+
+            print(f"{self.name} upou para o Lv{self.level}!")
 
             exceeded_exp = self.experience - required_experience
             self.experience = exceeded_exp
