@@ -87,6 +87,7 @@ Em desenvolvimento.
   * Navegação entre opções de andar, grama alta e menu
   * Sistema de encontros selvagens com chance percentual
   * Sorteio aleatório do nível dos Pokémon selvagens dentro do intervalo da rota
+  * Sistema de derrota com retorno para casa e recuperação de toda a equipe
 
 ---
 
@@ -108,6 +109,7 @@ pokemon-text-rpg/
 ├── pokemon.py
 ├── trainer.py
 ├── battle.py
+├── map.py
 └── README.md
 ```
 
