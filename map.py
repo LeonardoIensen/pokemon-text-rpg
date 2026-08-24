@@ -57,12 +57,15 @@ def wild_encounter(player, route_pokemon):
 
         wild_pokemon = pokemon.Pokemon(pokemon_name, wild_level)
 
-        battle.wild_battle(player, wild_pokemon)
+        result = battle.wild_battle(player, wild_pokemon)
 
     else:
         print("\nNenhum Pokémon apareceu...")
         dialogue.next_dialogue()
 
+        result = None
+
+    return result
 
 
 def route_1(player):
@@ -92,7 +95,17 @@ def route_1(player):
                 break
 
         elif choice == "2":
-            wild_encounter(player, route_1_pokemons)
+            result = wild_encounter(player, route_1_pokemons)
+
+            if result == "LOSE":
+                dialogue.clear_screen()
+                print(f"Sem Pokémon para batalhar, {player.name} retorna para casa em Pallet Town para recuperar sua equipe.")
+                dialogue.next_dialogue()
+
+                for pokemon in player.party:
+                    pokemon.heal_full()
+                
+                steps = 0
 
         elif choice == "3":
             dialogue.clear_screen()
