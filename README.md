@@ -63,7 +63,7 @@ Em desenvolvimento.
 
 * **Sistema de batalha**
   * Menu principal de batalha
-  * Exibição dos status e HP dos Pokémon
+  * Exibição dos status, HP e XP atual/necessária dos Pokémon  <-- (NOVO)
   * Menu de golpes
   * Escolha de golpes pelo jogador
   * Cálculo de dano
@@ -75,6 +75,7 @@ Em desenvolvimento.
   * Turno do inimigo
   * Escolha aleatória do golpe do inimigo
   * Sistema de vitória e derrota
+  * Ganho de experiência (EXP) e level up automático pós-vitória  <-- (NOVO)
   * Retorno ao menu de batalha após cada turno
   * Batalhas contra Pokémon selvagens
   * Sistema de fuga de batalhas
