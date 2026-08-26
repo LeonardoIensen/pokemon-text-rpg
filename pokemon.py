@@ -153,7 +153,7 @@ class Pokemon:
 
             self.level = self.level + 1
 
-            print(f"{self.name} upou para o Lv{self.level}!")
+            print(f"\n{self.name} upou para o Lv{self.level}!")
 
             exceeded_exp = self.experience - required_experience
             self.experience = exceeded_exp

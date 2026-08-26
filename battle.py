@@ -21,6 +21,15 @@ def calculate_damage(attacker, defender, move):
     return int(damage)
 
 
+def calculate_exp_gain(enemy_pokemon, is_trainer_battle):
+    exp_gain = int(enemy_pokemon.base_exp * enemy_pokemon.level / 7)
+
+    if is_trainer_battle:
+        exp_gain = int(exp_gain * 1.5)
+
+    return exp_gain
+
+
 def decide_first_attacker(player_pokemon, enemy_pokemon):
     if player_pokemon.speed > enemy_pokemon.speed:
         first_attacker = "player"
@@ -186,6 +195,8 @@ def rival_first_battle(player, rival):
         dialogue.talk(rival.name, f"{rival.party[0].name}, volte! Isso aí! Eu não sou demais?")
 
     elif result == "WIN":
+        handle_victory(player.party[0], rival.party[0], is_trainer_battle=True)
+        
         dialogue.talk(rival.name, "O QUÊ? Inacreditável! Escolhi o POKÉMON errado!")
 
     dialogue.clear_screen()
@@ -202,7 +213,21 @@ def wild_battle(player, wild_pokemon):
 
     result = battle_menu(player, wild_pokemon, is_trainer_battle=False)
 
+    if result == "WIN":
+        handle_victory(player.party[0], wild_pokemon, is_trainer_battle=False)
+
     return result
+
+
+def handle_victory(player_pokemon, enemy_pokemon, is_trainer_battle):
+    exp_gain = calculate_exp_gain(enemy_pokemon, is_trainer_battle)
+
+    dialogue.clear_screen()
+
+    player_pokemon.gain_experience(exp_gain)
+
+    dialogue.next_dialogue()
+
 
 
 def battle_menu(player, enemy_pokemon, is_trainer_battle):
