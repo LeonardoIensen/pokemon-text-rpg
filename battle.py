@@ -134,6 +134,7 @@ def show_battle_stats(player_pokemon, enemy_pokemon):
 
     print(f"{player_pokemon.name} Lv{player_pokemon.level}")
     print(f"HP: {player_pokemon.current_hp}/{player_pokemon.max_hp}")
+    print(f"XP: {player_pokemon.experience}/{player_pokemon.exp_next_level()}")
 
     print("------------------\n")
 
@@ -196,7 +197,7 @@ def rival_first_battle(player, rival):
 
     elif result == "WIN":
         handle_victory(player.party[0], rival.party[0], is_trainer_battle=True)
-        
+
         dialogue.talk(rival.name, "O QUÊ? Inacreditável! Escolhi o POKÉMON errado!")
 
     dialogue.clear_screen()
