@@ -125,18 +125,37 @@ def try_to_run(is_trainer_battle):
 
 
 def show_battle_stats(player_pokemon, enemy_pokemon):
-    print("------------------")
+    print("------------------------")
 
     print(f"{enemy_pokemon.name} Lv{enemy_pokemon.level}")
     print(f"HP: {enemy_pokemon.current_hp}/{enemy_pokemon.max_hp}")
 
     print("\nVS\n")
-
+    
     print(f"{player_pokemon.name} Lv{player_pokemon.level}")
-    print(f"HP: {player_pokemon.current_hp}/{player_pokemon.max_hp}")
-    print(f"XP: {player_pokemon.experience}/{player_pokemon.exp_next_level()}")
+    print(f"HP: {player_pokemon.current_hp}/{player_pokemon.max_hp}    XP: {player_pokemon.experience}/{player_pokemon.exp_next_level()}")
 
-    print("------------------\n")
+    print("------------------------\n")
+
+
+def show_summary(selected_pokemon):
+    dialogue.clear_screen()
+    
+    print("--- SUMARIO ---")
+    print(f"Name: {selected_pokemon.name} Lv: {selected_pokemon.level}")
+    print(f"TYPE: {selected_pokemon.type}\n")
+
+    print(f"HP: {selected_pokemon.current_hp}/{selected_pokemon.max_hp}")
+    print(f"XP: {selected_pokemon.experience}/{selected_pokemon.exp_next_level()}")
+    print(f"ATTACK: {selected_pokemon.attack}")
+    print(f"DEFENSE: {selected_pokemon.defense}")
+    print(f"SPEED: {selected_pokemon.speed}\n")
+
+    print("--- MOVES ---")
+    for i, move in enumerate(selected_pokemon.moves, start=1):
+        print(f"{i} - {move}")
+
+    dialogue.next_dialogue()
 
 
 def fight_menu(player_pokemon):
@@ -228,7 +247,6 @@ def handle_victory(player_pokemon, enemy_pokemon, is_trainer_battle):
     player_pokemon.gain_experience(exp_gain)
 
     dialogue.next_dialogue()
-
 
 
 def battle_menu(player, enemy_pokemon, is_trainer_battle):
