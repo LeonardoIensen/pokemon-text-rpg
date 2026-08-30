@@ -55,7 +55,7 @@ pokedex = {
     },
 
     "PIDGEY": {
-        "type": "NORMAL / FLYING",
+        "type": "NORMAL/FLYING",
         "hp": 40,
         "attack": 50,
         "defense": 40,
@@ -68,7 +68,7 @@ pokedex = {
     },
 
     "SPEAROW": {
-        "type": "NORMAL / FLYING",
+        "type": "NORMAL/FLYING",
         "hp": 40,
         "attack": 60,
         "defense": 40,
@@ -93,6 +93,140 @@ pokedex = {
         ],
     },
 
+    "CATERPIE": {
+        "type": "BUG",
+        "hp": 40,
+        "attack": 40,
+        "defense": 40,
+        "speed": 50,
+        "base_exp": 50,
+
+        "moves": [
+            "TACKLE"
+        ],
+    },
+
+    "METAPOD": {
+        "type": "BUG",
+        "hp": 60,
+        "attack": 50,
+        "defense": 60,
+        "speed": 50,
+        "base_exp": 70,
+
+        "moves": [
+            "TACKLE"
+        ],
+    },
+
+    "BUTTERFREE": {
+        "type": "BUG/FLYING",
+        "hp": 70,
+        "attack": 70,
+        "defense": 70,
+        "speed": 90,
+        "base_exp": 110,
+
+        "moves": [
+            "TACKLE",
+            "CONFUSION"
+        ],
+    },
+
+    "WEEDLE": {
+        "type": "BUG/POISON",
+        "hp": 40,
+        "attack": 50,
+        "defense": 40,
+        "speed": 50,
+        "base_exp": 50,
+
+        "moves": [
+            "POISON STING"
+        ],
+    },
+    
+    "KAKUNA": {
+        "type": "BUG/POISON",
+        "hp": 60,
+        "attack": 50,
+        "defense": 60,
+        "speed": 50,
+        "base_exp": 70,
+
+        "moves": [
+            "POISON STING"
+        ],
+    },
+    
+    "BEEDRILL": {
+        "type": "BUG/POISON",
+        "hp": 70,
+        "attack": 80,
+        "defense": 70,
+        "speed": 90,
+        "base_exp": 110,
+
+        "moves": [
+            "TACKLE",
+            "FURY ATTACK"
+        ],
+    },
+        
+    "PIKACHU": {
+        "type": "ELECTRIC",
+        "hp": 60,
+        "attack": 60,
+        "defense": 50,
+        "speed": 70,
+        "base_exp": 50,
+
+        "moves": [
+            "THUNDERSHOCK"
+        ],
+    },
+        
+    "SANDSHREW": {
+        "type": "GROUND",
+        "hp": 60,
+        "attack": 50,
+        "defense": 70,
+        "speed": 40,
+        "base_exp": 70,
+
+        "moves": [
+            "SCRATCH"
+        ],
+    },
+        
+    "GEODUDE": {
+        "type": "ROCK/GROUND",
+        "hp": 70,
+        "attack": 60,
+        "defense": 70,
+        "speed": 40,
+        "base_exp": 70,
+
+        "moves": [
+            "TACKLE"
+        ],
+    },
+        
+    "ONIX": {
+        "type": "ROCK/GROUND",
+        "hp": 80,
+        "attack": 70,
+        "defense": 80,
+        "speed": 40,
+        "base_exp": 150,
+
+        "moves": [
+            "TACKLE",
+            "BIND",
+            "ROCK TOMB"
+        ],
+    },
+
 }
 
 moves = {
@@ -108,10 +242,46 @@ moves = {
         "accuracy": 95,
     },
 
+    "FURY ATTACK": {
+        "type": "NORMAL",
+        "power": 15,
+        "accuracy": 85,
+    },
+
+    "BIND": {
+        "type": "NORMAL",
+        "power": 15,
+        "accuracy": 75,
+    },
+
     "PECK": {
         "type": "FLYING",
         "power": 35,
         "accuracy": 100,
+    },
+
+    "POISON STING": {
+        "type": "POISON",
+        "power": 15,
+        "accuracy": 100,
+    },
+
+    "THUNDERSHOCK": {
+        "type": "ELECTRIC",
+        "power": 40,
+        "accuracy": 100,
+    },
+
+    "CONFUSION": {
+        "type": "PSYCHIC",
+        "power": 50,
+        "accuracy": 100,
+    },
+
+    "ROCK TOMB": {
+        "type": "ROCK",
+        "power": 50,
+        "accuracy": 80,
     },
 }
 
