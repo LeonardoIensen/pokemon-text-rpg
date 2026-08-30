@@ -190,6 +190,41 @@ def pokemon_options_menu(selected_pokemon):
             dialogue.next_dialogue()
 
 
+def party_menu(player):
+    while True:
+        dialogue.clear_screen()
+
+        print("--- PARTY ---\n")
+
+        for i, pokemon in enumerate (player.party, start=1):
+            print(f"{i}- {pokemon.name}")
+
+        print("0- VOLTAR")
+
+        try:
+            choice = int(input("\nEscolha: "))
+
+        except ValueError:
+            dialogue.clear_screen()
+            print("[ Opcao invalida! Tente novamente. ]")
+            dialogue.next_dialogue()
+
+            continue
+
+        if choice == 0:
+            return
+
+        if 1 <= choice <= len(player.party):
+            selected_pokemon = player.party[choice - 1]
+
+            pokemon_options_menu(selected_pokemon)
+
+        else:
+            dialogue.clear_screen()
+            print("[ Opcao invalida! Tente novamente. ]")
+            dialogue.next_dialogue()
+
+
 def fight_menu(player_pokemon):
 
     while True:
@@ -336,7 +371,7 @@ def battle_menu(player, enemy_pokemon, is_trainer_battle):
             print("Nao implementado.")
 
         elif choice == "4":
-            print("Nao implementado.")
+            party_menu(player)
 
         else:
             dialogue.clear_screen()
