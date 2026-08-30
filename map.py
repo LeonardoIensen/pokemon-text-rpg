@@ -107,9 +107,9 @@ def route_1(player):
                 print(f"{player.name} chegou a cidade de Viridian!")
                 dialogue.next_dialogue()
 
-                viridian_city(player)
-
                 steps = 0
+
+                viridian_city(player)
 
         elif choice == "2":
             result = wild_encounter(player, route_1_pokemons)
@@ -135,6 +135,60 @@ def route_1(player):
             dialogue.next_dialogue() 
 
 
+def route_2(player):
+
+    steps = 0
+
+    while True:
+        dialogue.clear_screen()
+
+        print("--- ROTA 2 ---\n")
+        print(f"Progresso: {steps}/5\n")
+
+        print("1 - ANDAR")
+        print("2 - ANDAR NA GRAMA")
+        print("3 - VOLTAR PARA VIRIDIAN")
+        print("4 - MENU")
+
+        choice = input("\nEscolha: ")
+
+        if choice == "1":
+            steps += 1
+
+            if steps >= 5:
+                dialogue.clear_screen()
+                print(f"Bosque de Viridian nao implementado")
+                dialogue.next_dialogue()
+
+        elif choice == "2":
+            result = wild_encounter(player, route_2_pokemons)
+
+            if result == "LOSE":
+                dialogue.clear_screen()
+                print(f"Sem Pokémon para batalhar, {player.name} retorna para o centro pokemon mais proximo para recuperar sua equipe.")
+                dialogue.next_dialogue()
+
+                for pokemon in player.party:
+                    pokemon.heal_full()
+
+                steps = 0
+
+                return
+
+        elif choice == "3":
+            return
+        
+        elif choice == "4":
+            dialogue.clear_screen()
+            print("Menu ainda nao implementado.")
+            dialogue.next_dialogue()
+
+        else:
+            dialogue.clear_screen()
+            print("[ Opcao invalida! Tente novamente. ]")
+            dialogue.next_dialogue() 
+
+
 def viridian_city(player):
     while True:
         dialogue.clear_screen()
@@ -150,8 +204,11 @@ def viridian_city(player):
 
         if choice == "1":
             dialogue.clear_screen()
-            print("Rota 2 ainda nao implementada.")
+            
+            print(f"{player.name} chegou a Rota 2!")
             dialogue.next_dialogue()
+
+            route_2(player)
 
         elif choice == "2":
             return
