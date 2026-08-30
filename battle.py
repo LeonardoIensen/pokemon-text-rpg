@@ -158,6 +158,38 @@ def show_summary(selected_pokemon):
     dialogue.next_dialogue()
 
 
+def pokemon_options_menu(selected_pokemon):
+    while True:
+        dialogue.clear_screen()
+
+        print(f"--- {selected_pokemon.name} ---\n")
+
+        print("1- SUMARIO")
+        print("2- TROCAR")
+        print("\n0- VOLTAR")
+
+        try:
+            choice = int(input("\nEscolha: "))
+
+        except ValueError:
+            dialogue.clear_screen()
+            print("[ Opcao invalida! Tente novamente. ]")
+            dialogue.next_dialogue()
+
+            continue
+
+        if choice == 0:
+            return
+
+        if choice == 1:
+            show_summary(selected_pokemon)
+
+        elif choice == 2:
+            dialogue.clear_screen()
+            print("Nao implementado")
+            dialogue.next_dialogue()
+
+
 def fight_menu(player_pokemon):
 
     while True:
