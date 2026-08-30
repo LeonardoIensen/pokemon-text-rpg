@@ -93,6 +93,8 @@ Em desenvolvimento.
   * Sistema de derrota com retorno para casa e recuperação de toda a equipe
   * Chegada em Viridian City ao completar os passos
   * Centro Pokémon em Viridian City para recuperação da equipe
+  * Rota 2 com novos Pokémon selvagens (Spearow e Mankey)
+  * Sistema de derrota na Rota 2 com retorno e cura automática em Viridian City
 
 ---
 
