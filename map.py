@@ -68,6 +68,20 @@ def wild_encounter(player, route_pokemon):
     return result
 
 
+def pokemon_center(player):
+    dialogue.clear_screen()
+
+    print("--- CENTRO POKÉMON ---\n")
+    print("Enfermeira Joy: Olá! Bem-vindo ao Centro Pokémon.")
+    print("Nós curamos seus Pokémon desmaiados ou feridos até sua saúde total.\n")
+
+    for pokemon in player.party:
+        pokemon.heal_full()
+ 
+    print("Seus POKÉMON foram totalmente restaurados! Esperamos ver você novamente!")
+    dialogue.next_dialogue()
+
+
 def route_1(player):
 
     steps = 0
@@ -89,10 +103,13 @@ def route_1(player):
 
             if steps >= 5:
                 dialogue.clear_screen()
-                print("Rota 2 ainda nao implementada.")
+
+                print(f"{player.name} chegou a cidade de Viridian!")
                 dialogue.next_dialogue()
 
-                break
+                viridian_city(player)
+
+                steps = 0
 
         elif choice == "2":
             result = wild_encounter(player, route_1_pokemons)
@@ -108,6 +125,41 @@ def route_1(player):
                 steps = 0
 
         elif choice == "3":
+            dialogue.clear_screen()
+            print("Menu ainda nao implementado.")
+            dialogue.next_dialogue()
+
+        else:
+            dialogue.clear_screen()
+            print("[ Opcao invalida! Tente novamente. ]")
+            dialogue.next_dialogue() 
+
+
+def viridian_city(player):
+    while True:
+        dialogue.clear_screen()
+
+        print("--- VIRIDIAN CITY ---\n")
+
+        print("1 - IR PARA A ROTA 2")
+        print("2 - VOLTAR PARA A ROTA 1")
+        print("3 - CENTRO POKEMON")
+        print("4 - MENU")
+
+        choice = input("\nEscolha: ")
+
+        if choice == "1":
+            dialogue.clear_screen()
+            print("Rota 2 ainda nao implementada.")
+            dialogue.next_dialogue()
+
+        elif choice == "2":
+            return
+
+        elif choice == "3":
+            pokemon_center(player)
+
+        elif choice == "4":
             dialogue.clear_screen()
             print("Menu ainda nao implementado.")
             dialogue.next_dialogue()
