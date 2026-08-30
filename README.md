@@ -91,6 +91,8 @@ Em desenvolvimento.
   * Sistema de encontros selvagens com chance percentual
   * Sorteio aleatório do nível dos Pokémon selvagens dentro do intervalo da rota
   * Sistema de derrota com retorno para casa e recuperação de toda a equipe
+  * Chegada em Viridian City ao completar os passos
+  * Centro Pokémon em Viridian City para recuperação da equipe
 
 ---
 
