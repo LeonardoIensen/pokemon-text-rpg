@@ -94,7 +94,8 @@ Em desenvolvimento.
   * Chegada em Viridian City ao completar os passos
   * Centro Pokémon em Viridian City para recuperação da equipe
   * Rota 2 com novos Pokémon selvagens (Spearow e Mankey)
-  * Sistema de derrota na Rota 2 com retorno e cura automática em Viridian City
+  * Bosque de Viridian com contagem de passos e encontros selvagens
+  * Cadeia de retornos para Viridian City após desmaiar em áreas avançadas
 
 ---
 
