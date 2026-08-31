@@ -95,8 +95,8 @@ Em desenvolvimento.
   * Centro Pokémon em Viridian City para recuperação da equipe
   * Rota 2 com novos Pokémon selvagens (Spearow e Mankey)
   * Bosque de Viridian com contagem de passos e encontros selvagens
-  * Novos pokemon adicionados na Pokedex
-  * Cadeia de retornos para Viridian City após desmaiar em áreas avançadas
+  * Rota 3 com caminho até a entrada de Pewter City
+  * Cadeia de retornos e cura automática em Viridian City após desmaiar em áreas avançadas
 
 ---
 
