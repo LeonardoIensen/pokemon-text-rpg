@@ -88,13 +88,14 @@ Em desenvolvimento.
 * **Mapa e Exploração**
   * Rota 1 com sistema de passos
   * Navegação entre opções de andar, grama alta e menu
-  * Sistema de encontros selvagens com chance percentual
+  * Sistema de encontros selvagens com chance percentual melhorada
   * Sorteio aleatório do nível dos Pokémon selvagens dentro do intervalo da rota
   * Sistema de derrota com retorno para casa e recuperação de toda a equipe
   * Chegada em Viridian City ao completar os passos
   * Centro Pokémon em Viridian City para recuperação da equipe
   * Rota 2 com novos Pokémon selvagens (Spearow e Mankey)
   * Bosque de Viridian com contagem de passos e encontros selvagens
+  * Novos pokemon adicionados na Pokedex
   * Cadeia de retornos para Viridian City após desmaiar em áreas avançadas
 
 ---
