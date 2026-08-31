@@ -98,6 +98,7 @@ Em desenvolvimento.
   * Rota 3 com caminho até a entrada de Pewter City
   * Cadeia de retornos e cura automática em Viridian City após desmaiar em áreas avançadas
   * Cidade de Pewter com acesso ao Centro Pokémon e opção de retorno à Rota 3
+  * Menu do jogador acessível em todas as rotas e cidades para visualizar a party fora das batalhas
 
 ---
 
