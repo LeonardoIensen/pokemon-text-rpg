@@ -168,25 +168,22 @@ def pokemon_options_menu(selected_pokemon):
         print("2- TROCAR")
         print("\n0- VOLTAR")
 
-        try:
-            choice = int(input("\nEscolha: "))
-
-        except ValueError:
-            dialogue.clear_screen()
-            print("[ Opcao invalida! Tente novamente. ]")
-            dialogue.next_dialogue()
-
-            continue
+        choice = input("\nEscolha: ")
 
         if choice == 0:
             return
 
-        if choice == 1:
+        if choice == "1":
             show_summary(selected_pokemon)
 
-        elif choice == 2:
+        elif choice == "2":
             dialogue.clear_screen()
             print("Nao implementado")
+            dialogue.next_dialogue()
+
+        else:
+            dialogue.clear_screen()
+            print("[ Opcao invalida! Tente novamente. ]")
             dialogue.next_dialogue()
 
 
@@ -199,7 +196,7 @@ def party_menu(player):
         for i, pokemon in enumerate (player.party, start=1):
             print(f"{i}- {pokemon.name}")
 
-        print("0- VOLTAR")
+        print("\n0- VOLTAR")
 
         try:
             choice = int(input("\nEscolha: "))
