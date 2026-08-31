@@ -214,7 +214,7 @@ def viridian_city(player):
     while True:
         dialogue.clear_screen()
 
-        print("--- VIRIDIAN CITY ---\n")
+        print("--- CIDADE DE VIRIDIAN ---\n")
 
         print("1 - IR PARA A ROTA 2")
         print("2 - VOLTAR PARA A ROTA 1")
@@ -394,10 +394,11 @@ def route_3(player):
             if steps >= 5:
                 dialogue.clear_screen()
                 print(f"{player.name} chegou a Cidade de Pewter!")
-                print("Cidade de Pewter nao implementada.")
                 dialogue.next_dialogue()
 
                 steps = 0
+
+                pewter_city(player)
 
         elif choice == "2":
             result = wild_encounter(player, route_3_pokemons)
@@ -425,4 +426,39 @@ def route_3(player):
         else:
             dialogue.clear_screen()
             print("[ Opcao invalida! Tente novamente. ]")
-            dialogue.next_dialogue() 
+            dialogue.next_dialogue()
+
+
+def pewter_city(player):
+    while True:
+        dialogue.clear_screen()
+
+        print("--- CIDADE DE PEWTER ---\n")
+
+        print("1 - VOLTAR PARA ROTA 3")
+        print("2 - GINASIO DO BROCK")
+        print("3 - CENTRO POKEMON")
+        print("4 - MENU")
+
+        choice = input("\nEscolha: ")
+
+        if choice == "1":
+           return
+
+        elif choice == "2":
+            dialogue.clear_screen()
+            print("Ginasio ainda nao implementado.")
+            dialogue.next_dialogue()
+
+        elif choice == "3":
+            pokemon_center(player)
+
+        elif choice == "4":
+            dialogue.clear_screen()
+            print("Menu ainda nao implementado.")
+            dialogue.next_dialogue()
+
+        else:
+            dialogue.clear_screen()
+            print("[ Opcao invalida! Tente novamente. ]")
+            dialogue.next_dialogue()
