@@ -41,6 +41,30 @@ route_2_pokemons = {
 
 }
 
+route_3_pokemons = {
+    
+    "PIDGEY": {
+        "LEVEL": (4,10),
+        "CHANCE": 25,
+    },
+
+    "RATTATA": {
+        "LEVEL": (4,10),
+        "CHANCE": 25,
+    },
+
+    "SPEAROW": {
+        "LEVEL": (4,10),
+        "CHANCE": 25,
+    },
+
+    "MANKEY": {
+        "LEVEL": (4,10),
+        "CHANCE": 25,
+    },
+
+}
+
 viridian_forest_pokemons = {
 
     "CATERPIE": {
@@ -309,11 +333,74 @@ def viridian_forest(player):
             if steps >= 5:
                 dialogue.clear_screen()
                 print(f"{player.name} chegou a Rota 3!")
-                print("\nRota 3 nao implementada!")
                 dialogue.next_dialogue()
+
+                steps = 0
+
+                result = route_3(player)
+
+                if result == "FAINTED":
+                    return result
 
         elif choice == "2":
             result = wild_encounter(player, viridian_forest_pokemons)
+
+            if result == "LOSE":
+                dialogue.clear_screen()
+                print(f"Sem Pokémon para batalhar, {player.name} retorna para o Centro Pokemon mais proximo para recuperar sua equipe.")
+                dialogue.next_dialogue()
+
+                for pokemon in player.party:
+                    pokemon.heal_full()
+
+                steps = 0
+
+                return "FAINTED"
+
+        elif choice == "3":
+            return
+        
+        elif choice == "4":
+            dialogue.clear_screen()
+            print("Menu ainda nao implementado.")
+            dialogue.next_dialogue()
+
+        else:
+            dialogue.clear_screen()
+            print("[ Opcao invalida! Tente novamente. ]")
+            dialogue.next_dialogue() 
+
+
+def route_3(player):
+    
+    steps = 0
+
+    while True:
+        dialogue.clear_screen()
+
+        print("--- ROTA 3 ---\n")
+        print(f"Progresso: {steps}/5\n")
+
+        print("1 - ANDAR")
+        print("2 - ANDAR NA GRAMA")
+        print("3 - VOLTAR PARA BOSQUE VIRIDIAN")
+        print("4 - MENU")
+
+        choice = input("\nEscolha: ")
+
+        if choice == "1":
+            steps += 1
+
+            if steps >= 5:
+                dialogue.clear_screen()
+                print(f"{player.name} chegou a Cidade de Pewter!")
+                print("Cidade de Pewter nao implementada.")
+                dialogue.next_dialogue()
+
+                steps = 0
+
+        elif choice == "2":
+            result = wild_encounter(player, route_3_pokemons)
 
             if result == "LOSE":
                 dialogue.clear_screen()
