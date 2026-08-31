@@ -158,6 +158,46 @@ def pokemon_center(player):
     dialogue.next_dialogue()
 
 
+def player_menu(player):
+    while True:
+        dialogue.clear_screen()
+
+        print("--- MENU ---\n")
+        print("1- POKEMON")
+        print("2- BAG")
+        print("3- SAIR")
+        print("4- SALVAR")
+        print("\n0- VOLTAR")
+
+        choice = input("\nEscolha: ")
+
+        if choice == "0":
+            return
+
+        elif choice == "1":
+            battle.party_menu(player)
+
+        elif choice == "2":
+            dialogue.clear_screen()
+            print("Bag ainda nao implementado.")
+            dialogue.next_dialogue()
+
+        elif choice == "3":
+            dialogue.clear_screen()
+            print("Sair ainda nao implementado.")
+            dialogue.next_dialogue()
+
+        elif choice == "4":
+            dialogue.clear_screen()
+            print("Salvar ainda nao implementado.")
+            dialogue.next_dialogue()
+
+        else:
+            dialogue.clear_screen()
+            print("[ Opcao invalida! Tente novamente. ]")
+            dialogue.next_dialogue()
+
+
 def route_1(player):
 
     steps = 0
@@ -200,9 +240,7 @@ def route_1(player):
                 steps = 0
 
         elif choice == "3":
-            dialogue.clear_screen()
-            print("Menu ainda nao implementado.")
-            dialogue.next_dialogue()
+            player_menu(player)
 
         else:
             dialogue.clear_screen()
@@ -238,9 +276,7 @@ def viridian_city(player):
             pokemon_center(player)
 
         elif choice == "4":
-            dialogue.clear_screen()
-            print("Menu ainda nao implementado.")
-            dialogue.next_dialogue()
+            player_menu(player)
 
         else:
             dialogue.clear_screen()
@@ -300,9 +336,7 @@ def route_2(player):
             return
         
         elif choice == "4":
-            dialogue.clear_screen()
-            print("Menu ainda nao implementado.")
-            dialogue.next_dialogue()
+            player_menu(player)
 
         else:
             dialogue.clear_screen()
@@ -361,9 +395,7 @@ def viridian_forest(player):
             return
         
         elif choice == "4":
-            dialogue.clear_screen()
-            print("Menu ainda nao implementado.")
-            dialogue.next_dialogue()
+            player_menu(player)
 
         else:
             dialogue.clear_screen()
@@ -454,9 +486,7 @@ def pewter_city(player):
             pokemon_center(player)
 
         elif choice == "4":
-            dialogue.clear_screen()
-            print("Menu ainda nao implementado.")
-            dialogue.next_dialogue()
+            player_menu(player)
 
         else:
             dialogue.clear_screen()
