@@ -18,20 +18,64 @@ route_1_pokemons = {
 }
 
 route_2_pokemons = {
+    
+    "PIDGEY": {
+        "LEVEL": (2,5),
+        "CHANCE": 25,
+    },
 
     "RATTATA": {
         "LEVEL": (2,5),
-        "CHANCE": 50,
+        "CHANCE": 25,
     },
 
     "SPEAROW": {
         "LEVEL": (2,5),
-        "CHANCE": 50,
+        "CHANCE": 25,
     },
 
     "MANKEY": {
         "LEVEL": (2,5),
-        "CHANCE": 50,
+        "CHANCE": 25,
+    },
+
+}
+
+viridian_forest_pokemons = {
+
+    "CATERPIE": {
+        "LEVEL": (4,6),
+        "CHANCE": 25,
+    },
+    
+    "METAPOD": {
+        "LEVEL": (7,9),
+        "CHANCE": 15,
+    },
+    
+    "BUTTERFREE": {
+        "LEVEL": (10,12),
+        "CHANCE": 5,
+    },
+
+    "WEEDLE": {
+        "LEVEL": (4,6),
+        "CHANCE": 25,
+    },
+
+    "KAKUNA": {
+        "LEVEL": (7,9),
+        "CHANCE": 15,
+    },
+
+    "BEEDRILL": {
+        "LEVEL": (10,12),
+        "CHANCE": 5,
+    },
+        
+    "PIKACHU": {
+        "LEVEL": (3,5),
+        "CHANCE": 10,
     },
 
 }
@@ -39,6 +83,7 @@ route_2_pokemons = {
 
 def wild_encounter(player, route_pokemon):
     dialogue.clear_screen() 
+
     print(f"\n{player.name} caminhou pela grama alta...")
 
     encounter_roll = random.randint(1, 100)
@@ -46,7 +91,14 @@ def wild_encounter(player, route_pokemon):
     if encounter_roll <= 85:
         available_pokemons = list(route_pokemon.keys())
 
-        pokemon_name = random.choice(available_pokemons)
+        chances = []
+
+        for wild_poke in available_pokemons:
+            valor = route_pokemon[wild_poke]["CHANCE"]
+
+            chances.append(valor)
+
+        pokemon_name = random.choices(available_pokemons, weights=chances, k=1)[0]
 
         level_pokemon = route_pokemon[pokemon_name]["LEVEL"]
 
@@ -170,7 +222,7 @@ def viridian_city(player):
             dialogue.clear_screen()
             print("[ Opcao invalida! Tente novamente. ]")
             dialogue.next_dialogue() 
-            
+
 
 def route_2(player):
 
@@ -261,7 +313,7 @@ def viridian_forest(player):
                 dialogue.next_dialogue()
 
         elif choice == "2":
-            result = wild_encounter(player, route_2_pokemons)
+            result = wild_encounter(player, viridian_forest_pokemons)
 
             if result == "LOSE":
                 dialogue.clear_screen()
