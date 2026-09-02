@@ -54,12 +54,12 @@ Em desenvolvimento.
   * Pokémon possuem golpes disponíveis para batalha
 
 * **Sistema de Treinador**
-
   * Classe `Trainer` para criação dos treinadores
   * Sistema de party para armazenar os Pokémon do treinador
   * Adição de Pokémon à party
   * Exibição dos Pokémon da party
   * Jogador e rival começam com seus Pokémon iniciais
+  * Fabricação dos treinadores NPCs do Ginásio de Pewter (Treinador Liam e Líder Brock)
 
 * **Sistema de batalha**
   * Menu principal de batalha
