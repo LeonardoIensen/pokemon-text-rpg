@@ -2,6 +2,7 @@ import dialogue
 import pokemon
 import battle
 import random
+import trainer
 
 route_1_pokemons = {
 
@@ -208,9 +209,9 @@ def route_1(player):
         print("--- ROTA 1 ---\n")
         print(f"Progresso: {steps}/5\n")
 
-        print("1 - ANDAR")
-        print("2 - ANDAR NA GRAMA")
-        print("3 - MENU")
+        print("1- ANDAR")
+        print("2- ANDAR NA GRAMA")
+        print("3- MENU")
 
         choice = input("\nEscolha: ")
 
@@ -254,10 +255,10 @@ def viridian_city(player):
 
         print("--- CIDADE DE VIRIDIAN ---\n")
 
-        print("1 - IR PARA A ROTA 2")
-        print("2 - VOLTAR PARA A ROTA 1")
-        print("3 - CENTRO POKEMON")
-        print("4 - MENU")
+        print("1- IR PARA A ROTA 2")
+        print("2- VOLTAR PARA A ROTA 1")
+        print("3- CENTRO POKEMON")
+        print("4- MENU")
 
         choice = input("\nEscolha: ")
 
@@ -294,10 +295,10 @@ def route_2(player):
         print("--- ROTA 2 ---\n")
         print(f"Progresso: {steps}/5\n")
 
-        print("1 - ANDAR")
-        print("2 - ANDAR NA GRAMA")
-        print("3 - VOLTAR PARA VIRIDIAN")
-        print("4 - MENU")
+        print("1- ANDAR")
+        print("2- ANDAR NA GRAMA")
+        print("3- VOLTAR PARA VIRIDIAN")
+        print("4- MENU")
 
         choice = input("\nEscolha: ")
 
@@ -354,10 +355,10 @@ def viridian_forest(player):
         print("--- BOSQUE VIRIDIAN ---\n")
         print(f"Progresso: {steps}/5\n")
 
-        print("1 - ANDAR")
-        print("2 - ANDAR NA GRAMA")
-        print("3 - VOLTAR PARA ROTA 2")
-        print("4 - MENU")
+        print("1- ANDAR")
+        print("2- ANDAR NA GRAMA")
+        print("3- VOLTAR PARA ROTA 2")
+        print("4- MENU")
 
         choice = input("\nEscolha: ")
 
@@ -413,10 +414,10 @@ def route_3(player):
         print("--- ROTA 3 ---\n")
         print(f"Progresso: {steps}/5\n")
 
-        print("1 - ANDAR")
-        print("2 - ANDAR NA GRAMA")
-        print("3 - VOLTAR PARA BOSQUE VIRIDIAN")
-        print("4 - MENU")
+        print("1- ANDAR")
+        print("2- ANDAR NA GRAMA")
+        print("3- VOLTAR PARA BOSQUE VIRIDIAN")
+        print("4- MENU")
 
         choice = input("\nEscolha: ")
 
@@ -467,10 +468,10 @@ def pewter_city(player):
 
         print("--- CIDADE DE PEWTER ---\n")
 
-        print("1 - VOLTAR PARA ROTA 3")
-        print("2 - GINASIO DO BROCK")
-        print("3 - CENTRO POKEMON")
-        print("4 - MENU")
+        print("1- VOLTAR PARA ROTA 3")
+        print("2- GINASIO DO BROCK")
+        print("3- CENTRO POKEMON")
+        print("4- MENU")
 
         choice = input("\nEscolha: ")
 
@@ -478,12 +479,74 @@ def pewter_city(player):
            return
 
         elif choice == "2":
-            dialogue.clear_screen()
-            print("Ginasio ainda nao implementado.")
-            dialogue.next_dialogue()
+            pewter_gym(player)
 
         elif choice == "3":
             pokemon_center(player)
+
+        elif choice == "4":
+            player_menu(player)
+
+        else:
+            dialogue.clear_screen()
+            print("[ Opcao invalida! Tente novamente. ]")
+            dialogue.next_dialogue()
+
+
+def pewter_gym(player):
+
+    gym_trainer = trainer.gym_trainer()
+    brock = trainer.gym_leader_brock()
+
+    if player.pewter_gym_defeated:
+        dialogue.clear_screen()
+        print("Lider de ginasio ja derrotado, nao e possivel batalhar novamente!")
+        dialogue.next_dialogue()
+        return
+
+    dialogue.clear_screen()
+    print(f"{player.name} entrou no Ginasio!")
+    dialogue.next_dialogue()
+
+    while True:
+        dialogue.clear_screen()
+
+        print("--- GINASIO DE PEWTER ---\n")
+        print("1- DESAFIAR TREINADOR LIAM")
+        print("2- DESAFIAR LIDER DE GINASIO BROCK")
+        print("3- SAIR DO GINASIO")
+        print("4- MENU")
+
+        choice = input("\nEscolha: ")
+
+        if choice == "1":
+            if gym_trainer.defeated == False:
+                result = battle.trainer_battle(player, gym_trainer)
+
+                if result == "WIN":
+                    gym_trainer.defeated = True
+
+            else:
+                dialogue.clear_screen()
+                print("Treinador ja derrotado, nao e possivel batalhar novamente!")
+                dialogue.next_dialogue()
+
+        elif choice == "2":
+            if brock.defeated == False:
+                result = battle.trainer_battle(player, brock)
+
+                if result == "WIN":
+                    dialogue.clear_screen()
+                    print(f"PARABENS! {player.name} venceu o Lider de Ginasio, Brock! e conquistou sua Insígnia de pedra!")
+                    dialogue.next_dialogue()
+
+                    brock.defeated = True
+                    player.pewter_gym_defeated = True
+
+                    return
+
+        elif choice == "3":
+            return
 
         elif choice == "4":
             player_menu(player)

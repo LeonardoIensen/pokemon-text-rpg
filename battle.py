@@ -170,7 +170,7 @@ def pokemon_options_menu(selected_pokemon):
 
         choice = input("\nEscolha: ")
 
-        if choice == 0:
+        if choice == "0":
             return
 
         if choice == "1":
@@ -286,6 +286,29 @@ def rival_first_battle(player, rival):
     dialogue.clear_screen()
     print(f"Após testar seus POKÉMON em uma batalha intensa, {player.name} se despede e se encaminha para fora de Pallet Town...")
     dialogue.next_dialogue()
+
+
+def trainer_battle(player, trainer):
+    dialogue.clear_screen()
+
+    print(f"\n{trainer.name} desafia você para uma batalha!")
+    print(f"\n{trainer.name} enviou {trainer.party[0].name}!")
+    dialogue.next_dialogue()
+
+    print(f"\nVai! {player.party[0].name}!")
+    dialogue.next_dialogue()
+
+    result = battle_menu(player, trainer.party[0], is_trainer_battle=True)
+
+    if result == "LOSE":
+        print(f"{player.name} perdeu para {trainer.name}!")
+
+    elif result == "WIN":
+        handle_victory(player.party[0], trainer.party[0], is_trainer_battle=True)
+
+        print(f"{player.name} derrotou {trainer.name}!")
+
+    return result
 
 
 def wild_battle(player, wild_pokemon):
