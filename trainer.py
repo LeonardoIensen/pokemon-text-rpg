@@ -1,9 +1,11 @@
 import pokemon
 
 class Trainer:
-    def __init__(self, name, pokemon):
+    def __init__(self, name, pokemon, ):
         self.name = name
         self.party = [pokemon]
+        self.defeated = False
+        self.pewter_gym_defeated = False
 
     def add_pokemon(self, pokemon):
         self.party.append(pokemon)
@@ -14,7 +16,7 @@ class Trainer:
             print(f"{i} - {pokemon.name}")
 
 
-def pewter_gym_trainer():
+def gym_trainer():
 
     geodude = pokemon.Pokemon("GEODUDE", 10)
 
