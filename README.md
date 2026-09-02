@@ -59,7 +59,9 @@ Em desenvolvimento.
   * Adição de Pokémon à party
   * Exibição dos Pokémon da party
   * Jogador e rival começam com seus Pokémon iniciais
-  * Fabricação dos treinadores NPCs do Ginásio de Pewter (Treinador Liam e Líder Brock)
+  * Criação dos treinadores NPCs do Ginásio de Pewter (Treinador Liam e Líder Brock)
+  * Batalha contra Treinador Liam e Líder Brock
+  * Sistema de estado de derrota dos treinadores do ginásio
 
 * **Sistema de batalha**
   * Menu principal de batalha
@@ -99,6 +101,11 @@ Em desenvolvimento.
   * Cadeia de retornos e cura automática em Viridian City após desmaiar em áreas avançadas
   * Cidade de Pewter com acesso ao Centro Pokémon e opção de retorno à Rota 3
   * Menu do jogador acessível em todas as rotas e cidades para visualizar a party fora das batalhas
+  * Ginásio de Pewter
+  * Batalha contra o Treinador Liam
+  * Batalha contra o Líder de Ginásio Brock
+  * Bloqueio de novos desafios após derrotar Brock
+  * Sistema de progressão para registrar a conclusão do Ginásio de Pewter
 
 ---
 
