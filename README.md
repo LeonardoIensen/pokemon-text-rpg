@@ -42,6 +42,7 @@ Em desenvolvimento.
   * Pokédex com dados-base dos Pokémon
   * Classe `Pokemon` para criação dos Pokémon
   * Sistema de nível
+  * Nível máximo limitado a 20
   * Sistema de experiência (EXP)
   * Ganho de experiência
   * Level up automático
