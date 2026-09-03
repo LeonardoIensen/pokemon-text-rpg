@@ -64,6 +64,7 @@ Em desenvolvimento.
   * Sistema de estado de derrota dos treinadores do ginásio
 
 * **Sistema de batalha**
+
   * Menu principal de batalha
   * Menu de Pokémon para visualizar a equipe da party
   * Tela de sumário com estatísticas completas, HP, XP e golpes do Pokémon
@@ -74,6 +75,7 @@ Em desenvolvimento.
   * Precisão dos golpes baseada na accuracy
   * Golpes podem errar e causar 0 de dano
   * Redução de HP
+  * HP dos Pokémon limitado a 0 como valor mínimo
   * Sistema de velocidade para definir a ordem dos ataques
   * Sorteio da ordem de ataque quando os Pokémon possuem a mesma Speed
   * Turno do inimigo
@@ -81,6 +83,10 @@ Em desenvolvimento.
   * Sistema de vitória e derrota
   * Ganho de experiência (EXP) e level up automático pós-vitória
   * Retorno ao menu de batalha após cada turno
+  * Troca de Pokémon durante a batalha
+  * Bloqueio da escolha de Pokémon derrotados
+  * Troca obrigatória quando o Pokémon ativo é derrotado
+  * Exibição do HP da equipe no menu de troca
   * Batalhas contra Pokémon selvagens
   * Sistema de fuga de batalhas
   * Fuga bloqueada contra treinadores
@@ -88,6 +94,7 @@ Em desenvolvimento.
   * Pokémon selvagem ataca após uma tentativa de fuga malsucedida
 
 * **Mapa e Exploração**
+
   * Rota 1 com sistema de passos
   * Navegação entre opções de andar, grama alta e menu
   * Sistema de encontros selvagens com chance percentual melhorada
@@ -102,10 +109,10 @@ Em desenvolvimento.
   * Cidade de Pewter com acesso ao Centro Pokémon e opção de retorno à Rota 3
   * Menu do jogador acessível em todas as rotas e cidades para visualizar a party fora das batalhas
   * Ginásio de Pewter
-  * Batalha contra o Treinador Liam
-  * Batalha contra o Líder de Ginásio Brock
   * Bloqueio de novos desafios após derrotar Brock
   * Sistema de progressão para registrar a conclusão do Ginásio de Pewter
+  * Retorno automático ao Centro Pokémon após perder batalhas contra treinadores
+  * Recuperação completa da equipe após uma derrota
 
 ---
 
