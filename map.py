@@ -526,6 +526,16 @@ def pewter_gym(player):
                 if result == "WIN":
                     gym_trainer.defeated = True
 
+                elif result == "LOSE":
+                    dialogue.clear_screen()
+                    print(f"Sem Pokémon para batalhar, {player.name} retorna para o Centro Pokémon mais próximo para recuperar sua equipe.")
+                    dialogue.next_dialogue()
+
+                    for pokemon in player.party:
+                        pokemon.heal_full()
+
+                    return
+
             else:
                 dialogue.clear_screen()
                 print("Treinador ja derrotado, nao e possivel batalhar novamente!")
@@ -544,6 +554,21 @@ def pewter_gym(player):
                     player.pewter_gym_defeated = True
 
                     return
+
+                elif result == "LOSE":
+                    dialogue.clear_screen()
+                    print(f"Sem Pokémon para batalhar, {player.name} retorna para o Centro Pokémon mais próximo para recuperar sua equipe.")
+                    dialogue.next_dialogue()
+
+                    for pokemon in player.party:
+                        pokemon.heal_full()
+
+                    return
+
+            else:
+                dialogue.clear_screen()
+                print("Lider de ginasio ja derrotado, nao e possivel batalhar novamente!")
+                dialogue.next_dialogue()
 
         elif choice == "3":
             return

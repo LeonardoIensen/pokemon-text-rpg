@@ -56,6 +56,9 @@ def enemy_turn(player_pokemon, enemy_pokemon):
     else:
         player_pokemon.current_hp -= damage
 
+        if player_pokemon.current_hp < 0:
+            player_pokemon.current_hp = 0
+
     if player_pokemon.current_hp <= 0:
         print(f"\nSeu {player_pokemon.name} foi derrotado!")
         return "LOSE"
@@ -71,6 +74,9 @@ def player_turn(player_pokemon, enemy_pokemon, move):
 
     else:
         enemy_pokemon.current_hp -= damage
+
+        if enemy_pokemon.current_hp < 0:
+            enemy_pokemon.current_hp = 0
 
     if enemy_pokemon.current_hp <= 0:
         print(f"\n{enemy_pokemon.name} foi derrotado!")
@@ -273,13 +279,13 @@ def rival_first_battle(player, rival):
     print(f"\nVai! {player.party[0].name}!")
     dialogue.next_dialogue()
 
-    result = battle_menu(player, rival.party[0], is_trainer_battle=True)
+    result, player_pokemon = battle_menu(player, rival.party[0], is_trainer_battle=True, player_pokemon=player.party[0])
 
     if result == "LOSE":
         dialogue.talk(rival.name, f"{rival.party[0].name}, volte! Isso aí! Eu não sou demais?")
 
     elif result == "WIN":
-        handle_victory(player.party[0], rival.party[0], is_trainer_battle=True)
+        handle_victory(player_pokemon, rival.party[0], is_trainer_battle=True)
 
         dialogue.talk(rival.name, "O QUÊ? Inacreditável! Escolhi o POKÉMON errado!")
 
@@ -288,27 +294,89 @@ def rival_first_battle(player, rival):
     dialogue.next_dialogue()
 
 
+def has_available_pokemon(player):
+    for pokemon in player.party:
+        if pokemon.current_hp > 0:
+            return True
+
+    return False
+
+
+def choose_battle_menu(player, current_pokemon=None, force_switch=False):
+    while True:
+        dialogue.clear_screen()
+
+        print("--- PARTY ---\n")
+
+        for i, pokemon in enumerate(player.party, start=1):
+            hp = max(0, pokemon.current_hp)
+            print(f"{i}- {pokemon.name:<12} HP: {hp}/{pokemon.max_hp}")
+
+        if not force_switch:
+            print("\n0- VOLTAR")
+
+        try:
+            choice = int(input("\nEscolha: "))
+
+        except ValueError:
+            dialogue.clear_screen()
+            print("[ Opcao invalida! Tente novamente. ]")
+            dialogue.next_dialogue()
+
+            continue
+
+        if choice == 0 and not force_switch:
+            return
+
+        if 1 <= choice <= len(player.party):
+            selected_pokemon = player.party[choice - 1]
+
+            if selected_pokemon.current_hp <= 0:
+                dialogue.clear_screen()
+                print("Esse Pokémon está derrotado!")
+                dialogue.next_dialogue()
+
+            elif selected_pokemon == current_pokemon:
+                dialogue.clear_screen()
+                print("Esse Pokémon já está em batalha!")
+                dialogue.next_dialogue()
+
+            else:
+                return selected_pokemon
+
+        else:
+            dialogue.clear_screen()
+            print("[ Opcao invalida! Tente novamente. ]")
+            dialogue.next_dialogue()
+
+
 def trainer_battle(player, trainer):
     dialogue.clear_screen()
 
     print(f"\n{trainer.name} desafia você para uma batalha!")
-    print(f"\n{trainer.name} enviou {trainer.party[0].name}!")
-    dialogue.next_dialogue()
 
-    print(f"\nVai! {player.party[0].name}!")
-    dialogue.next_dialogue()
+    player_pokemon = player.party[0]
 
-    result = battle_menu(player, trainer.party[0], is_trainer_battle=True)
+    for pokemon in trainer.party:
+        print(f"\n{trainer.name} enviou {pokemon.name}!")
+        dialogue.next_dialogue()
 
-    if result == "LOSE":
-        print(f"{player.name} perdeu para {trainer.name}!")
+        print(f"\nVai! {player_pokemon.name}!")
+        dialogue.next_dialogue()
 
-    elif result == "WIN":
-        handle_victory(player.party[0], trainer.party[0], is_trainer_battle=True)
+        result, player_pokemon = battle_menu(player, pokemon, is_trainer_battle=True, player_pokemon=player_pokemon)
 
-        print(f"{player.name} derrotou {trainer.name}!")
+        if result == "LOSE":
+            print(f"{player.name} perdeu para {trainer.name}!")
+            dialogue.next_dialogue()
 
-    return result
+            return "LOSE"
+
+        handle_victory(player_pokemon, pokemon, is_trainer_battle=True)
+
+    print(f"{player.name} derrotou {trainer.name}!")
+
+    return "WIN"
 
 
 def wild_battle(player, wild_pokemon):
@@ -318,10 +386,10 @@ def wild_battle(player, wild_pokemon):
     print(f"\nVai! {player.party[0].name}!")
     dialogue.next_dialogue()
 
-    result = battle_menu(player, wild_pokemon, is_trainer_battle=False)
+    result, player_pokemon = battle_menu(player, wild_pokemon, is_trainer_battle=False, player_pokemon=player.party[0])
 
     if result == "WIN":
-        handle_victory(player.party[0], wild_pokemon, is_trainer_battle=False)
+        handle_victory(player_pokemon, wild_pokemon, is_trainer_battle=False)
 
     return result
 
@@ -336,11 +404,10 @@ def handle_victory(player_pokemon, enemy_pokemon, is_trainer_battle):
     dialogue.next_dialogue()
 
 
-def battle_menu(player, enemy_pokemon, is_trainer_battle):
+def battle_menu(player, enemy_pokemon, is_trainer_battle, player_pokemon):
+
     while True:
         dialogue.clear_screen()
-
-        player_pokemon = player.party[0]
 
         show_battle_stats(player_pokemon, enemy_pokemon)
 
@@ -364,19 +431,44 @@ def battle_menu(player, enemy_pokemon, is_trainer_battle):
 
                 if result == "WIN":
                     dialogue.next_dialogue()
-                    return "WIN"
+                    return "WIN", player_pokemon
 
                 elif result == "LOSE":
                     dialogue.next_dialogue()
-                    return "LOSE"
-                
-                dialogue.next_dialogue()
+
+                    if has_available_pokemon(player):
+                        player_pokemon = choose_battle_menu(player, player_pokemon, force_switch=True)
+
+                        if player_pokemon is None:
+                            return "LOSE", player_pokemon
+
+                        dialogue.clear_screen()
+                        print(f"\nVai! {player_pokemon.name}!")
+                        dialogue.next_dialogue()
+
+                        result = enemy_turn(player_pokemon, enemy_pokemon)
+
+                        if result == "LOSE":
+                            dialogue.next_dialogue()
+
+                            if not has_available_pokemon(player):
+                                return "LOSE", player_pokemon
+
+                            continue
+
+                        dialogue.next_dialogue()
+
+                    else:
+                        return "LOSE", player_pokemon
+
+                else:
+                    dialogue.next_dialogue()
 
         elif choice == "2":
             result = try_to_run(is_trainer_battle)
 
             if result:
-                break
+                return "RUN", player_pokemon
 
             elif not result and not is_trainer_battle:
                 result = enemy_turn(player_pokemon, enemy_pokemon)
@@ -385,13 +477,51 @@ def battle_menu(player, enemy_pokemon, is_trainer_battle):
                 
                 if result == "LOSE":
                     dialogue.next_dialogue()
-                    return "LOSE"
+
+                    if has_available_pokemon(player):
+                        player_pokemon = choose_battle_menu(player, player_pokemon, force_switch=True)
+
+                        if player_pokemon is None:
+                            return "LOSE", player_pokemon
+
+                        dialogue.clear_screen()
+                        print(f"\nVai! {player_pokemon.name}!")
+                        dialogue.next_dialogue()
+
+                    else:
+                        return "LOSE", player_pokemon
 
         elif choice == "3":
             print("Nao implementado.")
 
         elif choice == "4":
-            party_menu(player)
+            selected_pokemon = choose_battle_menu(player, player_pokemon)
+
+            if selected_pokemon is not None:
+                player_pokemon = selected_pokemon
+
+                dialogue.clear_screen()
+                print(f"\nVai! {player_pokemon.name}!")
+                dialogue.next_dialogue()
+
+                result = enemy_turn(player_pokemon, enemy_pokemon)
+
+                if result == "LOSE":
+                    dialogue.next_dialogue()
+
+                    if not has_available_pokemon(player):
+                        return "LOSE", player_pokemon
+
+                    player_pokemon = choose_battle_menu(player, player_pokemon, force_switch=True)
+
+                    if player_pokemon is None:
+                        return "LOSE", player_pokemon
+
+                    dialogue.clear_screen()
+                    print(f"\nVai! {player_pokemon.name}!")
+                    dialogue.next_dialogue()
+
+                dialogue.next_dialogue()
 
         else:
             dialogue.clear_screen()
