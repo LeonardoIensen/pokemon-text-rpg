@@ -1,5 +1,6 @@
 import dialogue
 
+MAX_LEVEL = 20
 MAX_MOVES = 4
 
 pokedex  = {
@@ -612,6 +613,13 @@ moves = {
 class Pokemon:
     def __init__(self, name, level):
         self.name = name
+
+        if level > MAX_LEVEL:
+            level = MAX_LEVEL
+
+        if level < 1:
+            level = 1
+
         self.level = level
         self.experience = 0
 
@@ -650,7 +658,7 @@ class Pokemon:
 
         print(f"{self.name} ganhou {experience_gained} de EXP.!")
 
-        while self.experience >= self.exp_next_level():
+        while self.experience >= self.exp_next_level() and self.level < MAX_LEVEL:
             required_experience = self.exp_next_level()
 
             self.level = self.level + 1
