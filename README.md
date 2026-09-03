@@ -52,6 +52,10 @@ Em desenvolvimento.
   * Recuperação completa do HP ao subir de nível
   * Sistema de golpes
   * Pokémon possuem golpes disponíveis para batalha
+  * Sistema de aprendizado de golpes por nível
+  * Aprendizado automático de novos golpes ao subir de nível
+  * Limite de 4 golpes por Pokémon
+  * Sistema de substituição de golpes quando o Pokémon já possui 4 golpes
 
 * **Sistema de Treinador**
   * Classe `Trainer` para criação dos treinadores
