@@ -11,7 +11,7 @@ pokedex  = {
         "attack": 70,
         "defense": 50,
         "speed": 60,
-        "base_exp": 65,
+        "base_exp": 60,
 
         "moves": [
             "SCRATCH",
@@ -21,16 +21,21 @@ pokedex  = {
             7: "EMBER",
             13: "METAL CLAW",
             16: "FLAME WHEEL",
+        },
+
+        "evolution": {
+            "level": 16,
+            "pokemon": "CHARMELEON"
         }
     },
 
     "CHARMELEON": {
         "type": "FIRE",
-        "hp": 75,
-        "attack": 73,
-        "defense": 73,
-        "speed": 97,
-        "base_exp": 145,
+        "hp": 70,
+        "attack": 80,
+        "defense": 70,
+        "speed": 90,
+        "base_exp": 100,
 
         "moves": [
             "SCRATCH",
@@ -51,7 +56,7 @@ pokedex  = {
         "attack": 60,
         "defense": 60,
         "speed": 50,
-        "base_exp": 65,
+        "base_exp": 60,
 
         "moves": [
             "TACKLE",
@@ -61,16 +66,21 @@ pokedex  = {
             7: "VINE WHIP",
             13: "SLAM",
             16: "RAZOR LEAF",
+        },
+
+        "evolution": {
+            "level": 16,
+            "pokemon": "IVYSAUR"
         }
     },
 
     "IVYSAUR": {
         "type": "GRASS / POISON",
         "hp": 70,
-        "attack": 67,
-        "defense": 67,
+        "attack": 70,
+        "defense": 70,
         "speed": 80,
-        "base_exp": 145,
+        "base_exp": 100,
 
         "moves": [
             "TACKLE",
@@ -90,7 +100,7 @@ pokedex  = {
         "attack": 60,
         "defense": 70,
         "speed": 50,
-        "base_exp": 65,
+        "base_exp": 60,
 
         "moves": [
             "TACKLE",
@@ -100,16 +110,21 @@ pokedex  = {
             7: "BUBBLE",
             13: "WATER GUN",
             16: "BITE",
+        },
+
+        "evolution": {
+            "level": 16,
+            "pokemon": "WARTORTLE"
         }
     },
 
     "WARTORTLE": {
         "type": "WATER",
-        "hp": 78,
-        "attack": 67,
-        "defense": 87,
-        "speed": 67,
-        "base_exp": 145,
+        "hp": 80,
+        "attack": 70,
+        "defense": 80,
+        "speed": 70,
+        "base_exp": 100,
 
         "moves": [
             "TACKLE",
@@ -125,11 +140,11 @@ pokedex  = {
 
     "PIKACHU": {
         "type": "ELECTRIC",
-        "hp": 30,
+        "hp": 50,
         "attack": 70,
         "defense": 40,
         "speed": 90,
-        "base_exp": 65,
+        "base_exp": 50,
 
         "moves": [
             "THUNDER SHOCK",
@@ -148,7 +163,7 @@ pokedex  = {
         "attack": 50,
         "defense": 40,
         "speed": 50,
-        "base_exp": 60,
+        "base_exp": 50,
 
         "moves": [
             "TACKLE",
@@ -158,16 +173,21 @@ pokedex  = {
             7: "QUICK ATTACK",
             12: "HYPER FANG",
             16: "SLAM",
+        },
+
+        "evolution": {
+            "level": 18,
+            "pokemon": "RATICATE"
         }
     },
 
     "RATICATE": {
         "type": "NORMAL",
         "hp": 60,
-        "attack": 95,
-        "defense": 85,
-        "speed": 120,
-        "base_exp": 140,
+        "attack": 80,
+        "defense": 70,
+        "speed": 90,
+        "base_exp": 100,
 
         "moves": [
             "TACKLE",
@@ -187,7 +207,7 @@ pokedex  = {
         "attack": 40,
         "defense": 40,
         "speed": 50,
-        "base_exp": 60,
+        "base_exp": 50,
 
         "moves": [
             "TACKLE",
@@ -197,16 +217,21 @@ pokedex  = {
             7: "PECK",
             11: "GUST",
             15: "QUICK ATTACK",
+        },
+
+        "evolution": {
+            "level": 18,
+            "pokemon": "PIDGEOTTO"
         }
     },
 
     "PIDGEOTTO": {
         "type": "NORMAL / FLYING",
-        "hp": 75,
-        "attack": 82,
+        "hp": 60,
+        "attack": 80,
         "defense": 70,
-        "speed": 85,
-        "base_exp": 140,
+        "speed": 90,
+        "base_exp": 100,
 
         "moves": [
             "TACKLE",
@@ -216,7 +241,7 @@ pokedex  = {
         ],
 
         "learnset": {
-            18: "AERIAL ACE",
+            20: "AERIAL ACE",
         }
     },
 
@@ -226,7 +251,7 @@ pokedex  = {
         "attack": 60,
         "defense": 40,
         "speed": 70,
-        "base_exp": 60,
+        "base_exp": 50,
 
         "moves": [
             "PECK",
@@ -236,16 +261,21 @@ pokedex  = {
             7: "GUST",
             11: "FURY ATTACK",
             15: "QUICK ATTACK",
+        },
+
+        "evolution": {
+            "level": 18,
+            "pokemon": "FEAROW"
         }
     },
 
     "FEAROW": {
         "type": "NORMAL / FLYING",
-        "hp": 65,
-        "attack": 100,
-        "defense": 73,
-        "speed": 100,
-        "base_exp": 140,
+        "hp": 60,
+        "attack": 80,
+        "defense": 70,
+        "speed": 90,
+        "base_exp": 100,
 
         "moves": [
             "PECK",
@@ -255,7 +285,7 @@ pokedex  = {
         ],
 
         "learnset": {
-            18: "AERIAL ACE",
+            20: "AERIAL ACE",
         }
     },
 
@@ -265,7 +295,7 @@ pokedex  = {
         "attack": 70,
         "defense": 40,
         "speed": 70,
-        "base_exp": 60,
+        "base_exp": 50,
 
         "moves": [
             "SCRATCH",
@@ -285,11 +315,16 @@ pokedex  = {
         "attack": 40,
         "defense": 40,
         "speed": 40,
-        "base_exp": 60,
+        "base_exp": 40,
 
         "moves": [
             "TACKLE",
-        ]
+        ],
+
+        "evolution": {
+            "level": 7,
+            "pokemon": "METAPOD"
+        }
     },
 
     "METAPOD": {
@@ -298,20 +333,25 @@ pokedex  = {
         "attack": 30,
         "defense": 70,
         "speed": 30,
-        "base_exp": 70,
+        "base_exp": 60,
 
         "moves": [
             "TACKLE",
-        ]
+        ],
+
+        "evolution": {
+            "level": 10,
+            "pokemon": "BUTTERFREE"
+        }
     },
 
     "BUTTERFREE": {
         "type": "BUG / FLYING",
         "hp": 60,
-        "attack": 55,
-        "defense": 65,
-        "speed": 72,
-        "base_exp": 140,
+        "attack": 70,
+        "defense": 70,
+        "speed": 90,
+        "base_exp": 100,
 
         "moves": [
             "CONFUSION",
@@ -331,11 +371,16 @@ pokedex  = {
         "attack": 30,
         "defense": 30,
         "speed": 50,
-        "base_exp": 60,
+        "base_exp": 50,
 
         "moves": [
             "POISON STING",
-        ]
+        ],
+
+        "evolution": {
+            "level": 7,
+            "pokemon": "KAKUNA"
+        }
     },
 
     "KAKUNA": {
@@ -344,20 +389,25 @@ pokedex  = {
         "attack": 30,
         "defense": 70,
         "speed": 30,
-        "base_exp": 70,
+        "base_exp": 60,
 
         "moves": [
             "POISON STING",
-        ]
+        ],
+
+        "evolution": {
+            "level": 10,
+            "pokemon": "BEEDRILL"
+        }
     },
 
     "BEEDRILL": {
         "type": "BUG / POISON",
         "hp": 70,
         "attack": 80,
-        "defense": 55,
-        "speed": 85,
-        "base_exp": 140,
+        "defense": 70,
+        "speed": 90,
+        "base_exp": 100,
 
         "moves": [
             "POISON STING",
@@ -372,11 +422,11 @@ pokedex  = {
 
     "GEODUDE": {
         "type": "ROCK / GROUND",
-        "hp": 40,
-        "attack": 80,
-        "defense": 100,
-        "speed": 20,
-        "base_exp": 70,
+        "hp": 70,
+        "attack": 60,
+        "defense": 90,
+        "speed": 30,
+        "base_exp": 60,
 
         "moves": [
             "TACKLE",
@@ -385,7 +435,7 @@ pokedex  = {
 
     "SANDSHREW": {
         "type": "GROUND",
-        "hp": 50,
+        "hp": 60,
         "attack": 70,
         "defense": 80,
         "speed": 40,
@@ -401,9 +451,9 @@ pokedex  = {
         "type": "ROCK / GROUND",
         "hp": 80,
         "attack": 70,
-        "defense": 90,
-        "speed": 40,
-        "base_exp": 150,
+        "defense": 100,
+        "speed": 30,
+        "base_exp": 120,
 
         "moves": [
             "TACKLE",
@@ -631,10 +681,12 @@ class Pokemon:
         self.base_exp = pokedex[name]["base_exp"]
         self.moves = pokedex[name]["moves"].copy()
         self.learnset = pokedex[name].get("learnset", {})
+        self.evolution = pokedex[name].get("evolution", {})
 
         self.calculate_stats()
         self.load_moves()
         self.heal_full()
+
 
     def calculate_stats(self):
         self.max_hp = int(((self.base_hp * 2) * self.level) / 100) + self.level + 10
@@ -642,16 +694,47 @@ class Pokemon:
         self.defense = int(((self.base_defense * 2) * self.level) / 100) + 5
         self.speed = int(((self.base_speed * 2) * self.level) / 100) + 5
 
+
     def load_moves(self):
         for level, move in self.learnset.items():
             if self.level >= level and move not in self.moves:
                 if len(self.moves) < MAX_MOVES:
                     self.moves.append(move)
 
+
     def exp_next_level(self):
         required_experience = self.level * 10
 
         return required_experience
+
+
+    def evolve(self):
+        if not self.evolution:
+            return
+
+        if self.level == self.evolution["level"]:
+            new_name = self.evolution["pokemon"]
+            old_name = self.name
+
+            dialogue.clear_screen()
+            print(f"O que!? {old_name} está evoluindo!\n")
+            print(f"{old_name} evoluiu para {new_name}!")
+            dialogue.next_dialogue()
+
+            self.name = new_name
+            self.type = pokedex[new_name]["type"]
+            self.base_hp = pokedex[new_name]["hp"]
+            self.base_attack = pokedex[new_name]["attack"]
+            self.base_defense = pokedex[new_name]["defense"]
+            self.base_speed = pokedex[new_name]["speed"]
+            self.base_exp = pokedex[new_name]["base_exp"]
+            self.learnset = pokedex[new_name].get("learnset", {})
+            self.evolution = pokedex[new_name].get("evolution", {})    
+
+            self.calculate_stats()
+            self.heal_full()
+            self.learn_move()
+
 
     def gain_experience(self, experience_gained):
         self.experience = self.experience + experience_gained
@@ -671,6 +754,8 @@ class Pokemon:
             self.calculate_stats()
             self.heal_full()
             self.learn_move()
+            self.evolve()
+
 
     def learn_move(self):
         if self.level in self.learnset:
@@ -731,6 +816,7 @@ class Pokemon:
                     dialogue.clear_screen()
                     print("\n[ Opcao invalida! Tente novamente. ]")
                     dialogue.next_dialogue()
+
 
     def heal_full(self):
         self.current_hp = self.max_hp

@@ -22,7 +22,7 @@ def calculate_damage(attacker, defender, move):
 
 
 def calculate_exp_gain(enemy_pokemon, is_trainer_battle):
-    exp_gain = int(enemy_pokemon.base_exp * enemy_pokemon.level / 7)
+    exp_gain = int(enemy_pokemon.base_exp * enemy_pokemon.level / 9)
 
     if is_trainer_battle:
         exp_gain = int(exp_gain * 1.5)
@@ -46,7 +46,7 @@ def decide_first_attacker(player_pokemon, enemy_pokemon):
 def enemy_turn(player_pokemon, enemy_pokemon):
     enemy_move = random.choice(enemy_pokemon.moves)
 
-    print(f"\n{enemy_pokemon.name} usou {enemy_move}!")
+    print(f"{enemy_pokemon.name} usou {enemy_move}!")
 
     damage = calculate_damage(enemy_pokemon, player_pokemon, enemy_move)
 
@@ -65,12 +65,12 @@ def enemy_turn(player_pokemon, enemy_pokemon):
 
 
 def player_turn(player_pokemon, enemy_pokemon, move):
-    print(f"\n{player_pokemon.name} usou {move}!")
+    print(f"{player_pokemon.name} usou {move}!\n")
 
     damage = calculate_damage(player_pokemon, enemy_pokemon, move)
 
     if damage == 0:
-        print(f"\n{player_pokemon.name} errou o ataque!")
+        print(f"{player_pokemon.name} errou o ataque!\n")
 
     else:
         enemy_pokemon.current_hp -= damage
@@ -79,7 +79,7 @@ def player_turn(player_pokemon, enemy_pokemon, move):
             enemy_pokemon.current_hp = 0
 
     if enemy_pokemon.current_hp <= 0:
-        print(f"\n{enemy_pokemon.name} foi derrotado!")
+        print(f"{enemy_pokemon.name} foi derrotado!")
         return "WIN"
 
 
@@ -353,13 +353,14 @@ def choose_battle_menu(player, current_pokemon=None, force_switch=False):
 def trainer_battle(player, trainer):
     dialogue.clear_screen()
 
-    print(f"\n{trainer.name} desafia você para uma batalha!")
+    print(f"{trainer.name} desafia você para uma batalha!")
+    dialogue.next_dialogue()
 
     player_pokemon = player.party[0]
 
     for pokemon in trainer.party:
-        print(f"\n{trainer.name} enviou {pokemon.name}!")
-        dialogue.next_dialogue()
+        dialogue.clear_screen()
+        print(f"{trainer.name} enviou {pokemon.name}!")
 
         print(f"\nVai! {player_pokemon.name}!")
         dialogue.next_dialogue()
