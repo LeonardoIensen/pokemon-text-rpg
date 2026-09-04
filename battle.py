@@ -2,8 +2,10 @@ import dialogue
 import pokemon
 import random
 
+CRITICAL_HIT_CHANCE = 16
 
-def calculate_damage(attacker, defender, move):
+
+def calculate_damage(attacker, defender, move, is_critical=False):
     move_data = pokemon.moves[move]
 
     power = move_data["power"]
@@ -18,7 +20,20 @@ def calculate_damage(attacker, defender, move):
         damage = (((attacker.level * 2) // 5 + 2) * power * attacker.attack) // defender.defense
         damage = damage // 50 + 2
 
+        if is_critical:
+            damage = damage* 2
+
     return int(damage)
+
+
+def check_critical_hit():
+    critical_roll = random.randint(1, CRITICAL_HIT_CHANCE)
+
+    if critical_roll == 1:
+        return True
+
+    else:
+        return False
 
 
 def calculate_exp_gain(enemy_pokemon, is_trainer_battle):
@@ -48,7 +63,12 @@ def enemy_turn(player_pokemon, enemy_pokemon):
 
     print(f"{enemy_pokemon.name} usou {enemy_move}!")
 
-    damage = calculate_damage(enemy_pokemon, player_pokemon, enemy_move)
+    is_critical = check_critical_hit()
+
+    damage = calculate_damage(enemy_pokemon, player_pokemon, enemy_move, is_critical)
+
+    if is_critical and damage > 0:
+        print(f"\n{enemy_pokemon.name} acertou um golpe crítico!\n")
 
     if damage == 0:
         print(f"\n{enemy_pokemon.name} errou o ataque!")
@@ -67,7 +87,12 @@ def enemy_turn(player_pokemon, enemy_pokemon):
 def player_turn(player_pokemon, enemy_pokemon, move):
     print(f"{player_pokemon.name} usou {move}!\n")
 
-    damage = calculate_damage(player_pokemon, enemy_pokemon, move)
+    is_critical = check_critical_hit()
+
+    damage = calculate_damage(player_pokemon, enemy_pokemon, move, is_critical)
+
+    if is_critical and damage > 0:
+        print(f"\n{player_pokemon.name} acertou um golpe crítico!\n")
 
     if damage == 0:
         print(f"{player_pokemon.name} errou o ataque!\n")
