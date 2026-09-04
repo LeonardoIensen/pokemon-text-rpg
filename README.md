@@ -48,6 +48,10 @@ Em desenvolvimento.
   * Level up automático
   * Level up múltiplo quando há EXP suficiente
   * Manutenção da EXP excedente após subir de nível
+  * Sistema de evolução por nível
+  * Evolução automática ao atingir o nível necessário
+  * Atualização dos dados-base após a evolução
+  * Aprendizado de golpes da forma evoluída
   * Cálculo de HP, Attack, Defense e Speed baseado nos stats-base e nível
   * Sistema de HP atual e HP máximo
   * Recuperação completa do HP ao subir de nível
