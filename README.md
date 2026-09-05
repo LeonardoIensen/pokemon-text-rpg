@@ -102,6 +102,7 @@ Em desenvolvimento.
   * Chance de 90% de fuga contra Pokémon selvagens
   * Pokémon selvagem ataca após uma tentativa de fuga malsucedida
   * Sistema de acerto crítico com chance sorteada e dano dobrado
+  * Multiplicador de dano pela tipagem do Pokemon
 
 * **Mapa e Exploração**
 
