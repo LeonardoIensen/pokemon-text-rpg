@@ -764,6 +764,8 @@ class Pokemon:
             if new_move in self.moves:
                 return
 
+            new_move_type = moves[new_move]["type"]
+
             if len(self.moves) < MAX_MOVES:
                 self.moves.append(new_move)
                 print(f"\n{self.name} aprendeu {new_move}!")
@@ -776,7 +778,7 @@ class Pokemon:
             while True:
                 dialogue.clear_screen()
 
-                print(f"\nMas {self.name} já conhece 4 golpes.")
+                print(f"Mas {self.name} já conhece 4 golpes.")
                 print("\nEscolha um golpe para esquecer:\n")
 
                 for i, move in enumerate(self.moves, start=1):
@@ -784,7 +786,7 @@ class Pokemon:
 
                     print(f"{i} - {move} ({move_type})")
 
-                print(f"0 - Não aprender {new_move}")
+                print(f"0 - Não aprender {new_move} ({new_move_type})")
 
                 choice = input("\nEscolha: ")
 
