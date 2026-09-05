@@ -4,6 +4,107 @@ import random
 
 CRITICAL_HIT_CHANCE = 16
 
+TYPE_EFFECTIVENESS = {
+
+    "NORMAL": {
+        "ROCK": 0.5,
+    },
+
+    "FIRE": {
+        "GRASS": 2,
+        "BUG": 2,
+        "FIRE": 0.5,
+        "WATER": 0.5,
+        "ROCK": 0.5,
+    },
+
+    "WATER": {
+        "FIRE": 2,
+        "ROCK": 2,
+        "GROUND": 2,
+        "WATER": 0.5,
+        "GRASS": 0.5,
+    },
+
+    "GRASS": {
+        "WATER": 2,
+        "ROCK": 2,
+        "GROUND": 2,
+        "FIRE": 0.5,
+        "GRASS": 0.5,
+        "POISON": 0.5,
+        "BUG": 0.5,
+        "FLYING": 0.5,
+    },
+
+    "ELECTRIC": {
+        "WATER": 2,
+        "FLYING": 2,
+        "ELECTRIC": 0.5,
+        "GRASS": 0.5,
+        "GROUND": 0,
+    },
+
+    "FLYING": {
+        "GRASS": 2,
+        "BUG": 2,
+        "FIGHT": 2,
+        "ELECTRIC": 0.5,
+        "ROCK": 0.5,
+    },
+
+    "POISON": {
+        "GRASS": 2,
+        "POISON": 0.5,
+        "GROUND": 0.5,
+        "ROCK": 0.5,
+    },
+
+    "PSYCHIC": {
+        "FIGHT": 2,
+        "POISON": 2,
+        "PSYCHIC": 0.5,
+    },
+
+    "STEEL": {
+        "ROCK": 2,
+        "FIRE": 0.5,
+        "WATER": 0.5,
+        "ELECTRIC": 0.5,
+    },
+
+    "FIGHT": {
+        "NORMAL": 2,
+        "ROCK": 2,
+        "POISON": 0.5,
+        "FLYING": 0.5,
+        "BUG": 0.5,
+        "PSYCHIC": 0.5,
+    },
+
+    "DARK": {
+        "PSYCHIC": 2,
+        "FIGHT": 0.5,
+    },
+
+    "ROCK": {
+        "FIRE": 2,
+        "FLYING": 2,
+        "BUG": 2,
+        "FIGHT": 0.5,
+        "GROUND": 0.5,
+    },
+
+    "GROUND": {
+        "FIRE": 2,
+        "ELECTRIC": 2,
+        "POISON": 2,
+        "ROCK": 2,
+        "GRASS": 0.5,
+        "BUG": 0.5,
+        "FLYING": 0,
+    },
+}
 
 def calculate_damage(attacker, defender, move, is_critical=False):
     move_data = pokemon.moves[move]
@@ -21,7 +122,17 @@ def calculate_damage(attacker, defender, move, is_critical=False):
         damage = damage // 50 + 2
 
         if is_critical:
-            damage = damage* 2
+            damage = damage * 2
+
+        type_multiplier = get_type_multiplier(move, defender)
+
+        if type_multiplier == 0:
+            return 0
+
+        damage = int(damage * type_multiplier)
+
+        if damage < 1:
+            damage = 1
 
     return int(damage)
 
@@ -36,6 +147,20 @@ def check_critical_hit():
         return False
 
 
+def get_type_multiplier(move, defender):
+    move_type = pokemon.moves[move]["type"]
+    defender_types = defender.type.split(" / ")
+
+    multiplier = 1
+
+    for def_type in defender_types:
+        type_val = TYPE_EFFECTIVENESS.get(move_type, {}).get(def_type, 1)
+
+        multiplier = multiplier * type_val
+
+    return multiplier
+
+
 def calculate_exp_gain(enemy_pokemon, is_trainer_battle):
     exp_gain = int(enemy_pokemon.base_exp * enemy_pokemon.level / 9)
 
@@ -48,10 +173,10 @@ def calculate_exp_gain(enemy_pokemon, is_trainer_battle):
 def decide_first_attacker(player_pokemon, enemy_pokemon):
     if player_pokemon.speed > enemy_pokemon.speed:
         first_attacker = "player"
-    
+
     elif enemy_pokemon.speed > player_pokemon.speed:
         first_attacker = "enemy"
-    
+
     else:
         first_attacker = random.choice(["player", "enemy"])
 
@@ -59,21 +184,29 @@ def decide_first_attacker(player_pokemon, enemy_pokemon):
 
 
 def enemy_turn(player_pokemon, enemy_pokemon):
+    dialogue.clear_screen()
+
     enemy_move = random.choice(enemy_pokemon.moves)
 
     print(f"{enemy_pokemon.name} usou {enemy_move}!")
 
     is_critical = check_critical_hit()
+    type_multiplier = get_type_multiplier(enemy_move, player_pokemon)
 
     damage = calculate_damage(enemy_pokemon, player_pokemon, enemy_move, is_critical)
 
-    if is_critical and damage > 0:
-        print(f"\n{enemy_pokemon.name} acertou um golpe crítico!\n")
-
     if damage == 0:
-        print(f"\n{enemy_pokemon.name} errou o ataque!")
+        if type_multiplier == 0:
+            show_type_effectiveness_message(type_multiplier)
+        else:
+            print(f"\n{enemy_pokemon.name} errou o ataque!")
 
     else:
+        show_type_effectiveness_message(type_multiplier)
+
+        if is_critical:
+            print(f"\n{enemy_pokemon.name} acertou um golpe crítico!")
+
         player_pokemon.current_hp -= damage
 
         if player_pokemon.current_hp < 0:
@@ -81,31 +214,45 @@ def enemy_turn(player_pokemon, enemy_pokemon):
 
     if player_pokemon.current_hp <= 0:
         print(f"\nSeu {player_pokemon.name} foi derrotado!")
+        dialogue.next_dialogue()
         return "LOSE"
+
+    dialogue.next_dialogue()
 
 
 def player_turn(player_pokemon, enemy_pokemon, move):
-    print(f"{player_pokemon.name} usou {move}!\n")
+    dialogue.clear_screen()
+
+    print(f"{player_pokemon.name} usou {move}!")
 
     is_critical = check_critical_hit()
+    type_multiplier = get_type_multiplier(move, enemy_pokemon)
 
     damage = calculate_damage(player_pokemon, enemy_pokemon, move, is_critical)
 
-    if is_critical and damage > 0:
-        print(f"\n{player_pokemon.name} acertou um golpe crítico!\n")
-
     if damage == 0:
-        print(f"{player_pokemon.name} errou o ataque!\n")
+        if type_multiplier == 0:
+            show_type_effectiveness_message(type_multiplier)
+        else:
+            print(f"\n{player_pokemon.name} errou o ataque!")
 
     else:
+        show_type_effectiveness_message(type_multiplier)
+
+        if is_critical:
+            print(f"\n{player_pokemon.name} acertou um golpe crítico!")
+
         enemy_pokemon.current_hp -= damage
 
         if enemy_pokemon.current_hp < 0:
             enemy_pokemon.current_hp = 0
 
     if enemy_pokemon.current_hp <= 0:
-        print(f"{enemy_pokemon.name} foi derrotado!")
+        print(f"\n{enemy_pokemon.name} foi derrotado!")
+        dialogue.next_dialogue()
         return "WIN"
+
+    dialogue.next_dialogue()
 
 
 def execute_turn(player_pokemon, enemy_pokemon, first_attacker, move):
@@ -155,6 +302,17 @@ def try_to_run(is_trainer_battle):
     return True
 
 
+def show_type_effectiveness_message(multiplier):
+    if multiplier > 1:
+        print("\nFoi super efetivo!")
+
+    elif 0 < multiplier < 1:
+        print("\nNão fez muito efeito...")
+
+    elif multiplier == 0:
+        print("\nNão teve efeito...")
+
+
 def show_battle_stats(player_pokemon, enemy_pokemon):
     print("------------------------")
 
@@ -162,7 +320,7 @@ def show_battle_stats(player_pokemon, enemy_pokemon):
     print(f"HP: {enemy_pokemon.current_hp}/{enemy_pokemon.max_hp}")
 
     print("\nVS\n")
-    
+
     print(f"{player_pokemon.name} Lv{player_pokemon.level}")
     print(f"HP: {player_pokemon.current_hp}/{player_pokemon.max_hp}    XP: {player_pokemon.experience}/{player_pokemon.exp_next_level()}")
 
@@ -171,7 +329,7 @@ def show_battle_stats(player_pokemon, enemy_pokemon):
 
 def show_summary(selected_pokemon):
     dialogue.clear_screen()
-    
+
     print("--- SUMARIO ---")
     print(f"Name: {selected_pokemon.name} Lv: {selected_pokemon.level}")
     print(f"TYPE: {selected_pokemon.type}\n")
@@ -451,17 +609,12 @@ def battle_menu(player, enemy_pokemon, is_trainer_battle, player_pokemon):
 
                 first_attacker = decide_first_attacker(player_pokemon, enemy_pokemon)
 
-                dialogue.clear_screen()
-
                 result = execute_turn(player_pokemon, enemy_pokemon, first_attacker, move)
 
                 if result == "WIN":
-                    dialogue.next_dialogue()
                     return "WIN", player_pokemon
 
                 elif result == "LOSE":
-                    dialogue.next_dialogue()
-
                     if has_available_pokemon(player):
                         player_pokemon = choose_battle_menu(player, player_pokemon, force_switch=True)
 
@@ -475,20 +628,13 @@ def battle_menu(player, enemy_pokemon, is_trainer_battle, player_pokemon):
                         result = enemy_turn(player_pokemon, enemy_pokemon)
 
                         if result == "LOSE":
-                            dialogue.next_dialogue()
-
                             if not has_available_pokemon(player):
                                 return "LOSE", player_pokemon
 
                             continue
 
-                        dialogue.next_dialogue()
-
                     else:
                         return "LOSE", player_pokemon
-
-                else:
-                    dialogue.next_dialogue()
 
         elif choice == "2":
             result = try_to_run(is_trainer_battle)
@@ -499,11 +645,7 @@ def battle_menu(player, enemy_pokemon, is_trainer_battle, player_pokemon):
             elif not result and not is_trainer_battle:
                 result = enemy_turn(player_pokemon, enemy_pokemon)
 
-                dialogue.next_dialogue()
-                
                 if result == "LOSE":
-                    dialogue.next_dialogue()
-
                     if has_available_pokemon(player):
                         player_pokemon = choose_battle_menu(player, player_pokemon, force_switch=True)
 
@@ -533,8 +675,6 @@ def battle_menu(player, enemy_pokemon, is_trainer_battle, player_pokemon):
                 result = enemy_turn(player_pokemon, enemy_pokemon)
 
                 if result == "LOSE":
-                    dialogue.next_dialogue()
-
                     if not has_available_pokemon(player):
                         return "LOSE", player_pokemon
 
@@ -546,8 +686,6 @@ def battle_menu(player, enemy_pokemon, is_trainer_battle, player_pokemon):
                     dialogue.clear_screen()
                     print(f"\nVai! {player_pokemon.name}!")
                     dialogue.next_dialogue()
-
-                dialogue.next_dialogue()
 
         else:
             dialogue.clear_screen()
