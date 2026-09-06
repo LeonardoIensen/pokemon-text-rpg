@@ -450,9 +450,7 @@ def route_3(player):
             return
         
         elif choice == "4":
-            dialogue.clear_screen()
-            print("Menu ainda nao implementado.")
-            dialogue.next_dialogue()
+            player_menu(player)
 
         else:
             dialogue.clear_screen()

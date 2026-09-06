@@ -1,5 +1,6 @@
 import dialogue
 import pokemon
+import trainer
 import random
 
 CRITICAL_HIT_CHANCE = 16
@@ -347,7 +348,7 @@ def show_summary(selected_pokemon):
     dialogue.next_dialogue()
 
 
-def bag(player):
+def bag(player, enemy_pokemon=None, is_trainer_battle=False):
     while True:
         dialogue.clear_screen()
 
@@ -361,9 +362,13 @@ def bag(player):
             return
 
         if choice == "1":
-            dialogue.clear_screen()
-            print("Nao implementado")
-            dialogue.next_dialogue()
+            result = try_catch_pokemon(player, enemy_pokemon, is_trainer_battle)
+
+            if result == "CAUTCH":
+                return "CAUTCH"
+
+            else:
+                return "FAILED"
 
         elif choice == "2":
             use_full_restore_menu(player)
@@ -373,6 +378,44 @@ def bag(player):
             print("[ Opcao invalida! Tente novamente. ]")
             dialogue.next_dialogue()
 
+
+def try_catch_pokemon(player, enemy_pokemon, is_trainer_battle):
+    if enemy_pokemon is None:
+        dialogue.clear_screen()
+        print("Esta não é a hora de usar isso!")
+        dialogue.next_dialogue()
+
+        return
+
+    elif is_trainer_battle:
+        dialogue.clear_screen()
+        print("Você não pode roubar o Pokémon de outro treinador!")
+        dialogue.next_dialogue()
+
+        return
+
+    else:
+        hp_ratio = enemy_pokemon.current_hp / enemy_pokemon.max_hp
+
+        catch_chance = int((1 - hp_ratio) * 70) + 15
+
+        catch_roll = random.randint(1, 100)
+
+        if catch_roll <= catch_chance:
+            dialogue.clear_screen()
+            print(f"{enemy_pokemon.name} capturado!")
+            dialogue.next_dialogue()
+
+            player.add_pokemon(enemy_pokemon)
+
+            return "CAUTCH"
+
+        else:
+            dialogue.clear_screen()
+            print(f"{enemy_pokemon.name} escapou da Pokebola!")
+            dialogue.next_dialogue()
+
+            return "FAILED"
 
 
 def use_full_restore_menu(player):
@@ -551,7 +594,7 @@ def fight_menu(player_pokemon):
         for i, move in enumerate(player_pokemon.moves, start=1):
             print(f"{i} - {move}")
 
-        print("0 - VOLTAR")
+        print("\n0 - VOLTAR")
 
         try:
             choice = int(input("\nEscolha: "))
@@ -790,7 +833,19 @@ def battle_menu(player, enemy_pokemon, is_trainer_battle, player_pokemon):
                         return "LOSE", player_pokemon
 
         elif choice == "3":
-            bag(player)
+            result = bag(player, enemy_pokemon, is_trainer_battle)
+
+            if result == "CAUTCH":
+                return "WIN", player_pokemon
+
+            elif result == "FAILED":
+                result = enemy_turn(player_pokemon, enemy_pokemon)
+
+                if result == "LOSE":
+                    if not has_available_pokemon(player):
+                        return "LOSE", player_pokemon
+                
+                    continue
 
         elif choice == "4":
             selected_pokemon = choose_battle_menu(player, player_pokemon)
