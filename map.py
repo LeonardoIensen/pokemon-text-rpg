@@ -179,9 +179,7 @@ def player_menu(player):
             battle.party_menu(player)
 
         elif choice == "2":
-            dialogue.clear_screen()
-            print("Bag ainda nao implementado.")
-            dialogue.next_dialogue()
+            battle.bag(player)
 
         elif choice == "3":
             dialogue.clear_screen()

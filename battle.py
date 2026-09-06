@@ -347,6 +347,82 @@ def show_summary(selected_pokemon):
     dialogue.next_dialogue()
 
 
+def bag(player):
+    while True:
+        dialogue.clear_screen()
+
+        print("1- POKEBOLA")
+        print("2- FULL RESTORE")
+        print("\n0- VOLTAR")
+
+        choice = input("\nEscolha: ")
+
+        if choice == "0":
+            return
+
+        if choice == "1":
+            dialogue.clear_screen()
+            print("Nao implementado")
+            dialogue.next_dialogue()
+
+        elif choice == "2":
+            use_full_restore_menu(player)
+
+        else:
+            dialogue.clear_screen()
+            print("[ Opcao invalida! Tente novamente. ]")
+            dialogue.next_dialogue()
+
+
+
+def use_full_restore_menu(player):
+    while True:
+        dialogue.clear_screen()
+
+        print("--- PARTY ---\n")
+
+        for i, pokemon in enumerate(player.party, start=1):
+            hp = max(0, pokemon.current_hp)
+            print(f"{i}- {pokemon.name:<12} HP: {hp}/{pokemon.max_hp}")
+
+        print("\n0- VOLTAR")
+
+        try:
+            choice = int(input("\nEscolha: "))
+
+        except ValueError:
+            dialogue.clear_screen()
+            print("[ Opcao invalida! Tente novamente. ]")
+            dialogue.next_dialogue()
+
+            continue
+
+        if choice == 0:
+            return
+
+        elif 1 <= choice <= len(player.party):
+            selected_pokemon = player.party[choice - 1]
+
+            if selected_pokemon.current_hp == selected_pokemon.max_hp:
+                dialogue.clear_screen()
+                print("Esse Pokémon já está com a vida cheia!")
+                dialogue.next_dialogue()
+
+            else:
+                dialogue.clear_screen()
+                print(f"O HP de {selected_pokemon.name} foi totalmente restaurado!")
+                dialogue.next_dialogue()
+
+                selected_pokemon.heal_full()
+
+                return
+
+        else:
+            dialogue.clear_screen()
+            print("[ Opcao invalida! Tente novamente. ]")
+            dialogue.next_dialogue()
+
+
 def swap_pokemon_party(player, first_index):
     while True:
         dialogue.clear_screen()
@@ -714,7 +790,7 @@ def battle_menu(player, enemy_pokemon, is_trainer_battle, player_pokemon):
                         return "LOSE", player_pokemon
 
         elif choice == "3":
-            print("Nao implementado.")
+            bag(player)
 
         elif choice == "4":
             selected_pokemon = choose_battle_menu(player, player_pokemon)
