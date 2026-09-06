@@ -126,6 +126,10 @@ Em desenvolvimento.
   * Retorno automático ao Centro Pokémon após perder batalhas contra treinadores
   * Recuperação completa da equipe após uma derrota
 
+* **Sistema de Mochila (Bag)**
+  * Menu da mochila acessível fora e dentro de batalhas
+  * Item Full Restore funcional para restaurar totalmente o HP de um Pokémon selecionado
+
 ---
 
 ## 🛠️ Tecnologias
