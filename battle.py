@@ -343,7 +343,8 @@ def show_summary(selected_pokemon):
 
     print("--- MOVES ---")
     for i, move in enumerate(selected_pokemon.moves, start=1):
-        print(f"{i} - {move}")
+        move_data = pokemon.moves[move]
+        print(f"{i}- {move:<14} TYPE: {move_data['type']:<8} POWER: {move_data['power']:<3} ACC: {move_data['accuracy']}")
 
     dialogue.next_dialogue()
 
