@@ -71,6 +71,7 @@ Em desenvolvimento.
   * Criação dos treinadores NPCs do Ginásio de Pewter (Treinador Liam e Líder Brock)
   * Batalha contra Treinador Liam e Líder Brock
   * Sistema de estado de derrota dos treinadores do ginásio
+  * Sistema de reordenação e troca de posição de Pokémon na party
 
 * **Sistema de batalha**
 
