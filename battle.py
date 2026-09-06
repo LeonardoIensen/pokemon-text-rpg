@@ -347,7 +347,58 @@ def show_summary(selected_pokemon):
     dialogue.next_dialogue()
 
 
-def pokemon_options_menu(selected_pokemon):
+def swap_pokemon_party(player, first_index):
+    while True:
+        dialogue.clear_screen()
+
+        print("--- PARTY ---\n")
+
+        for i, pokemon in enumerate (player.party, start=1):
+            print(f"{i}- {pokemon.name}")
+
+        print("\n0- VOLTAR")
+
+        try:
+            choice = int(input("\nEscolha o segundo Pokemon: "))
+
+        except ValueError:
+            dialogue.clear_screen()
+            print("[ Opcao invalida! Tente novamente. ]")
+            dialogue.next_dialogue()
+
+            continue
+
+        if choice == 0:
+            return
+
+        if 1 <= choice <= len(player.party):
+            second_index = choice - 1
+
+            if second_index == first_index:
+                dialogue.clear_screen()
+                print("Não pode trocar um Pokémon por ele mesmo!")
+                dialogue.next_dialogue()
+
+                continue
+
+            first_pokemon_name = player.party[first_index].name
+            second_pokemon_name = player.party[second_index].name
+
+            player.party[first_index], player.party[second_index] = player.party[second_index], player.party[first_index]
+
+            dialogue.clear_screen()
+            print(f"{player.name} trocou {first_pokemon_name} por {second_pokemon_name}!")
+            dialogue.next_dialogue()
+
+            return True
+
+        else:
+            dialogue.clear_screen()
+            print("[ Opcao invalida! Tente novamente. ]")
+            dialogue.next_dialogue()
+
+
+def pokemon_options_menu(player, selected_pokemon, firs_index):
     while True:
         dialogue.clear_screen()
 
@@ -366,9 +417,10 @@ def pokemon_options_menu(selected_pokemon):
             show_summary(selected_pokemon)
 
         elif choice == "2":
-            dialogue.clear_screen()
-            print("Nao implementado")
-            dialogue.next_dialogue()
+            result = swap_pokemon_party(player, firs_index)
+
+            if result:
+                return
 
         else:
             dialogue.clear_screen()
@@ -403,7 +455,9 @@ def party_menu(player):
         if 1 <= choice <= len(player.party):
             selected_pokemon = player.party[choice - 1]
 
-            pokemon_options_menu(selected_pokemon)
+            first_index = choice - 1
+
+            pokemon_options_menu(player, selected_pokemon, first_index)
 
         else:
             dialogue.clear_screen()
