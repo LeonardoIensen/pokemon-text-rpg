@@ -104,6 +104,7 @@ Em desenvolvimento.
   * Pokémon selvagem ataca após uma tentativa de fuga malsucedida
   * Sistema de acerto crítico com chance sorteada e dano dobrado
   * Multiplicador de dano pela tipagem do Pokemon
+  * Visualização detalhada de golpes no Sumário e no aprendizado de ataques (Tipo, Poder e Precisão alinhados)
 
 * **Mapa e Exploração**
 
