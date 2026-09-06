@@ -126,9 +126,13 @@ Em desenvolvimento.
   * Retorno automático ao Centro Pokémon após perder batalhas contra treinadores
   * Recuperação completa da equipe após uma derrota
 
-* **Sistema de Mochila (Bag)**
-  * Menu da mochila acessível fora e dentro de batalhas
-  * Item Full Restore funcional para restaurar totalmente o HP de um Pokémon selecionado
+* **Mochila e Captura**
+  * Menu de mochila (BAG) funcional durante as batalhas
+  * Uso de Pokébola para capturar Pokémon selvagens
+  * Chance de captura dinâmica calculada com base no HP restante do alvo
+  * Adição automática do Pokémon capturado à party do jogador
+  * Validações para impedir captura contra treinadores ou fora de batalha
+  * Turno de ataque do inimigo em caso de falha na captura
 
 ---
 
