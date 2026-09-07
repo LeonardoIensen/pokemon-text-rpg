@@ -38,7 +38,6 @@ Em desenvolvimento.
   * Escolha automática do inicial do rival baseada na vantagem de tipo
 
 * **Sistema de Pokémon**
-
   * Pokédex com dados-base dos Pokémon
   * Classe `Pokemon` para criação dos Pokémon
   * Sistema de nível
@@ -55,8 +54,9 @@ Em desenvolvimento.
   * Cálculo de HP, Attack, Defense e Speed baseado nos stats-base e nível
   * Sistema de HP atual e HP máximo
   * Recuperação completa do HP ao subir de nível
-  * Sistema de golpes
-  * Pokémon possuem golpes disponíveis para batalha
+  * Sistema de golpes com categorias de DANO e STATUS
+  * Golpes de status para alteração de atributos (Ataque, Defesa e Velocidade)
+  * Presença de golpes de status no moveset inicial de todos os Pokémon
   * Sistema de aprendizado de golpes por nível
   * Aprendizado automático de novos golpes ao subir de nível
   * Limite de 4 golpes por Pokémon
@@ -74,16 +74,16 @@ Em desenvolvimento.
   * Sistema de reordenação e troca de posição de Pokémon na party
 
 * **Sistema de batalha**
-
   * Menu principal de batalha
   * Menu de Pokémon para visualizar a equipe da party
   * Tela de sumário com estatísticas completas, HP, XP e golpes do Pokémon
   * Exibição dos status, HP e XP atual/necessária dos Pokémon
   * Menu de golpes
   * Escolha de golpes pelo jogador
-  * Cálculo de dano
+  * Execução de golpes de DANO com cálculo de dano e acerto crítico
+  * Execução de golpes de STATUS aplicando buffs no usuário ou debuffs no oponente
   * Precisão dos golpes baseada na accuracy
-  * Golpes podem errar e causar 0 de dano
+  * Golpes podem errar
   * Redução de HP
   * HP dos Pokémon limitado a 0 como valor mínimo
   * Sistema de velocidade para definir a ordem dos ataques
@@ -102,8 +102,7 @@ Em desenvolvimento.
   * Fuga bloqueada contra treinadores
   * Chance de 90% de fuga contra Pokémon selvagens
   * Pokémon selvagem ataca após uma tentativa de fuga malsucedida
-  * Sistema de acerto crítico com chance sorteada e dano dobrado
-  * Multiplicador de dano pela tipagem do Pokemon
+  * Multiplicador de dano pela tipagem com mensagens de efetividade (super efetivo, pouco efetivo e sem efeito)
   * Visualização detalhada de golpes no Sumário e no aprendizado de ataques (Tipo, Poder e Precisão alinhados)
 
 * **Mapa e Exploração**
