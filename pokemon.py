@@ -943,6 +943,7 @@ class Pokemon:
 
 
     def heal_full(self):
+        self.calculate_stats()
         self.current_hp = self.max_hp
 
 
