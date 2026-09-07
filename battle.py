@@ -148,6 +148,44 @@ def check_critical_hit():
         return False
 
 
+def apply_status_move(attacker, defender, move):
+    move_data = pokemon.moves[move]
+    accuracy = move_data["accuracy"]
+    accuracy_roll = random.randint(1, 100)
+
+    if accuracy_roll > accuracy:
+        print(f"\n{attacker.name} errou o ataque!")
+
+        return
+
+    if move_data["target"] == "user":
+        target = attacker
+
+    else:
+        target = defender
+
+    stat = move_data["stat"]
+    change = move_data["change"]
+
+    if stat == "attack":
+        target.attack = max(1, target.attack + (change * 2))
+        stat_name = "Ataque"
+
+    elif stat == "defense":
+        target.defense = max(1, target.defense + (change * 2))
+        stat_name = "Defesa"
+
+    elif stat == "speed":
+        target.speed = max(1, target.speed + (change * 2))
+        stat_name = "Velocidade"
+
+    if change > 0:
+        print(f"\nO status de {stat_name} de {target.name} subiu!")
+
+    else:
+        print(f"\nO status de {stat_name} de {target.name} caiu!")
+
+
 def get_type_multiplier(move, defender):
     move_type = pokemon.moves[move]["type"]
     defender_types = defender.type.split(" / ")
@@ -191,32 +229,39 @@ def enemy_turn(player_pokemon, enemy_pokemon):
 
     print(f"{enemy_pokemon.name} usou {enemy_move}!")
 
-    is_critical = check_critical_hit()
-    type_multiplier = get_type_multiplier(enemy_move, player_pokemon)
+    move_category = pokemon.moves[enemy_move]["category"]
 
-    damage = calculate_damage(enemy_pokemon, player_pokemon, enemy_move, is_critical)
-
-    if damage == 0:
-        if type_multiplier == 0:
-            show_type_effectiveness_message(type_multiplier)
-        else:
-            print(f"\n{enemy_pokemon.name} errou o ataque!")
+    if move_category == "STATUS":
+        apply_status_move(enemy_pokemon, player_pokemon, enemy_move)
 
     else:
-        show_type_effectiveness_message(type_multiplier)
+        is_critical = check_critical_hit()
+        type_multiplier = get_type_multiplier(enemy_move, player_pokemon)
 
-        if is_critical:
-            print(f"\n{enemy_pokemon.name} acertou um golpe crítico!")
+        damage = calculate_damage(enemy_pokemon, player_pokemon, enemy_move, is_critical)
 
-        player_pokemon.current_hp -= damage
+        if damage == 0:
+            if type_multiplier == 0:
+                show_type_effectiveness_message(type_multiplier)
 
-        if player_pokemon.current_hp < 0:
-            player_pokemon.current_hp = 0
+            else:
+                print(f"\n{enemy_pokemon.name} errou o ataque!")
 
-    if player_pokemon.current_hp <= 0:
-        print(f"\nSeu {player_pokemon.name} foi derrotado!")
-        dialogue.next_dialogue()
-        return "LOSE"
+        else:
+            show_type_effectiveness_message(type_multiplier)
+
+            if is_critical:
+                print(f"\n{enemy_pokemon.name} acertou um golpe crítico!")
+
+            player_pokemon.current_hp -= damage
+
+            if player_pokemon.current_hp < 0:
+                player_pokemon.current_hp = 0
+
+        if player_pokemon.current_hp <= 0:
+            print(f"\nSeu {player_pokemon.name} foi derrotado!")
+            dialogue.next_dialogue()
+            return "LOSE"
 
     dialogue.next_dialogue()
 
@@ -226,32 +271,39 @@ def player_turn(player_pokemon, enemy_pokemon, move):
 
     print(f"{player_pokemon.name} usou {move}!")
 
-    is_critical = check_critical_hit()
-    type_multiplier = get_type_multiplier(move, enemy_pokemon)
+    move_category = pokemon.moves[move]["category"]
 
-    damage = calculate_damage(player_pokemon, enemy_pokemon, move, is_critical)
-
-    if damage == 0:
-        if type_multiplier == 0:
-            show_type_effectiveness_message(type_multiplier)
-        else:
-            print(f"\n{player_pokemon.name} errou o ataque!")
+    if move_category == "STATUS":
+        apply_status_move(player_pokemon, enemy_pokemon, move)
 
     else:
-        show_type_effectiveness_message(type_multiplier)
+        is_critical = check_critical_hit()
+        type_multiplier = get_type_multiplier(move, enemy_pokemon)
 
-        if is_critical:
-            print(f"\n{player_pokemon.name} acertou um golpe crítico!")
+        damage = calculate_damage(player_pokemon, enemy_pokemon, move, is_critical)
 
-        enemy_pokemon.current_hp -= damage
+        if damage == 0:
+            if type_multiplier == 0:
+                show_type_effectiveness_message(type_multiplier)
+                
+            else:
+                print(f"\n{player_pokemon.name} errou o ataque!")
 
-        if enemy_pokemon.current_hp < 0:
-            enemy_pokemon.current_hp = 0
+        else:
+            show_type_effectiveness_message(type_multiplier)
 
-    if enemy_pokemon.current_hp <= 0:
-        print(f"\n{enemy_pokemon.name} foi derrotado!")
-        dialogue.next_dialogue()
-        return "WIN"
+            if is_critical:
+                print(f"\n{player_pokemon.name} acertou um golpe crítico!")
+
+            enemy_pokemon.current_hp -= damage
+
+            if enemy_pokemon.current_hp < 0:
+                enemy_pokemon.current_hp = 0
+
+        if enemy_pokemon.current_hp <= 0:
+            print(f"\n{enemy_pokemon.name} foi derrotado!")
+            dialogue.next_dialogue()
+            return "WIN"
 
     dialogue.next_dialogue()
 

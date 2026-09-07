@@ -15,10 +15,12 @@ pokedex  = {
 
         "moves": [
             "SCRATCH",
+            "GROWL",
         ],
 
         "learnset": {
             7: "EMBER",
+            11: "TAIL WHIP",
             13: "METAL CLAW",
             16: "FLAME WHEEL",
         },
@@ -39,9 +41,9 @@ pokedex  = {
 
         "moves": [
             "SCRATCH",
+            "GROWL",
             "EMBER",
-            "METAL CLAW",
-            "FLAME WHEEL",
+            "TAIL WHIP",
         ],
         
         "learnset": {
@@ -60,10 +62,12 @@ pokedex  = {
 
         "moves": [
             "TACKLE",
+            "GROWL",
         ],
 
         "learnset": {
             7: "VINE WHIP",
+            11: "TAIL WHIP",
             13: "SLAM",
             16: "RAZOR LEAF",
         },
@@ -84,9 +88,9 @@ pokedex  = {
 
         "moves": [
             "TACKLE",
+            "GROWL",
             "VINE WHIP",
-            "SLAM",
-            "RAZOR LEAF",
+            "TAIL WHIP",
         ],
 
         "learnset": {
@@ -104,10 +108,12 @@ pokedex  = {
 
         "moves": [
             "TACKLE",
+            "TAIL WHIP",
         ],
 
         "learnset": {
             7: "BUBBLE",
+            10: "HARDEN",
             13: "WATER GUN",
             16: "BITE",
         },
@@ -128,9 +134,9 @@ pokedex  = {
 
         "moves": [
             "TACKLE",
+            "TAIL WHIP",
             "BUBBLE",
-            "WATER GUN",
-            "BITE",
+            "HARDEN",
         ],
 
         "learnset": {
@@ -148,10 +154,12 @@ pokedex  = {
 
         "moves": [
             "THUNDER SHOCK",
+            "GROWL",
         ],
 
         "learnset": {
-            7: "QUICK ATTACK",
+            6: "TAIL WHIP",
+            9: "QUICK ATTACK",
             14: "SLAM",
             18: "THUNDERBOLT",
         }
@@ -167,10 +175,12 @@ pokedex  = {
 
         "moves": [
             "TACKLE",
+            "TAIL WHIP",
         ],
 
         "learnset": {
             7: "QUICK ATTACK",
+            10: "GROWL",
             12: "HYPER FANG",
             16: "SLAM",
         },
@@ -191,9 +201,9 @@ pokedex  = {
 
         "moves": [
             "TACKLE",
+            "TAIL WHIP",
             "QUICK ATTACK",
-            "HYPER FANG",
-            "SLAM",
+            "GROWL",
         ],
 
         "learnset": {
@@ -211,11 +221,13 @@ pokedex  = {
 
         "moves": [
             "TACKLE",
+            "GROWL",
         ],
 
         "learnset": {
             7: "PECK",
             11: "GUST",
+            13: "TAIL WHIP",
             15: "QUICK ATTACK",
         },
 
@@ -235,9 +247,9 @@ pokedex  = {
 
         "moves": [
             "TACKLE",
+            "GROWL",
             "PECK",
-            "GUST",
-            "QUICK ATTACK",
+            "TAIL WHIP",
         ],
 
         "learnset": {
@@ -255,12 +267,14 @@ pokedex  = {
 
         "moves": [
             "PECK",
+            "GROWL",
         ],
 
         "learnset": {
-            7: "GUST",
-            11: "FURY ATTACK",
-            15: "QUICK ATTACK",
+            9: "GUST",
+            12: "TAIL WHIP",
+            15: "FURY ATTACK",
+            17: "QUICK ATTACK",
         },
 
         "evolution": {
@@ -279,9 +293,9 @@ pokedex  = {
 
         "moves": [
             "PECK",
+            "GROWL",
             "GUST",
-            "FURY ATTACK",
-            "QUICK ATTACK",
+            "TAIL WHIP",
         ],
 
         "learnset": {
@@ -299,10 +313,12 @@ pokedex  = {
 
         "moves": [
             "SCRATCH",
+            "TAIL WHIP",
         ],
 
         "learnset": {
             6: "LOW KICK",
+            9: "GROWL",
             10: "DOUBLE KICK",
             14: "KARATE CHOP",
             18: "QUICK ATTACK",
@@ -319,7 +335,12 @@ pokedex  = {
 
         "moves": [
             "TACKLE",
+            "STRING SHOT",
         ],
+
+        "learnset": {
+            5: "HARDEN",
+        },
 
         "evolution": {
             "level": 7,
@@ -336,7 +357,8 @@ pokedex  = {
         "base_exp": 60,
 
         "moves": [
-            "TACKLE",
+            "HARDEN",
+            "STRING SHOT",
         ],
 
         "evolution": {
@@ -355,11 +377,14 @@ pokedex  = {
 
         "moves": [
             "CONFUSION",
+            "HARDEN",
+            "STRING SHOT",
         ],
 
         "learnset": {
             10: "CONFUSION",
             12: "GUST",
+            14: "TAIL WHIP",
             16: "AERIAL ACE",
             18: "PSYBEAM",
         }
@@ -375,7 +400,12 @@ pokedex  = {
 
         "moves": [
             "POISON STING",
+            "STRING SHOT",
         ],
+
+        "learnset": {
+            5: "HARDEN",
+        },
 
         "evolution": {
             "level": 7,
@@ -392,7 +422,8 @@ pokedex  = {
         "base_exp": 60,
 
         "moves": [
-            "POISON STING",
+            "HARDEN",
+            "STRING SHOT",
         ],
 
         "evolution": {
@@ -411,11 +442,14 @@ pokedex  = {
 
         "moves": [
             "POISON STING",
+            "HARDEN",
+            "STRING SHOT",
         ],
 
         "learnset": {
             10: "FURY ATTACK",
             13: "FURY CUTTER",
+            15: "TAIL WHIP",
             17: "AERIAL ACE",
         }
     },
@@ -430,7 +464,13 @@ pokedex  = {
 
         "moves": [
             "TACKLE",
-        ]
+            "HARDEN",
+        ],
+
+        "learnset": {
+            8: "TAIL WHIP",
+            11: "ROCK TOMB",
+        }
     },
 
     "SANDSHREW": {
@@ -443,8 +483,14 @@ pokedex  = {
 
         "moves": [
             "SCRATCH",
-            "POISON STING",
-        ]
+            "HARDEN",
+        ],
+
+        "learnset": {
+            6: "POISON STING",
+            9: "TAIL WHIP",
+            12: "SLASH",
+        }
     },
 
     "ONIX": {
@@ -457,9 +503,14 @@ pokedex  = {
 
         "moves": [
             "TACKLE",
-            "ROCK TOMB",
+            "HARDEN",
             "BIND",
-        ]
+        ],
+
+        "learnset": {
+            8: "TAIL WHIP",
+            11: "ROCK TOMB",
+        }
     },
 
 }
@@ -469,193 +520,265 @@ moves = {
     "SCRATCH": {
         "power": 40,
         "accuracy": 100,
-        "type": "NORMAL"
+        "type": "NORMAL",
+        "category": "DAMAGE"
     },
 
     "TACKLE": {
         "power": 35,
         "accuracy": 95,
-        "type": "NORMAL"
-    },
-
-    "BIND": {
-        "power": 15,
-        "accuracy": 75,
-        "type": "NORMAL"
+        "type": "NORMAL",
+        "category": "DAMAGE"
     },
 
     "FURY ATTACK": {
         "power": 15,
         "accuracy": 90,
-        "type": "NORMAL"
+        "type": "NORMAL",
+        "category": "DAMAGE"
     },
 
     "SLASH": {
         "power": 70,
         "accuracy": 95,
-        "type": "NORMAL"
+        "type": "NORMAL",
+        "category": "DAMAGE"
     },
 
     "QUICK ATTACK": {
         "power": 40,
         "accuracy": 100,
-        "type": "NORMAL"
+        "type": "NORMAL",
+        "category": "DAMAGE"
     },
 
     "HYPER FANG": {
         "power": 80,
         "accuracy": 90,
-        "type": "NORMAL"
+        "type": "NORMAL",
+        "category": "DAMAGE"
     },
 
     "SLAM": {
         "power": 60,
         "accuracy": 85,
-        "type": "NORMAL"
+        "type": "NORMAL",
+        "category": "DAMAGE"
     },
 
     "EMBER": {
         "power": 40,
         "accuracy": 100,
-        "type": "FIRE"
+        "type": "FIRE",
+        "category": "DAMAGE"
     },
-    
+
     "FLAME WHEEL": {
         "power": 60,
         "accuracy": 100,
-        "type": "FIRE"
+        "type": "FIRE",
+        "category": "DAMAGE"
     },
 
     "FLAMETHROWER": {
         "power": 95,
         "accuracy": 100,
-        "type": "FIRE"
+        "type": "FIRE",
+        "category": "DAMAGE"
     },
 
     "VINE WHIP": {
         "power": 35,
         "accuracy": 95,
-        "type": "GRASS"
+        "type": "GRASS",
+        "category": "DAMAGE"
     },
 
     "RAZOR LEAF": {
         "power": 55,
         "accuracy": 95,
-        "type": "GRASS"
+        "type": "GRASS",
+        "category": "DAMAGE"
     },
 
     "GIGA DRAIN": {
         "power": 60,
         "accuracy": 100,
-        "type": "GRASS"
+        "type": "GRASS",
+        "category": "DAMAGE"
     },
 
     "BUBBLE": {
         "power": 30,
         "accuracy": 100,
-        "type": "WATER"
+        "type": "WATER",
+        "category": "DAMAGE"
     },
 
     "WATER GUN": {
         "power": 40,
         "accuracy": 100,
-        "type": "WATER"
+        "type": "WATER",
+        "category": "DAMAGE"
     },
 
     "WATER PULSE": {
         "power": 60,
         "accuracy": 100,
-        "type": "WATER"
+        "type": "WATER",
+        "category": "DAMAGE"
     },
 
     "BITE": {
         "power": 60,
         "accuracy": 100,
-        "type": "DARK"
+        "type": "DARK",
+        "category": "DAMAGE"
     },
 
     "THUNDER SHOCK": {
         "power": 40,
         "accuracy": 100,
-        "type": "ELECTRIC"
+        "type": "ELECTRIC",
+        "category": "DAMAGE"
     },
 
     "THUNDERBOLT": {
         "power": 95,
         "accuracy": 100,
-        "type": "ELECTRIC"
+        "type": "ELECTRIC",
+        "category": "DAMAGE"
     },
 
     "PECK": {
         "power": 35,
         "accuracy": 95,
-        "type": "FLYING"
+        "type": "FLYING",
+        "category": "DAMAGE"
     },
 
     "GUST": {
         "power": 40,
         "accuracy": 100,
-        "type": "FLYING"
+        "type": "FLYING",
+        "category": "DAMAGE"
     },
-    
+
     "AERIAL ACE": {
         "power": 60,
         "accuracy": 100,
-        "type": "FLYING"
-    },
-
-    "POISON STING": {
-        "power": 15,
-        "accuracy": 100,
-        "type": "POISON"
+        "type": "FLYING",
+        "category": "DAMAGE"
     },
 
     "CONFUSION": {
         "power": 50,
         "accuracy": 100,
-        "type": "PSYCHIC"
+        "type": "PSYCHIC",
+        "category": "DAMAGE"
     },
-    
+
     "PSYBEAM": {
         "power": 65,
         "accuracy": 100,
-        "type": "PSYCHIC"
+        "type": "PSYCHIC",
+        "category": "DAMAGE"
     },
 
     "METAL CLAW": {
         "power": 50,
         "accuracy": 95,
-        "type": "STEEL"
+        "type": "STEEL",
+        "category": "DAMAGE"
     },
 
     "DOUBLE KICK": {
         "power": 30,
         "accuracy": 100,
-        "type": "FIGHT"
+        "type": "FIGHT",
+        "category": "DAMAGE"
     },
 
     "LOW KICK": {
         "power": 30,
         "accuracy": 100,
-        "type": "FIGHT"
+        "type": "FIGHT",
+        "category": "DAMAGE"
     },
 
     "KARATE CHOP": {
         "power": 50,
         "accuracy": 100,
-        "type": "FIGHT"
+        "type": "FIGHT",
+        "category": "DAMAGE"
     },
 
     "FURY CUTTER": {
         "power": 40,
         "accuracy": 95,
-        "type": "BUG"
+        "type": "BUG",
+        "category": "DAMAGE"
     },
 
     "ROCK TOMB": {
         "power": 50,
         "accuracy": 80,
-        "type": "ROCK"
+        "type": "ROCK",
+        "category": "DAMAGE"
+    },
+
+    "BIND": {
+        "power": 15,
+        "accuracy": 75,
+        "type": "NORMAL",
+        "category": "DAMAGE"
+    },
+
+    "POISON STING": {
+        "power": 15,
+        "accuracy": 100,
+        "type": "POISON",
+        "category": "DAMAGE"
+    },
+
+    "HARDEN": {
+        "power": 0,
+        "accuracy": 100,
+        "type": "NORMAL",
+        "category": "STATUS",
+        "stat": "defense",
+        "change": 1,
+        "target": "user"
+    },
+
+    "GROWL": {
+        "power": 0,
+        "accuracy": 100,
+        "type": "NORMAL",
+        "category": "STATUS",
+        "stat": "attack",
+        "change": -1,
+        "target": "opponent"
+    },
+
+    "TAIL WHIP": {
+        "power": 0,
+        "accuracy": 100,
+        "type": "NORMAL",
+        "category": "STATUS",
+        "stat": "defense",
+        "change": -1,
+        "target": "opponent"
+    },
+
+    "STRING SHOT": {
+        "power": 0,
+        "accuracy": 95,
+        "type": "BUG",
+        "category": "STATUS",
+        "stat": "speed",
+        "change": -1,
+        "target": "opponent"
     },
 
 }
