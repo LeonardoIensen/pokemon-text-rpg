@@ -698,6 +698,9 @@ def rival_first_battle(player, rival):
 
         dialogue.talk(rival.name, "O QUÊ? Inacreditável! Escolhi o POKÉMON errado!")
 
+    for pokemon in player.party:
+        pokemon.calculate_stats()
+
     dialogue.clear_screen()
     print(f"Após testar seus POKÉMON em uma batalha intensa, {player.name} se despede e se encaminha para fora de Pallet Town...")
     dialogue.next_dialogue()
@@ -780,11 +783,17 @@ def trainer_battle(player, trainer):
             print(f"{player.name} perdeu para {trainer.name}!")
             dialogue.next_dialogue()
 
+            for pokemon in player.party:
+                pokemon.calculate_stats()
+
             return "LOSE"
 
         handle_victory(player_pokemon, pokemon, is_trainer_battle=True)
 
     print(f"{player.name} derrotou {trainer.name}!")
+
+    for pokemon in player.party:
+        pokemon.calculate_stats()
 
     return "WIN"
 
@@ -800,6 +809,9 @@ def wild_battle(player, wild_pokemon):
 
     if result == "WIN":
         handle_victory(player_pokemon, wild_pokemon, is_trainer_battle=False)
+
+    for pokemon in player.party:
+        pokemon.calculate_stats()
 
     return result
 
