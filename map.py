@@ -146,17 +146,42 @@ def wild_encounter(player, route_pokemon):
 
 
 def pokemon_center(player):
-    dialogue.clear_screen()
+    while True:
+        dialogue.clear_screen()
 
-    print("--- CENTRO POKÉMON ---\n")
-    print("Enfermeira Joy: Olá! Bem-vindo ao Centro Pokémon.")
-    print("Nós curamos seus Pokémon desmaiados ou feridos até sua saúde total.\n")
+        print("--- CENTRO POKÉMON ---\n")
+        print("1- CURAR POKEMONS")
+        print("2- ACESSAR PC")
+        print("\n0- SAIR")
 
-    for pokemon in player.party:
-        pokemon.heal_full()
- 
-    print("Seus POKÉMON foram totalmente restaurados! Esperamos ver você novamente!")
-    dialogue.next_dialogue()
+        choice = input("\nEscolha: ")
+
+        if choice == "0":
+            return
+
+        if choice == "1":
+            dialogue.clear_screen()
+            print("Enfermeira Joy: Olá! Bem-vindo ao Centro Pokémon.")
+            print("Nós curamos seus Pokémon desmaiados ou feridos até sua saúde total.")
+            dialogue.next_dialogue()
+
+            for pokemon in player.party:
+                pokemon.heal_full()
+
+            dialogue.clear_screen()
+            print("Seus POKÉMON foram totalmente restaurados! Esperamos ver você novamente!")
+            dialogue.next_dialogue()
+
+        elif choice == "2":
+            dialogue.clear_screen()
+            print("--- PC ---\n")
+            print("nao implementado")
+            dialogue.next_dialogue()
+
+        else:
+            dialogue.clear_screen()
+            print("[ Opcao invalida! Tente novamente. ]")
+            dialogue.next_dialogue()
 
 
 def player_menu(player):
