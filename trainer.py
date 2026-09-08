@@ -1,14 +1,24 @@
 import pokemon
+import dialogue
 
 class Trainer:
     def __init__(self, name, pokemon, ):
         self.name = name
         self.party = [pokemon]
+        self.pc_box = []
         self.defeated = False
         self.pewter_gym_defeated = False
 
     def add_pokemon(self, pokemon):
-        self.party.append(pokemon)
+        if 3 > len(self.party):
+            self.party.append(pokemon)
+
+        else:
+            dialogue.clear_screen()
+            print(f"Party cheia! {pokemon.name} foi tranferido para o PC!")
+            dialogue.next_dialogue()
+
+            self.pc_box.append(pokemon)
 
     def show_party(self):
         print("--- PARTY ---\n")
