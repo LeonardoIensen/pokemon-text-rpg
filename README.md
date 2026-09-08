@@ -134,6 +134,11 @@ Em desenvolvimento.
   * Validações para impedir captura contra treinadores ou fora de batalha
   * Turno de ataque do inimigo em caso de falha na captura
 
+* **Sistema de PC e Armazenamento**
+  * Limite de equipe ajustado para no máximo 3 Pokémon na party
+  * Transferência automática de novos Pokémon capturados para a caixa do PC quando o time estiver cheio
+  * Menu do Centro Pokémon atualizado com opção de acesso ao PC
+
 ---
 
 ## 🛠️ Tecnologias
