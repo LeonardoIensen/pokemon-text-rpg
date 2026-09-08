@@ -173,8 +173,54 @@ def pokemon_center(player):
             dialogue.next_dialogue()
 
         elif choice == "2":
+            pc_menu(player)
+
+        else:
             dialogue.clear_screen()
-            print("--- PC ---\n")
+            print("[ Opcao invalida! Tente novamente. ]")
+            dialogue.next_dialogue()
+
+
+def view_pc_box(player):
+    dialogue.clear_screen()
+
+    print("--- BOX PC ---\n")
+    for i, pokemon in enumerate (player.pc_box, start=1):
+        print(f"{i}- {pokemon.name}")
+    
+    dialogue.next_dialogue()
+
+def pc_menu(player):
+    while True:
+        dialogue.clear_screen()
+
+        print("--- PC ---\n")
+        print("1- VER POKEMONS")
+        print("2- RETIRAR POKEMONS")
+        print("3- DEPOSITAR POKEMONS")
+        print("\n0- VOLTAR")
+
+        choice = input("\nEscolha: ")
+
+        if choice == "0":
+            return
+
+        if choice == "1":
+            if len(player.pc_box) == 0:
+                dialogue.clear_screen()
+                print("Seu PC esta vazio!")
+                dialogue.next_dialogue()
+
+            else:
+                view_pc_box(player)
+
+        elif choice == "2":
+            dialogue.clear_screen()
+            print("nao implementado")
+            dialogue.next_dialogue()
+
+        elif choice == "3":
+            dialogue.clear_screen()
             print("nao implementado")
             dialogue.next_dialogue()
 
