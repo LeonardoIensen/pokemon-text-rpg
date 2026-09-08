@@ -138,6 +138,7 @@ Em desenvolvimento.
   * Limite de equipe ajustado para no máximo 3 Pokémon na party
   * Transferência automática de novos Pokémon capturados para a caixa do PC quando o time estiver cheio
   * Menu do Centro Pokémon atualizado com opção de acesso ao PC
+  * Visualização dos Pokémon armazenados na caixa do PC
 
 ---
 
