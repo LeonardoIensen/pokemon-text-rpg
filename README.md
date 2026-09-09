@@ -137,8 +137,10 @@ Em desenvolvimento.
 * **Sistema de PC e Armazenamento**
   * Limite de equipe ajustado para no máximo 3 Pokémon na party
   * Transferência automática de novos Pokémon capturados para a caixa do PC quando o time estiver cheio
-  * Menu do Centro Pokémon atualizado com opção de acesso ao PC
-  * Visualização dos Pokémon armazenados na caixa do PC
+  * Menu do Centro Pokémon com opção de acesso ao PC
+  * Visualização dos Pokémon armazenados no PC
+  * Sistema de depósito de Pokémon da equipe para a caixa (respeitando o limite mínimo de 1 Pokémon na party)
+  * Sistema de retirada de Pokémon da caixa para a equipe (respeitando o limite máximo de 3 Pokémon na party)
 
 ---
 
