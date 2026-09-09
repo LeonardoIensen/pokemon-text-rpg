@@ -161,7 +161,7 @@ def pokemon_center(player):
 
         if choice == "1":
             dialogue.clear_screen()
-            print("Enfermeira Joy: Olá! Bem-vindo ao Centro Pokémon.")
+            print("Enfermeira Joy: Olá! Bem-vindo ao Centro Pokémon.\n")
             print("Nós curamos seus Pokémon desmaiados ou feridos até sua saúde total.")
             dialogue.next_dialogue()
 
@@ -169,7 +169,7 @@ def pokemon_center(player):
                 pokemon.heal_full()
 
             dialogue.clear_screen()
-            print("Seus POKÉMON foram totalmente restaurados! Esperamos ver você novamente!")
+            print("Enfermeira Joy: Seus POKÉMON foram totalmente restaurados! Esperamos ver você novamente!")
             dialogue.next_dialogue()
 
         elif choice == "2":
@@ -182,13 +182,36 @@ def pokemon_center(player):
 
 
 def view_pc_box(player):
-    dialogue.clear_screen()
+    while True:
+        dialogue.clear_screen()
 
-    print("--- BOX PC ---\n")
-    for i, pokemon in enumerate (player.pc_box, start=1):
-        print(f"{i}- {pokemon.name}")
-    
-    dialogue.next_dialogue()
+        print("--- BOX PC ---\n")
+        for i, pokemon in enumerate(player.pc_box, start=1):
+            print(f"{i}- {pokemon.name:<12} LV {pokemon.level}")
+
+        print("\n0- VOLTAR")
+
+        try:
+            choice = int(input("\nEscolha um Pokémon para ver o sumário: "))
+
+        except ValueError:
+            dialogue.clear_screen()
+            print("[ Opcao invalida! Tente novamente. ]")
+            dialogue.next_dialogue()
+
+            continue
+
+        if choice == 0:
+            return
+
+        if 1 <= choice <= len(player.pc_box):
+            selected_pokemon = player.pc_box[choice - 1]
+            battle.show_summary(selected_pokemon)
+
+        else:
+            dialogue.clear_screen()
+            print("[ Opcao invalida! Tente novamente. ]")
+            dialogue.next_dialogue()
 
 
 def deposit_pokemon_menu(player):
@@ -204,7 +227,7 @@ def deposit_pokemon_menu(player):
 
         print("--- PARTY ---\n")
         for i, pokemon in enumerate(player.party, start=1):
-            print(f"{i}- {pokemon.name}")
+            print(f"{i}- {pokemon.name:<12} LV {pokemon.level}")
 
         print("\n0- VOLTAR")
 
@@ -252,7 +275,7 @@ def withdraw_pokemon_menu(player):
 
         print("--- BOX PC ---\n")
         for i, pokemon in enumerate (player.pc_box, start=1):
-            print(f"{i}- {pokemon.name}")
+            print(f"{i}- {pokemon.name:<12} LV {pokemon.level}")
 
         print("\n0- VOLTAR")
 
