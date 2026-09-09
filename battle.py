@@ -369,12 +369,12 @@ def show_type_effectiveness_message(multiplier):
 def show_battle_stats(player_pokemon, enemy_pokemon):
     print("------------------------")
 
-    print(f"{enemy_pokemon.name} Lv{enemy_pokemon.level}")
+    print(f"{enemy_pokemon.name:<12} Lv{enemy_pokemon.level}")
     print(f"HP: {enemy_pokemon.current_hp}/{enemy_pokemon.max_hp}")
 
     print("\nVS\n")
 
-    print(f"{player_pokemon.name} Lv{player_pokemon.level}")
+    print(f"{player_pokemon.name:<12} Lv{player_pokemon.level}")
     print(f"HP: {player_pokemon.current_hp}/{player_pokemon.max_hp}    XP: {player_pokemon.experience}/{player_pokemon.exp_next_level()}")
 
     print("------------------------\n")
@@ -607,7 +607,7 @@ def party_menu(player):
         print("--- PARTY ---\n")
 
         for i, pokemon in enumerate (player.party, start=1):
-            print(f"{i}- {pokemon.name}")
+            print(f"{i}- {pokemon.name:<12} LV {pokemon.level}")
 
         print("\n0- VOLTAR")
 
