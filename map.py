@@ -426,7 +426,7 @@ def player_menu(player):
             dialogue.next_dialogue()
 
 
-def route_1(player):
+def route_1(player, rival):
 
     steps = 0
 
@@ -458,7 +458,7 @@ def route_1(player):
 
                 steps = 0
 
-                viridian_city(player)
+                viridian_city(player, rival)
 
         elif choice == "2":
             result = wild_encounter(player, route_1_pokemons)
@@ -482,7 +482,7 @@ def route_1(player):
             dialogue.next_dialogue() 
 
 
-def viridian_city(player):
+def viridian_city(player, rival):
     while True:
         dialogue.clear_screen()
 
@@ -501,7 +501,7 @@ def viridian_city(player):
             print(f"{player.name} chegou a Rota 2!")
             dialogue.next_dialogue()
 
-            route_2(player)
+            route_2(player, rival)
 
         elif choice == "2":
             return
@@ -518,7 +518,7 @@ def viridian_city(player):
             dialogue.next_dialogue() 
 
 
-def route_2(player):
+def route_2(player, rival):
 
     steps = 0
 
@@ -545,13 +545,30 @@ def route_2(player):
                 return            
 
             if steps >= 5:
+
+                if not rival.defeated:
+                    result = battle.rival_second_battle(player, rival)
+
+                    if result == "LOSE":
+                        dialogue.clear_screen()
+                        print(f"Sem Pokémon para batalhar, {player.name} retorna para o Centro Pokémon mais próximo.")
+                        dialogue.next_dialogue()
+
+                        for pokemon in player.party:
+                            pokemon.heal_full()
+
+                            steps = 0
+                            return "FAINTED"
+
+                    rival.defeated = True  
+
                 dialogue.clear_screen()
                 print(f"{player.name} chegou ao Bosque Viridian!")
                 dialogue.next_dialogue()
 
                 steps = 0
 
-                result = viridian_forest(player)
+                result = viridian_forest(player, rival)
 
                 if result == "FAINTED":
                     steps = 0
@@ -584,7 +601,7 @@ def route_2(player):
             dialogue.next_dialogue() 
 
 
-def viridian_forest(player):
+def viridian_forest(player, rival):
 
     steps = 0
 
@@ -617,7 +634,7 @@ def viridian_forest(player):
 
                 steps = 0
 
-                result = route_3(player)
+                result = route_3(player, rival)
 
                 if result == "FAINTED":
                     return result
@@ -649,7 +666,7 @@ def viridian_forest(player):
             dialogue.next_dialogue() 
 
 
-def route_3(player):
+def route_3(player, rival):
     
     steps = 0
 
@@ -682,7 +699,7 @@ def route_3(player):
 
                 steps = 0
 
-                pewter_city(player)
+                pewter_city(player, rival)
 
         elif choice == "2":
             result = wild_encounter(player, route_3_pokemons)
@@ -711,7 +728,7 @@ def route_3(player):
             dialogue.next_dialogue()
 
 
-def pewter_city(player):
+def pewter_city(player, rival):
     while True:
         dialogue.clear_screen()
 
@@ -720,7 +737,8 @@ def pewter_city(player):
         print("1- VOLTAR PARA ROTA 3")
         print("2- GINASIO DO BROCK")
         print("3- CENTRO POKEMON")
-        print("4- MENU")
+        print("4- DESAFIAR RIVAL")
+        print("5- MENU")
 
         choice = input("\nEscolha: ")
 
@@ -734,6 +752,15 @@ def pewter_city(player):
             pokemon_center(player)
 
         elif choice == "4":
+            if not player.pewter_gym_defeated:
+                dialogue.clear_screen()
+                print("Você precisa derrotar o Líder Brock primeiro!")
+                dialogue.next_dialogue()
+
+            else:
+                battle.rival_third_battle(player, rival)
+
+        elif choice == "5":
             player_menu(player)
 
         else:
