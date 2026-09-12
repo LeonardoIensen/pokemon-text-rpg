@@ -31,7 +31,7 @@ while True:
 
         battle.rival_first_battle(player, rival)
 
-        map.route_1(player)
+        map.route_1(player, rival)
 
     elif opcao == "2":
         dialogue.clear_screen()
