@@ -73,6 +73,9 @@ Em desenvolvimento.
   * Sistema de estado de derrota dos treinadores do ginásio
   * Sistema de reordenação e troca de posição de Pokémon na party
   * Cadastro dos dados, equipes e diálogos dos treinadores das rotas (Rota 1, Rota 2, Bosque de Viridian e Rota 3)
+  * Segunda batalha contra o rival no encerramento da Rota 2 com equipe atualizada
+  * Terceira batalha e desafio pós-ginásio em Pewter City contra o rival com a forma evoluída do inicial
+  * Trava de segurança exigindo a derrota do Líder Brock antes de desafiar o rival em Pewter
 
 * **Sistema de batalha**
   * Menu principal de batalha
