@@ -706,6 +706,63 @@ def rival_first_battle(player, rival):
     dialogue.next_dialogue()
 
 
+def rival_second_battle(player, rival):
+    rival_starter_name = rival.party[0].name
+    rival.party = [pokemon.Pokemon(rival_starter_name, 9), pokemon.Pokemon("PIDGEY", 9)]
+
+    dialogue.clear_screen()
+    dialogue.talk(rival.name, f"Ei! {player.name}! Andei treinando, está pronto pra ser humilhado? HAHA!")
+
+    result = trainer_battle(player, rival)
+
+    if result == "WIN":
+        print()
+        dialogue.talk(rival.name, "COMO!? Como pude perder duas vezes para alguém como você!?")
+
+    elif result == "LOSE":
+        print()
+        dialogue.talk(rival.name, f"Seu Pokémon ainda é muito fraco, {player.name}! Treine mais!")
+
+    dialogue.clear_screen()
+    print(f"Após batalharem novamente, {rival.name} caminha resmungando indignado a caminho do Bosque Viridian...")
+    dialogue.next_dialogue()
+
+    return result
+
+
+def rival_third_battle(player, rival):
+    rival_starter_name = rival.party[0].name
+
+    evolutions = {
+        "BULBASAUR": "IVYSAUR",
+        "CHARMANDER": "CHARMELEON",
+        "SQUIRTLE": "WARTORTLE"
+    }
+
+    evolved_starter = evolutions.get(rival_starter_name, rival_starter_name)
+
+    rival.party = [pokemon.Pokemon("RATTATA", 12), pokemon.Pokemon("PIDGEY", 14), pokemon.Pokemon(evolved_starter, 16)]
+
+    dialogue.clear_screen()
+    dialogue.talk(rival.name, f"Ei perdedor! Parece que voce conseguiu derrotar o Brock, mas nao tera a mesma sorte contra mim!")
+
+    result = trainer_battle(player, rival)
+
+    if result == "WIN":
+        print()
+        dialogue.talk(rival.name, "DE NOVO!? Droga, voce deve estar trapaceando!")
+
+    elif result == "LOSE":
+        print()
+        dialogue.talk(rival.name, f"Como eu disse! HAHA!")
+
+    dialogue.clear_screen()
+    print(f"Após a batalha, {rival.name} segue adiante sua jornada assim como {player.name}...")
+    dialogue.next_dialogue()
+
+    return result
+
+
 def has_available_pokemon(player):
     for pokemon in player.party:
         if pokemon.current_hp > 0:
