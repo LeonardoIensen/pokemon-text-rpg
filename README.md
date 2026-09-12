@@ -144,6 +144,12 @@ Em desenvolvimento.
   * Sistema de depósito de Pokémon da equipe para a caixa (respeitando o limite mínimo de 1 Pokémon na party)
   * Sistema de retirada de Pokémon da caixa para a equipe (respeitando o limite máximo de 3 Pokémon na party)
 
+* **Treinadores nas Rotas**
+  * Checagem automática de encontros com treinadores em passos específicos de cada rota
+  * Diálogos de apresentação, vitória e derrota exclusivos para cada treinador
+  * Controle de estado para impedir batalhas repetidas contra treinadores já derrotados
+  * Retorno automático ao Centro Pokémon mais próximo ao ser derrotado por treinadores
+
 ---
 
 ## 🛠️ Tecnologias
