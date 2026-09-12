@@ -106,6 +106,42 @@ viridian_forest_pokemons = {
 }
 
 
+def check_route_trainer(player, route_trainers, steps):
+    for t_data in route_trainers.values():
+        if steps == t_data["step"] and not t_data["defeated"]:
+            dialogue.clear_screen()
+            dialogue.talk(t_data["name"], t_data["intro"])
+
+            first_poke_name, first_poke_level = t_data["pokemons"][0]
+            first_pokemon = pokemon.Pokemon(first_poke_name, first_poke_level)
+            npc_trainer = trainer.Trainer(t_data["name"], first_pokemon)
+
+            for poke_name, poke_level in t_data["pokemons"][1:]:
+                npc_trainer.add_pokemon(pokemon.Pokemon(poke_name, poke_level))
+
+            result = battle.trainer_battle(player, npc_trainer)
+
+            if result == "WIN":
+                print()
+                dialogue.talk(t_data["name"], t_data["lose_msg"])
+                t_data["defeated"] = True
+                return "WIN"
+
+            elif result == "LOSE":
+                print()
+                dialogue.talk(t_data["name"], t_data["win_msg"])
+                dialogue.clear_screen()
+                print(f"Sem Pokémon para batalhar, {player.name} retorna para o Centro Pokémon mais próximo para recuperar sua equipe.")
+                dialogue.next_dialogue()
+
+                for p in player.party:
+                    p.heal_full()
+
+                return "FAINTED"
+
+    return None
+
+
 def wild_encounter(player, route_pokemon):
     dialogue.clear_screen() 
 
@@ -409,6 +445,12 @@ def route_1(player):
         if choice == "1":
             steps += 1
 
+            trainer_result = check_route_trainer(player, trainer.route_1_trainers, steps)
+
+            if trainer_result == "FAINTED":
+                steps = 0
+                return
+
             if steps >= 5:
                 dialogue.clear_screen()
                 print(f"{player.name} chegou a cidade de Viridian!")
@@ -496,6 +538,12 @@ def route_2(player):
         if choice == "1":
             steps += 1
 
+            trainer_result = check_route_trainer(player, trainer.route_2_trainers, steps)
+
+            if trainer_result == "FAINTED":
+                steps = 0
+                return            
+
             if steps >= 5:
                 dialogue.clear_screen()
                 print(f"{player.name} chegou ao Bosque Viridian!")
@@ -544,7 +592,7 @@ def viridian_forest(player):
         dialogue.clear_screen()
 
         print("--- BOSQUE VIRIDIAN ---\n")
-        print(f"Progresso: {steps}/5\n")
+        print(f"Progresso: {steps}/8\n")
 
         print("1- ANDAR")
         print("2- ANDAR NA GRAMA")
@@ -556,7 +604,13 @@ def viridian_forest(player):
         if choice == "1":
             steps += 1
 
-            if steps >= 5:
+            trainer_result = check_route_trainer(player, trainer.viridian_forest_trainers, steps)
+
+            if trainer_result == "FAINTED":
+                steps = 0
+                return
+
+            if steps >= 8:
                 dialogue.clear_screen()
                 print(f"{player.name} chegou a Rota 3!")
                 dialogue.next_dialogue()
@@ -614,6 +668,12 @@ def route_3(player):
 
         if choice == "1":
             steps += 1
+
+            trainer_result = check_route_trainer(player, trainer.route_3_trainers, steps)
+
+            if trainer_result == "FAINTED":
+                steps = 0
+                return
 
             if steps >= 5:
                 dialogue.clear_screen()
