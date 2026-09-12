@@ -86,17 +86,7 @@ route_2_trainers = {
         "lose_msg": "Incrível... você me surpreendeu!",
         "step": 2,
         "defeated": False
-    },
-
-    "TRAINER_2": {
-        "name": "CAMPISTA ANYA",
-        "pokemons": [("PIDGEY", 6), ("SPEAROW", 7)],
-        "intro": "Cuidado! Meus Pokémon pássaros vão te pegar de surpresa!",
-        "win_msg": "Ninguém supera a velocidade das minhas aves!",
-        "lose_msg": "Ah não! As asas dos meus Pokémon cansaram...",
-        "step": 5,
-        "defeated": False
-    },
+    }
 
 }
 
