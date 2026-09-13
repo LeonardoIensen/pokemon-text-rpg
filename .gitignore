@@ -2,3 +2,4 @@ __pycache__/
 *.pyc
 .vscode/
 dev_test.py
+savegame.json
