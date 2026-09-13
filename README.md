@@ -153,6 +153,12 @@ Em desenvolvimento.
   * Controle de estado para impedir batalhas repetidas contra treinadores já derrotados
   * Retorno automático ao Centro Pokémon mais próximo ao ser derrotado por treinadores
 
+* **Sistema de Save e Load (JSON)**
+  * Salvamento completo do estado do jogador, rival, insígnias, party e PC Box
+  * Persistência da localização exata e progresso de passos no mapa
+  * Opção de continuar o jogo salvo diretamente do menu inicial
+  * Menu de confirmação antes de sobrescrever ou iniciar um novo save
+
 ---
 
 ## 🛠️ Tecnologias
@@ -174,6 +180,7 @@ pokemon-text-rpg/
 ├── trainer.py
 ├── battle.py
 ├── map.py
+├── save.py
 └── README.md
 ```
 
