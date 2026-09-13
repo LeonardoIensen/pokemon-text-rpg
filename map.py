@@ -3,6 +3,8 @@ import pokemon
 import battle
 import random
 import trainer
+import save
+import sys
 
 route_1_pokemons = {
 
@@ -104,6 +106,57 @@ viridian_forest_pokemons = {
     },
 
 }
+
+
+def load_saved_location(player, rival, location, steps=0):
+    current = location
+    current_steps = steps
+
+    while current:
+        if current == "route_1":
+            route_1(player, rival, current_steps)
+            current = None
+            current_steps = 0
+
+        elif current == "viridian_city":
+            result = viridian_city(player, rival)
+            if result == "BACK":
+                current = "route_1"
+                current_steps = 0
+            else:
+                current = None
+
+        elif current == "route_2":
+            result = route_2(player, rival, current_steps)
+            if result in ("BACK", "FAINTED"):
+                current = "viridian_city"
+                current_steps = 0
+            else:
+                current = None
+
+        elif current == "viridian_forest":
+            result = viridian_forest(player, rival, current_steps)
+            if result in ("BACK", "FAINTED"):
+                current = "route_2" if result == "BACK" else "viridian_city"
+                current_steps = 0
+            else:
+                current = None
+
+        elif current == "route_3":
+            result = route_3(player, rival, current_steps)
+            if result in ("BACK", "FAINTED"):
+                current = "viridian_forest" if result == "BACK" else "viridian_city"
+                current_steps = 0
+            else:
+                current = None
+
+        elif current == "pewter_city":
+            result = pewter_city(player, rival)
+            if result in ("BACK", "FAINTED"):
+                current = "route_3" if result == "BACK" else "viridian_city"
+                current_steps = 0
+            else:
+                current = None
 
 
 def check_route_trainer(player, route_trainers, steps):
@@ -388,7 +441,7 @@ def pc_menu(player):
             dialogue.next_dialogue()
 
 
-def player_menu(player):
+def player_menu(player, rival, current_location, steps=0):
     while True:
         dialogue.clear_screen()
 
@@ -411,14 +464,52 @@ def player_menu(player):
             battle.bag(player)
 
         elif choice == "3":
-            dialogue.clear_screen()
-            print("Sair ainda nao implementado.")
-            dialogue.next_dialogue()
+            if not save.has_save_file():
+                dialogue.clear_screen()
+                print("Deseja salvar antes de sair?\n")
+                print("1- SIM")
+                print("2- NAO")
+                print("\n0- VOLTAR")
+
+                confirm = input("\nEscolha: ")
+
+                if confirm == "1":
+                    save.save_game(player, rival, current_location, steps)
+                    dialogue.clear_screen()
+                    print("Jogo salvo!")
+                    dialogue.next_dialogue()
+                elif confirm == "2":
+                    dialogue.clear_screen()
+                    print("Saindo do jogo...")
+                    dialogue.next_dialogue()
+                    sys.exit()
+                elif confirm == "0":
+                    continue
+            else:
+                dialogue.clear_screen()
+                print("Saindo do jogo...")
+                dialogue.next_dialogue()
+                sys.exit()
 
         elif choice == "4":
-            dialogue.clear_screen()
-            print("Salvar ainda nao implementado.")
-            dialogue.next_dialogue()
+            if save.has_save_file():
+                dialogue.clear_screen()
+                print("Você já tem um jogo salvo antigo, deseja substituir ele?\n")
+                print("1- SIM")
+                print("2- NAO")
+
+                sub_choice = input("\nEscolha: ")
+
+                if sub_choice == "1":
+                    save.save_game(player, rival, current_location, steps)
+                    dialogue.clear_screen()
+                    print("Jogo salvo!")
+                    dialogue.next_dialogue()
+            else:
+                save.save_game(player, rival, current_location, steps)
+                dialogue.clear_screen()
+                print("Jogo salvo!")
+                dialogue.next_dialogue()
 
         else:
             dialogue.clear_screen()
@@ -426,9 +517,7 @@ def player_menu(player):
             dialogue.next_dialogue()
 
 
-def route_1(player, rival):
-
-    steps = 0
+def route_1(player, rival, steps=0):
 
     while True:
         dialogue.clear_screen()
@@ -474,7 +563,7 @@ def route_1(player, rival):
                 steps = 0
 
         elif choice == "3":
-            player_menu(player)
+            player_menu(player, rival, "route_1", steps)
 
         else:
             dialogue.clear_screen()
@@ -504,13 +593,13 @@ def viridian_city(player, rival):
             route_2(player, rival)
 
         elif choice == "2":
-            return
+            return "BACK"
 
         elif choice == "3":
             pokemon_center(player)
 
         elif choice == "4":
-            player_menu(player)
+            player_menu(player, rival, "viridian_city", 0)
 
         else:
             dialogue.clear_screen()
@@ -518,9 +607,7 @@ def viridian_city(player, rival):
             dialogue.next_dialogue() 
 
 
-def route_2(player, rival):
-
-    steps = 0
+def route_2(player, rival, steps=0):
 
     while True:
         dialogue.clear_screen()
@@ -587,13 +674,13 @@ def route_2(player, rival):
 
                 steps = 0
 
-                return
+                return "FAINTED"
 
         elif choice == "3":
-            return
+            return "BACK"
         
         elif choice == "4":
-            player_menu(player)
+            player_menu(player, rival, "route_2", steps)
 
         else:
             dialogue.clear_screen()
@@ -601,9 +688,7 @@ def route_2(player, rival):
             dialogue.next_dialogue() 
 
 
-def viridian_forest(player, rival):
-
-    steps = 0
+def viridian_forest(player, rival, steps=0):
 
     while True:
         dialogue.clear_screen()
@@ -655,10 +740,10 @@ def viridian_forest(player, rival):
                 return "FAINTED"
 
         elif choice == "3":
-            return
+            return "BACK"
         
         elif choice == "4":
-            player_menu(player)
+            player_menu(player, rival, "viridian_forest", steps)
 
         else:
             dialogue.clear_screen()
@@ -666,10 +751,8 @@ def viridian_forest(player, rival):
             dialogue.next_dialogue() 
 
 
-def route_3(player, rival):
+def route_3(player, rival, steps=0):
     
-    steps = 0
-
     while True:
         dialogue.clear_screen()
 
@@ -717,10 +800,10 @@ def route_3(player, rival):
                 return "FAINTED"
 
         elif choice == "3":
-            return
+            return "BACK"
         
         elif choice == "4":
-            player_menu(player)
+            player_menu(player, rival, "route_3", steps)
 
         else:
             dialogue.clear_screen()
@@ -743,10 +826,10 @@ def pewter_city(player, rival):
         choice = input("\nEscolha: ")
 
         if choice == "1":
-           return
+           return "BACK"
 
         elif choice == "2":
-            pewter_gym(player)
+            pewter_gym(player, rival)
 
         elif choice == "3":
             pokemon_center(player)
@@ -761,7 +844,7 @@ def pewter_city(player, rival):
                 battle.rival_third_battle(player, rival)
 
         elif choice == "5":
-            player_menu(player)
+            player_menu(player, rival, "pewter_city", 0)
 
         else:
             dialogue.clear_screen()
@@ -769,7 +852,7 @@ def pewter_city(player, rival):
             dialogue.next_dialogue()
 
 
-def pewter_gym(player):
+def pewter_gym(player, rival):
 
     gym_trainer = trainer.gym_trainer()
     brock = trainer.gym_leader_brock()
@@ -850,7 +933,7 @@ def pewter_gym(player):
             return
 
         elif choice == "4":
-            player_menu(player)
+            player_menu(player, rival, "pewter_city", 0)
 
         else:
             dialogue.clear_screen()
