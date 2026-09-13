@@ -3,8 +3,10 @@ import pokemon
 import trainer
 import battle
 import map
+import save
 
 while True:
+    dialogue.clear_screen()
 
     print("--- POKEMON RPG ---\n")
     print("1 - NOVO JOGO")
@@ -14,6 +16,17 @@ while True:
     opcao = input("\nDigite sua escolha: ")
 
     if opcao == "1":
+        if save.has_save_file():
+            dialogue.clear_screen()
+            print("Você já tem um jogo salvo antigo.\nDeseja começar um NOVO JOGO mesmo?\n")
+            print("1 - SIM")
+            print("2 - NAO")
+
+            confirm = input("\nEscolha: ")
+
+            if confirm != "1":
+                continue
+
         dialogue.clear_screen()
 
         player_name, rival_name = dialogue.intro()
@@ -34,9 +47,13 @@ while True:
         map.route_1(player, rival)
 
     elif opcao == "2":
-        dialogue.clear_screen()
-        print("Funcao ainda nao implementada!")
-        dialogue.next_dialogue()
+        if not save.has_save_file():
+            dialogue.clear_screen()
+            print("Nenhum jogo salvo foi encontrado!")
+            dialogue.next_dialogue()
+        else:
+            player, rival, location, steps = save.load_game()
+            map.load_saved_location(player, rival, location, steps)
 
     elif opcao == "3":
         dialogue.clear_screen()
@@ -48,5 +65,3 @@ while True:
         dialogue.clear_screen()
         print("[ Opcao invalida! Tente novamente. ]")
         dialogue.next_dialogue()
-
-    
